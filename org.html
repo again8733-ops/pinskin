@@ -54,7 +54,7 @@
   }
 
   .title {
-    font-size: 38px; font-weight: 900; letter-spacing: 3px;
+    font-size: 48px; font-weight: 900; letter-spacing: 3px;
     background: linear-gradient(90deg, #0a1f44, #1e3a6e, #4a6fb5, #0a1f44);
     background-size: 300% 100%;
     -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -64,7 +64,7 @@
     0% { background-position: 0% 50%; }
     100% { background-position: 300% 50%; }
   }
-  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 14px; }
+  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 18px; }
 
   /* 배경 워터마크 로고 */
   .bg-logo {
@@ -72,33 +72,33 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: min(78vw, 560px);
-    height: min(78vw, 560px);
+    width: min(85vw, 640px);
+    height: min(85vw, 640px);
     border-radius: 50%;
     object-fit: cover;
-    opacity: 0.12;
-    filter: blur(1px);
+    opacity: 0.2;
+    filter: blur(0.5px);
     pointer-events: none;
     z-index: 1;
     animation: bgPulse 8s ease-in-out infinite;
   }
   @keyframes bgPulse {
-    0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.16; transform: translate(-50%, -50%) scale(1.04); }
+    0%, 100% { opacity: 0.16; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
   }
 
   .teams {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 28px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
   }
 
   .team {
-    border-radius: 22px;
-    padding: 28px 22px 30px;
+    border-radius: 24px;
+    padding: 34px 26px 36px;
     text-align: center;
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.88);
     border: 1px solid rgba(10,31,68,0.12);
     box-shadow: 0 12px 35px rgba(10,31,68,0.1);
     backdrop-filter: blur(10px);
@@ -129,9 +129,9 @@
   }
 
   .team-icon {
-    width: 70px; height: 70px; margin: 0 auto 16px;
+    width: 90px; height: 90px; margin: 0 auto 18px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 32px;
+    font-size: 44px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--c1), var(--c2));
     box-shadow: 0 0 25px var(--glow);
@@ -143,15 +143,15 @@
   }
 
   .team-name {
-    font-size: 22px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
+    font-size: 30px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
   }
 
   .member {
-    margin-top: 14px;
-    padding: 12px;
-    border-radius: 14px;
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: 16px;
     background: rgba(10,31,68,0.05);
-    border-left: 3px solid var(--c1);
+    border-left: 4px solid var(--c1);
     text-align: left;
     transition: all 0.3s ease;
   }
@@ -160,17 +160,18 @@
     transform: translateX(6px);
   }
   .member .role {
-    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    font-size: 15px; font-weight: 700; letter-spacing: 2px;
     color: var(--c1); text-transform: uppercase;
   }
   .member .name {
-    font-size: 17px; font-weight: 700; color: var(--navy); margin-top: 3px; letter-spacing: 1px;
+    font-size: 25px; font-weight: 700; color: var(--navy); margin-top: 4px; letter-spacing: 1px;
   }
 
   @media (max-width: 700px) {
-    .title { font-size: 28px; }
-    .hub-node { padding: 14px 24px; }
-    .hub-node span { font-size: 16px; }
+    .title { font-size: 34px; }
+    .team-name { font-size: 25px; }
+    .member .name { font-size: 21px; }
+    .member .role { font-size: 13px; }
   }
 </style>
 </head>

@@ -66,41 +66,32 @@
   }
   .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 14px; }
 
-  /* 최상위(동아리) 노드 */
-  .hub {
-    display: flex; justify-content: center; margin: 40px 0 10px;
+  /* 배경 워터마크 로고 */
+  .bg-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(78vw, 560px);
+    height: min(78vw, 560px);
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.12;
+    filter: blur(1px);
+    pointer-events: none;
+    z-index: 1;
+    animation: bgPulse 8s ease-in-out infinite;
   }
-  .hub-node {
-    position: relative;
-    display: flex; align-items: center; gap: 14px;
-    padding: 16px 40px; border-radius: 60px;
-    background: #ffffff;
-    border: 3px solid #0a1f44;
-    box-shadow: 0 0 35px rgba(10,31,68,0.25), 0 12px 30px rgba(10,31,68,0.18);
-    animation: hubIn 1s ease-out both;
-  }
-  .hub-node img {
-    width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
-    border: 2px solid #0a1f44;
-  }
-  .hub-node span {
-    color: #0a1f44; font-size: 20px; font-weight: 900; letter-spacing: 4px;
-  }
-  @keyframes hubIn {
-    from { opacity: 0; transform: scale(0.7); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  .connector {
-    width: 2px; height: 60px; margin: 0 auto;
-    background: linear-gradient(180deg, #1e3a6e, transparent);
+  @keyframes bgPulse {
+    0%, 100% { opacity: 0.1; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.16; transform: translate(-50%, -50%) scale(1.04); }
   }
 
   .teams {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 28px;
-    margin-top: 10px;
+    margin-top: 30px;
   }
 
   .team {
@@ -188,20 +179,14 @@
   <div class="blob blob2"></div>
   <div class="blob blob3"></div>
 
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
   <a class="back-btn" href="main.html">◀ 뒤로</a>
   <div class="wrap">
     <div class="header">
       <h1 class="title">PINSKIN 조직도</h1>
       <p class="subtitle">— O R G A N I Z A T I O N —</p>
     </div>
-
-    <div class="hub">
-      <div class="hub-node">
-        <img src="핀스킨 로고.png" alt="PINSKIN">
-        <span>PINSKIN</span>
-      </div>
-    </div>
-    <div class="connector"></div>
 
     <div class="teams">
       <div class="team" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">

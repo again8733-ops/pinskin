@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 조직도</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, #1a0b2e 0%, #0d0520 45%, #070312 100%);
+    overflow-x: hidden;
+    padding: 60px 20px 80px;
+    position: relative;
+  }
+
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(100px);
+    opacity: 0.35; animation: floatBlob 16s ease-in-out infinite; pointer-events: none;
+  }
+  .blob1 { width: 40vw; height: 40vw; background: #ff2d95; top: -10%; left: -10%; }
+  .blob2 { width: 35vw; height: 35vw; background: #7b2dff; bottom: -10%; right: -5%; animation-delay: -6s; }
+  .blob3 { width: 25vw; height: 25vw; background: #00d4ff; top: 50%; left: 60%; opacity: 0.2; animation-delay: -10s; }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(5vw, -5vh) scale(1.1); }
+    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 24px; left: 24px; z-index: 20;
+    color: rgba(255,255,255,0.7); text-decoration: none; font-size: 15px; font-weight: 700;
+    letter-spacing: 1px; padding: 10px 18px; border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px); transition: all 0.3s ease;
+  }
+  .back-btn:hover { color: #fff; background: rgba(255,255,255,0.15); transform: translateX(-4px); }
+
+  .header { text-align: center; margin-bottom: 20px; animation: fadeDown 1s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .title {
+    font-size: 38px; font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(90deg, #ff2d95, #ffd54a, #00d4ff, #7b2dff, #ff2d95);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: gradientMove 6s linear infinite;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  .subtitle { color: rgba(255,255,255,0.55); letter-spacing: 6px; margin-top: 10px; font-size: 14px; }
+
+  /* 최상위(동아리) 노드 */
+  .hub {
+    display: flex; justify-content: center; margin: 40px 0 10px;
+  }
+  .hub-node {
+    position: relative;
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 40px; border-radius: 60px;
+    background: linear-gradient(90deg, #ff2d95, #7b2dff);
+    box-shadow: 0 0 40px rgba(255,45,149,0.5), 0 12px 30px rgba(0,0,0,0.4);
+    animation: hubIn 1s ease-out both;
+  }
+  .hub-node img {
+    width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.9);
+  }
+  .hub-node span {
+    color: #fff; font-size: 20px; font-weight: 900; letter-spacing: 4px;
+  }
+  @keyframes hubIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .connector {
+    width: 2px; height: 60px; margin: 0 auto;
+    background: linear-gradient(180deg, #7b2dff, transparent);
+  }
+
+  .teams {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 28px;
+    margin-top: 10px;
+  }
+
+  .team {
+    border-radius: 22px;
+    padding: 28px 22px 30px;
+    text-align: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.35s ease;
+    animation: cardIn 0.9s ease-out both;
+  }
+  .team:nth-child(1) { animation-delay: 0.2s; }
+  .team:nth-child(2) { animation-delay: 0.35s; }
+  .team:nth-child(3) { animation-delay: 0.5s; }
+  .team:nth-child(4) { animation-delay: 0.65s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .team::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(160deg, var(--c1), var(--c2));
+    opacity: 0.13; transition: opacity 0.35s ease;
+  }
+  .team:hover::before { opacity: 0.28; }
+  .team:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 40px var(--glow);
+  }
+
+  .team-icon {
+    width: 70px; height: 70px; margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    box-shadow: 0 0 25px var(--glow);
+    animation: iconFloat 3.5s ease-in-out infinite;
+  }
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .team-name {
+    font-size: 22px; font-weight: 900; letter-spacing: 2px; color: #fff;
+  }
+
+  .member {
+    margin-top: 14px;
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.07);
+    border-left: 3px solid var(--c1);
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  .member:hover {
+    background: rgba(255,255,255,0.13);
+    transform: translateX(6px);
+  }
+  .member .role {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--c1); text-transform: uppercase;
+  }
+  .member .name {
+    font-size: 17px; font-weight: 700; color: #fff; margin-top: 3px; letter-spacing: 1px;
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 28px; }
+    .hub-node { padding: 14px 24px; }
+    .hub-node span { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <a class="back-btn" href="main.html">◀ 뒤로</a>
+  <div class="wrap">
+    <div class="header">
+      <h1 class="title">PINSKIN 조직도</h1>
+      <p class="subtitle">— O R G A N I Z A T I O N —</p>
+    </div>
+
+    <div class="hub">
+      <div class="hub-node">
+        <img src="핀스킨 로고.png" alt="PINSKIN">
+        <span>PINSKIN</span>
+      </div>
+    </div>
+    <div class="connector"></div>
+
+    <div class="teams">
+      <div class="team" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">
+        <div class="team-icon">🛠️</div>
+        <div class="team-name">운영팀</div>
+        <div class="member">
+          <div class="role">회장</div>
+          <div class="name">이건주</div>
+        </div>
+        <div class="member">
+          <div class="role">부회장</div>
+          <div class="name">김수호</div>
+        </div>
+        <div class="member">
+          <div class="role">총무</div>
+          <div class="name">김지유</div>
+        </div>
+      </div>
+
+      <div class="team" style="--c1:#00d4ff; --c2:#4da8ff; --glow:rgba(0,212,255,0.55);">
+        <div class="team-icon">📣</div>
+        <div class="team-name">홍보팀</div>
+        <div class="member">
+          <div class="role">홍보팀장</div>
+          <div class="name">옥서윤</div>
+        </div>
+        <div class="member">
+          <div class="role">홍보팀원</div>
+          <div class="name">김현지</div>
+        </div>
+      </div>
+
+      <div class="team" style="--c1:#ffd54a; --c2:#ff9f45; --glow:rgba(255,213,74,0.55);">
+        <div class="team-icon">💡</div>
+        <div class="team-name">기획팀</div>
+        <div class="member">
+          <div class="role">기획팀장</div>
+          <div class="name">심우연</div>
+        </div>
+        <div class="member">
+          <div class="role">기획팀원</div>
+          <div class="name">강예은</div>
+        </div>
+      </div>
+
+      <div class="team" style="--c1:#7b2dff; --c2:#b44dff; --glow:rgba(123,45,255,0.55);">
+        <div class="team-icon">🤝</div>
+        <div class="team-name">인사팀</div>
+        <div class="member">
+          <div class="role">인사팀장</div>
+          <div class="name">최해원</div>
+        </div>
+        <div class="member">
+          <div class="role">인사팀원</div>
+          <div class="name">이유나</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

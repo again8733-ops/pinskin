@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 메뉴</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink: #ff2d95;
+    --purple: #7b2dff;
+    --cyan: #00d4ff;
+    --yellow: #ffd54a;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at 50% 0%, #1a0b2e 0%, #0d0520 45%, #070312 100%);
+    overflow-x: hidden;
+    position: relative;
+    padding: 60px 20px;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.35;
+    animation: floatBlob 16s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .blob1 { width: 40vw; height: 40vw; background: #ff2d95; top: -10%; left: -10%; }
+  .blob2 { width: 35vw; height: 35vw; background: #7b2dff; bottom: -10%; right: -5%; animation-delay: -6s; }
+  .blob3 { width: 25vw; height: 25vw; background: #00d4ff; top: 50%; left: 60%; opacity: 0.2; animation-delay: -10s; }
+
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(5vw, -5vh) scale(1.1); }
+    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; }
+
+  .header { text-align: center; margin-bottom: 70px; animation: fadeDown 1s ease-out both; }
+
+  .mini-logo {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    border: 3px solid rgba(255,255,255,0.9);
+    box-shadow: 0 0 35px rgba(255,45,149,0.6), 0 10px 30px rgba(0,0,0,0.5);
+    animation: logoFloat 4s ease-in-out infinite;
+    margin-bottom: 20px;
+  }
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .title {
+    font-size: 42px; font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(90deg, #ff2d95, #ffd54a, #00d4ff, #7b2dff, #ff2d95);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: gradientMove 6s linear infinite;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  .subtitle { color: rgba(255,255,255,0.55); letter-spacing: 6px; margin-top: 10px; font-size: 14px; }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    justify-content: center;
+  }
+
+  .menu-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 230px;
+    padding: 40px 25px;
+    border-radius: 24px;
+    text-decoration: none;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    transition: transform 0.35s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.35s ease, border-color 0.35s ease;
+    animation: cardIn 0.9s ease-out both;
+  }
+  .menu-card:nth-child(1) { animation-delay: 0.15s; }
+  .menu-card:nth-child(2) { animation-delay: 0.35s; }
+  .menu-card:nth-child(3) { animation-delay: 0.55s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    opacity: 0.12;
+    transition: opacity 0.35s ease;
+  }
+  .menu-card:hover::before { opacity: 0.28; }
+
+  .menu-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 0 45px var(--glow);
+    border-color: var(--c1);
+  }
+
+  .icon {
+    font-size: 58px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 18px var(--glow));
+    animation: iconFloat 3.5s ease-in-out infinite;
+  }
+  @keyframes iconFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-4deg); }
+  }
+
+  .menu-label {
+    font-size: 21px; font-weight: 900; letter-spacing: 1px; color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+  }
+  .menu-sub {
+    margin-top: 8px; font-size: 13px; color: rgba(255,255,255,0.6); letter-spacing: 2px;
+  }
+
+  .menu-arrow {
+    position: absolute;
+    bottom: 16px; right: 20px;
+    font-size: 22px; color: rgba(255,255,255,0.35);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  .menu-card:hover .menu-arrow { transform: translateX(6px); color: #fff; }
+
+  .soon {
+    opacity: 0.85;
+    cursor: default;
+  }
+  .soon .icon { filter: grayscale(0.3); animation: none; }
+  .soon-tag {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #0d0520;
+    background: linear-gradient(90deg, #ffd54a, #ffb347);
+    padding: 5px 12px;
+    border-radius: 30px;
+    box-shadow: 0 4px 15px rgba(255,213,74,0.5);
+  }
+
+  .back-btn {
+    position: fixed;
+    top: 24px; left: 24px;
+    z-index: 20;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 10px 18px;
+    border-radius: 40px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+  }
+  .back-btn:hover { color: #fff; background: rgba(255,255,255,0.15); transform: translateX(-4px); }
+
+  @media (max-width: 700px) {
+    .title { font-size: 32px; }
+    .menu-card { min-height: 190px; }
+  }
+</style>
+</head>
+<body>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <a class="back-btn" href="home.html">◀ 뒤로</a>
+
+  <div class="wrap">
+    <div class="header">
+      <img class="mini-logo" src="핀스킨 로고.png" alt="PINSKIN 로고">
+      <h1 class="title">PINSKIN</h1>
+      <p class="subtitle">— 2 0 2 6 —</p>
+    </div>
+
+    <div class="menu">
+      <a class="menu-card" style="--c1:#ff2d95; --c2:#7b2dff; --glow:rgba(255,45,149,0.55);" href="org.html">
+        <div class="icon">🧑‍🤝‍🧑</div>
+        <div class="menu-label">PINSKIN 조직도</div>
+        <div class="menu-sub">우리 동아리의 구성원</div>
+        <div class="menu-arrow">→</div>
+      </a>
+
+      <a class="menu-card" style="--c1:#00d4ff; --c2:#7b2dff; --glow:rgba(0,212,255,0.55);" href="schedule.html">
+        <div class="icon">📅</div>
+        <div class="menu-label">2학기 일정표</div>
+        <div class="menu-sub">2026 2학기 일정 안내</div>
+        <div class="menu-arrow">→</div>
+      </a>
+
+      <a class="menu-card soon" style="--c1:#888; --c2:#555; --glow:rgba(255,255,255,0.2);" href="coming.html">
+        <span class="soon-tag">미정</span>
+        <div class="icon">🚧</div>
+        <div class="menu-label">준비 중입니다</div>
+        <div class="menu-sub">곧 새로운 메뉴가 열려요</div>
+        <div class="menu-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

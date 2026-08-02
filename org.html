@@ -87,11 +87,21 @@
     50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
   }
 
+  .lead-team {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
+  .team-lead {
+    width: 100%;
+    max-width: 740px;
+  }
+
   .teams {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 30px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
 
   .team {
@@ -189,8 +199,8 @@
       <p class="subtitle">— O R G A N I Z A T I O N —</p>
     </div>
 
-    <div class="teams">
-      <div class="team" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">
+    <div class="lead-team">
+      <div class="team team-lead" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">
         <div class="team-icon">🛠️</div>
         <div class="team-name">운영팀</div>
         <div class="member">
@@ -206,7 +216,9 @@
           <div class="name">김지유</div>
         </div>
       </div>
+    </div>
 
+    <div class="teams">
       <div class="team" style="--c1:#00d4ff; --c2:#4da8ff; --glow:rgba(0,212,255,0.55);">
         <div class="team-icon">📣</div>
         <div class="team-name">홍보팀</div>

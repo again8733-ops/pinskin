@@ -156,6 +156,16 @@
     font-size: 30px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
   }
 
+  .member-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .member-row .member {
+    flex: 1;
+    margin-top: 0;
+  }
+
   .member {
     margin-top: 16px;
     padding: 14px 16px;
@@ -203,17 +213,19 @@
       <div class="team team-lead" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">
         <div class="team-icon">🛠️</div>
         <div class="team-name">운영팀</div>
-        <div class="member">
-          <div class="role">회장</div>
-          <div class="name">이건주</div>
-        </div>
-        <div class="member">
-          <div class="role">부회장</div>
-          <div class="name">김수호</div>
-        </div>
-        <div class="member">
-          <div class="role">총무</div>
-          <div class="name">김지유</div>
+        <div class="member-row">
+          <div class="member">
+            <div class="role">회장</div>
+            <div class="name">이건주</div>
+          </div>
+          <div class="member">
+            <div class="role">부회장</div>
+            <div class="name">김수호</div>
+          </div>
+          <div class="member">
+            <div class="role">총무</div>
+            <div class="name">김지유</div>
+          </div>
         </div>
       </div>
     </div>

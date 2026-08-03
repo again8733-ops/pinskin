@@ -187,79 +187,9 @@
   }
   .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
 
-  /* 역대 운영진 섹션 */
-  .history-section {
-    margin-top: 90px;
-    padding-top: 55px;
-    border-top: 1px solid rgba(10,31,68,0.12);
-    text-align: center;
-  }
-  .history-title {
-    font-size: 30px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
-  }
-  .history-sub {
-    color: var(--navy-soft); letter-spacing: 4px; font-size: 13px; margin-top: 10px;
-  }
-  .history-list {
-    margin-top: 40px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: left;
-  }
-  .sem {
-    margin-bottom: 20px;
-    border-radius: 18px;
-    background: rgba(255,255,255,0.88);
-    border: 1px solid rgba(10,31,68,0.12);
-    box-shadow: 0 10px 30px rgba(10,31,68,0.08);
-    overflow: hidden;
-  }
-  .sem-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 26px; cursor: pointer; user-select: none;
-    transition: background 0.3s ease;
-  }
-  .sem-head:hover { background: rgba(10,31,68,0.05); }
-  .sem-label {
-    display: flex; align-items: center; gap: 14px;
-    font-size: 20px; font-weight: 900; color: var(--navy); letter-spacing: 1px;
-  }
-  .sem-year {
-    font-size: 12px; font-weight: 900; letter-spacing: 1px;
-    padding: 5px 14px; border-radius: 20px;
-    background: linear-gradient(100deg, #0a1f44, #1e3a6e);
-    color: #fff;
-  }
-  .sem-arrow {
-    font-size: 15px; color: var(--navy-soft);
-    transition: transform 0.3s ease;
-  }
-  .sem.open .sem-arrow { transform: rotate(180deg); }
-  .sem-body {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.5s ease;
-  }
-  .sem-inner { padding: 6px 26px 26px; }
-  .hrow {
-    display: flex; flex-wrap: wrap; align-items: baseline;
-    gap: 6px 16px; padding: 13px 0;
-    border-bottom: 1px dashed rgba(10,31,68,0.12);
-  }
-  .hrow:last-child { border-bottom: none; }
-  .h-team {
-    font-size: 17px; font-weight: 900; color: var(--navy);
-    min-width: 64px;
-  }
-  .h-member { font-size: 16px; color: var(--navy-soft); letter-spacing: 0.5px; }
-
   @media (max-width: 700px) {
     .title { font-size: 32px; }
     .menu-card { min-height: 190px; }
-    .history-title { font-size: 24px; }
-    .sem-label { font-size: 17px; }
-    .h-team { font-size: 15px; }
-    .h-member { font-size: 14px; }
   }
 </style>
 </head>
@@ -299,77 +229,18 @@
         <div class="menu-sub">곧 새로운 메뉴가 열려요</div>
         <div class="menu-arrow">→</div>
       </a>
-    </div>
 
-    <div class="history-section">
-      <h2 class="history-title">역대 핀스킨 운영진</h2>
-      <p class="history-sub">— H I S T O R Y —</p>
-
-      <div class="history-list">
-        <div class="sem open">
-          <div class="sem-head">
-            <div class="sem-label"><span class="sem-year">2025</span> 1학기</div>
-            <div class="sem-arrow">▼</div>
-          </div>
-          <div class="sem-body">
-            <div class="sem-inner">
-              <div class="hrow"><span class="h-team">운영팀</span><span class="h-member">회장 최현수 · 부회장 정지은 · 총무 임대원</span></div>
-              <div class="hrow"><span class="h-team">홍보팀</span><span class="h-member">홍보팀장 손다정 · 홍보팀원 백민주 · 홍보팀원 김나경</span></div>
-              <div class="hrow"><span class="h-team">기획팀</span><span class="h-member">기획팀장 임혜영 · 기획팀원 김영리 · 기획팀원 안나현</span></div>
-              <div class="hrow"><span class="h-team">지원팀</span><span class="h-member">지원팀장 이건주 · 지원팀원 김민지 · 지원팀원 오채희</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sem">
-          <div class="sem-head">
-            <div class="sem-label"><span class="sem-year">2025</span> 2학기</div>
-            <div class="sem-arrow">▼</div>
-          </div>
-          <div class="sem-body">
-            <div class="sem-inner">
-              <div class="hrow"><span class="h-team">운영팀</span><span class="h-member">회장 최현수 · 부회장 정지은 · 총무 김아름</span></div>
-              <div class="hrow"><span class="h-team">홍보팀</span><span class="h-member">홍보팀장 김민지 · 홍보팀원 김나경</span></div>
-              <div class="hrow"><span class="h-team">기획팀</span><span class="h-member">기획팀장 임혜영 · 기획팀원 안나현</span></div>
-              <div class="hrow"><span class="h-team">지원팀</span><span class="h-member">지원팀장 이건주 · 지원팀원 김영리</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="sem">
-          <div class="sem-head">
-            <div class="sem-label"><span class="sem-year">2026</span> 1학기</div>
-            <div class="sem-arrow">▼</div>
-          </div>
-          <div class="sem-body">
-            <div class="sem-inner">
-              <div class="hrow"><span class="h-team">운영팀</span><span class="h-member">회장 이건주 · 부회장 김나경 · 총무 김아름</span></div>
-              <div class="hrow"><span class="h-team">홍보팀</span><span class="h-member">홍보팀장 옥서윤 · 홍보팀원 심우연</span></div>
-              <div class="hrow"><span class="h-team">기획팀</span><span class="h-member">기획팀장 김수호 · 기획팀원 이영채</span></div>
-              <div class="hrow"><span class="h-team">지원팀</span><span class="h-member">지원팀장 최현수 · 지원팀원 김지유</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a class="menu-card" style="--c1:#ffc94a; --c2:#ff9f45; --glow:rgba(255,201,74,0.55);" href="history.html">
+        <div class="icon">📜</div>
+        <div class="menu-label">역대 핀스킨 운영진</div>
+        <div class="menu-sub">지난 운영진 소개</div>
+        <div class="menu-arrow">→</div>
+      </a>
     </div>
   </div>
 
   <script>
     if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
-
-    document.querySelectorAll('.sem.open .sem-body').forEach(function (body) {
-      body.style.maxHeight = body.scrollHeight + 'px';
-    });
-
-    document.querySelectorAll('.sem-head').forEach(function (head) {
-      head.addEventListener('click', function () {
-        var sem = head.parentElement;
-        var body = sem.querySelector('.sem-body');
-        var open = sem.classList.contains('open');
-        sem.classList.toggle('open');
-        body.style.maxHeight = open ? '0px' : body.scrollHeight + 'px';
-      });
-    });
   </script>
 </body>
 </html>

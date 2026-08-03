@@ -102,6 +102,8 @@
   .menu-card:nth-child(1) { animation-delay: 0.15s; }
   .menu-card:nth-child(2) { animation-delay: 0.35s; }
   .menu-card:nth-child(3) { animation-delay: 0.55s; }
+  .menu-card:nth-child(4) { animation-delay: 0.75s; }
+  .menu-card:nth-child(5) { animation-delay: 0.95s; }
 
   @keyframes cardIn {
     from { opacity: 0; transform: translateY(40px) scale(0.95); }
@@ -187,13 +189,166 @@
   }
   .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
 
+  /* 비밀번호 잠금 화면 */
+  .lock-screen {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    background: #ffffff;
+    overflow: hidden;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .lock-screen.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  .lock-box {
+    position: relative; z-index: 10;
+    width: min(90vw, 420px);
+    text-align: center;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+    padding: 45px 40px 40px;
+    border: 1px solid rgba(10,31,68,0.12);
+    box-shadow: 0 30px 80px rgba(10,31,68,0.18);
+    animation: popIn 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85) translateY(30px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .lock-box.shake { animation: shake 0.45s ease; }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-12px); }
+    40% { transform: translateX(12px); }
+    60% { transform: translateX(-8px); }
+    80% { transform: translateX(8px); }
+  }
+
+  .lock-icon {
+    width: 84px; height: 84px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    background: linear-gradient(135deg, #0a1f44, #1e3a6e);
+    box-shadow: 0 12px 30px rgba(10,31,68,0.35);
+    animation: lockFloat 3.5s ease-in-out infinite;
+  }
+  @keyframes lockFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .lock-title {
+    font-size: 26px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
+  }
+  .lock-sub {
+    margin-top: 8px; font-size: 13px; color: var(--navy-soft); letter-spacing: 2px;
+  }
+
+  .pw-wrap { position: relative; margin-top: 28px; }
+  .pw-input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-align: center;
+    color: var(--navy);
+    background: #f3f6ff;
+    border: 2px solid rgba(10,31,68,0.18);
+    border-radius: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+  }
+  .pw-input:focus {
+    border-color: var(--navy);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(10,31,68,0.1);
+  }
+
+  .pw-hint {
+    margin-top: 10px;
+    font-size: 12px;
+    color: rgba(10,31,68,0.5);
+    letter-spacing: 1px;
+  }
+  .error-msg {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #e74c3c;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .error-msg.show { opacity: 1; }
+
+  .login-btn {
+    display: block;
+    width: 100%;
+    margin-top: 22px;
+    padding: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #fff;
+    background: linear-gradient(100deg, #0a1f44, #1e3a6e, #ffc94a, #0a1f44);
+    background-size: 260% 100%;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(10,31,68,0.3);
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+  .login-btn:hover { background-position: 100% 0; transform: translateY(-3px); box-shadow: 0 16px 40px rgba(10,31,68,0.4); }
+  .login-btn:active { transform: scale(0.97); }
+  .login-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+
+  .login-btn::before {
+    content: '';
+    position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    0% { left: -120%; }
+    50%, 100% { left: 140%; }
+  }
+
   @media (max-width: 700px) {
     .title { font-size: 32px; }
     .menu-card { min-height: 190px; }
+    .lock-box { padding: 34px 24px 30px; }
   }
 </style>
 </head>
 <body>
+  <div class="lock-screen" id="lockScreen">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="lock-box" id="lockBox">
+      <div class="lock-icon">🔒</div>
+      <h1 class="lock-title">PINSKIN</h1>
+      <p class="lock-sub">비밀번호를 입력해주세요</p>
+
+      <div class="pw-wrap">
+        <input class="pw-input" id="pwInput" type="password" placeholder="•••••••" autocomplete="off" maxlength="30">
+      </div>
+      <p class="pw-hint">회원 전용 페이지입니다.</p>
+      <p class="error-msg" id="errorMsg">비밀번호가 올바르지 않습니다</p>
+
+      <button class="login-btn" id="loginBtn">접속하기</button>
+    </div>
+  </div>
+
   <div class="blob blob1"></div>
   <div class="blob blob2"></div>
   <div class="blob blob3"></div>
@@ -222,11 +377,10 @@
         <div class="menu-arrow">→</div>
       </a>
 
-      <a class="menu-card soon" style="--c1:#888; --c2:#555; --glow:rgba(255,255,255,0.2);" href="coming.html">
-        <span class="soon-tag">미정</span>
-        <div class="icon">🚧</div>
-        <div class="menu-label">준비 중입니다</div>
-        <div class="menu-sub">곧 새로운 메뉴가 열려요</div>
+      <a class="menu-card" style="--c1:#ffc94a; --c2:#ff9f45; --glow:rgba(255,201,74,0.55);" href="awards.html">
+        <div class="icon">🏆</div>
+        <div class="menu-label">공모전 수상 기록</div>
+        <div class="menu-sub">2022~2025 공모전 활동 기록</div>
         <div class="menu-arrow">→</div>
       </a>
 
@@ -236,11 +390,80 @@
         <div class="menu-sub">지난 운영진 소개</div>
         <div class="menu-arrow">→</div>
       </a>
+
+      <a class="menu-card soon" style="--c1:#888; --c2:#555; --glow:rgba(255,255,255,0.2);" href="coming.html">
+        <span class="soon-tag">미정</span>
+        <div class="icon">🚧</div>
+        <div class="menu-label">준비 중입니다</div>
+        <div class="menu-sub">곧 새로운 메뉴가 열려요</div>
+        <div class="menu-arrow">→</div>
+      </a>
     </div>
   </div>
 
   <script>
-    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+    (function () {
+      var HASH = 'bdcec6b82751839d4c6248a3a6bad29c96e957a1f05ce120ce14f4fadd7eae3e';
+      var screen = document.getElementById('lockScreen');
+      var box = document.getElementById('lockBox');
+      var input = document.getElementById('pwInput');
+      var btn = document.getElementById('loginBtn');
+      var err = document.getElementById('errorMsg');
+
+      function toHex(buffer) {
+        return Array.prototype.map.call(new Uint8Array(buffer), function (b) {
+          return ('0' + b.toString(16)).slice(-2);
+        }).join('');
+      }
+
+      function sha256(str) {
+        if (window.crypto && crypto.subtle) {
+          return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)).then(toHex);
+        }
+        return Promise.reject(new Error('no-crypto'));
+      }
+
+      function unlock() {
+        screen.classList.add('done');
+        btn.disabled = false;
+      }
+
+      function fail() {
+        box.classList.remove('shake');
+        void box.offsetWidth;
+        box.classList.add('shake');
+        err.classList.add('show');
+        input.value = '';
+        input.focus();
+        btn.disabled = false;
+      }
+
+      function enter() {
+        var v = input.value.trim();
+        if (!v) { input.focus(); return; }
+        btn.disabled = true;
+        err.classList.remove('show');
+        sha256(v).then(function (h) {
+          if (h === HASH) {
+            sessionStorage.setItem('pinskin_auth', 'yes');
+            unlock();
+          } else {
+            fail();
+          }
+        }).catch(fail);
+      }
+
+      if (sessionStorage.getItem('pinskin_auth') === 'yes') {
+        unlock();
+      } else {
+        btn.addEventListener('click', enter);
+        input.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') enter();
+        });
+        input.addEventListener('input', function () { err.classList.remove('show'); });
+        input.focus();
+      }
+    })();
   </script>
 </body>
 </html>

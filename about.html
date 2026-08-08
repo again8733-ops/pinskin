@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 소개</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #1e3a6e;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    min-height: 100vh;
+    background: #ffffff;
+    overflow-x: hidden;
+    padding: 60px 20px 100px;
+    position: relative;
+  }
+
+  .blob {
+    position: absolute; border-radius: 50%; filter: blur(100px);
+    animation: floatBlob 16s ease-in-out infinite; pointer-events: none;
+  }
+  .blob1 { width: 40vw; height: 40vw; background: #dbe4ff; top: -10%; left: -10%; opacity: 0.9; }
+  .blob2 { width: 35vw; height: 35vw; background: #cddcff; bottom: -10%; right: -5%; opacity: 0.85; animation-delay: -6s; }
+  .blob3 { width: 25vw; height: 25vw; background: #f0e6ff; top: 45%; left: 55%; opacity: 0.7; animation-delay: -10s; }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(5vw, -5vh) scale(1.1); }
+    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 1000px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 24px; left: 24px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 15px; font-weight: 700;
+    letter-spacing: 1px; padding: 10px 18px; border-radius: 40px;
+    border: 1px solid rgba(10,31,68,0.25); background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(8px); transition: all 0.3s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
+
+  .header { text-align: center; margin-bottom: 40px; animation: fadeDown 1s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .title {
+    font-size: 46px; font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(90deg, #0a1f44, #1e3a6e, #4a6fb5, #0a1f44);
+    background-size: 300% 100%;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: gradientMove 6s linear infinite;
+  }
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
+  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 18px; }
+
+  .bg-logo {
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(85vw, 640px);
+    height: min(85vw, 640px);
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0.2;
+    filter: blur(0.5px);
+    pointer-events: none;
+    z-index: 1;
+    animation: bgPulse 8s ease-in-out infinite;
+  }
+  @keyframes bgPulse {
+    0%, 100% { opacity: 0.16; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
+  }
+
+  .sems {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 20px;
+  }
+
+  .sem-card {
+    border-radius: 24px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(10,31,68,0.14);
+    box-shadow: 0 12px 35px rgba(10,31,68,0.1);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+    animation: cardIn 0.8s ease-out both;
+  }
+  .sem-card:nth-child(1) { animation-delay: 0.15s; }
+  .sem-card:nth-child(2) { animation-delay: 0.3s; }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .sem-head {
+    display: flex; align-items: center; gap: 14px;
+    padding: 22px 28px;
+    background: linear-gradient(100deg, #0a1f44, #1e3a6e);
+  }
+  .sem-head-icon { font-size: 26px; }
+  .sem-label {
+    font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #fff;
+  }
+
+  .sem-body { padding: 26px 28px 30px; }
+
+  .purpose {
+    font-size: 18px; line-height: 1.9; letter-spacing: 0.5px;
+    color: var(--navy-soft);
+  }
+
+  .ev-row {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px dashed rgba(10,31,68,0.12);
+  }
+  .ev-row:last-child { border-bottom: none; }
+  .ev-num {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900; color: #fff;
+    background: linear-gradient(135deg, #0a1f44, #1e3a6e);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(10,31,68,0.25);
+  }
+  .ev-text {
+    font-size: 17px; line-height: 1.8; color: var(--navy-soft); letter-spacing: 0.4px;
+  }
+  .ev-text strong {
+    color: var(--navy); font-weight: 900; letter-spacing: 1px;
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 30px; }
+    .sem-head { padding: 18px 20px; }
+    .sem-label { font-size: 19px; }
+    .sem-body { padding: 20px 20px 24px; }
+    .purpose { font-size: 16px; }
+    .ev-text { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="main.html">◀ 뒤로</a>
+
+  <div class="wrap">
+    <div class="header">
+      <h1 class="title">PINSKIN 소개</h1>
+      <p class="subtitle">— A B O U T  P I N S K I N —</p>
+    </div>
+
+    <div class="sems">
+      <div class="sem-card">
+        <div class="sem-head">
+          <div class="sem-head-icon">🎯</div>
+          <div class="sem-label">핀스킨 설립 목적</div>
+        </div>
+        <div class="sem-body">
+          <p class="purpose">공모전에 참여하고 싶지만 개인적으로 인원 모집이 쉽지 않아, 동아리 차원에서 인원 모집을 하여 더 쉽고 다양한 공모전에 도전할 수 있도록 하고 더 다채롭고 유쾌한 대학 생활을 만들기 위해 설립하게 되었음.</p>
+        </div>
+      </div>
+
+      <div class="sem-card">
+        <div class="sem-head">
+          <div class="sem-head-icon">🗓️</div>
+          <div class="sem-label">핀스킨의 주요 행사</div>
+        </div>
+        <div class="sem-body">
+          <div class="ev-row">
+            <div class="ev-num">1</div>
+            <div class="ev-text"><strong>가두모집</strong> : 매 학기 초에 진행하며 공모전과 대외활동에 관심 있는 새로운 부원을 모집하기 위해 총동아리연합회에서 진행하는 행사.</div>
+          </div>
+          <div class="ev-row">
+            <div class="ev-num">2</div>
+            <div class="ev-text"><strong>개강총회 & 신입생 환영회</strong> : 한 학기의 시작을 알리는 행사로 핀스킨의 소개와 함께 이전 학기의 성과와 진행될 행사 및 일정에 대한 설명을 하고, 새로 가입한 회원과 기존 회원 간의 친목을 다지기 위한 행사.</div>
+          </div>
+          <div class="ev-row">
+            <div class="ev-num">3</div>
+            <div class="ev-text"><strong>공모전 세미나</strong> : 공모전의 참가 및 수상 경력이 있는 부원들이나 서포터즈나 대외활동에 선발된 인원들이 자신의 경험과 노하우, 공모전에 활용할 수 있는 여러 가지 플랫폼이나 스킬들을 전수해주며 공모전이나 대외활동에 더 쉽게 참여할 수 있도록 돕는 행사.</div>
+          </div>
+          <div class="ev-row">
+            <div class="ev-num">4</div>
+            <div class="ev-text"><strong>핀스킨 MT</strong> : 중간고사 이후에 진행되며 부원 간의 친목을 다지며 여러 가지 레크레이션을 통해 창의적인 아이디어를 키우고 함께 공모전을 나갈 팀원을 구할 수 있는 행사.</div>
+          </div>
+          <div class="ev-row">
+            <div class="ev-num">5</div>
+            <div class="ev-text"><strong>핀무비</strong> : 문화의 날을 이용하여 핀스킨 부원들과 함께 인기 있는 영화를 상영하는 행사.</div>
+          </div>
+          <div class="ev-row">
+            <div class="ev-num">6</div>
+            <div class="ev-text"><strong>종강총회</strong> : 핀스킨의 한 학기를 마무리하며 그 학기의 성과를 알아보는 행사.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

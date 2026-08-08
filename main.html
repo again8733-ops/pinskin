@@ -602,7 +602,7 @@
         sha256(v).then(function (h) {
           if (h === HASH) {
             sessionStorage.setItem('pinskin_auth', 'yes');
-            unlock();
+            location.replace('home.html');
           } else {
             fail();
           }

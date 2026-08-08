@@ -191,6 +191,14 @@
   }
   .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
 
+  /* 폭죽 애니메이션 캔버스 */
+  #fireworksCanvas {
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    pointer-events: none;
+  }
+
   /* 비밀번호 잠금 화면 */
   .lock-screen {
     position: fixed; inset: 0; z-index: 100;
@@ -331,6 +339,8 @@
 </style>
 </head>
 <body>
+  <canvas id="fireworksCanvas"></canvas>
+
   <div class="lock-screen" id="lockScreen">
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
@@ -479,6 +489,148 @@
         input.addEventListener('input', function () { err.classList.remove('show'); });
         input.focus();
       }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById('fireworksCanvas');
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var W = 0, H = 0, dpr = 1;
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      var COLORS = ['#ff2d95', '#00d4ff', '#ffc94a', '#7b2dff', '#4da8ff', '#ff6b9d', '#ff9f45', '#ff5e8a'];
+      var particles = [];
+      var rockets = [];
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+
+      function addBurst(x, y, color, scale) {
+        var count = Math.round(rand(26, 60) * scale);
+        for (var i = 0; i < count; i++) {
+          var angle = rand(0, Math.PI * 2);
+          var speed = rand(1.2, 5.2) * scale;
+          particles.push({
+            x: x, y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 0,
+            maxLife: Math.round(rand(45, 90)),
+            size: rand(1.2, 3.2) * scale,
+            color: color,
+            drag: 0.985
+          });
+        }
+      }
+
+      function addRocket() {
+        var fromLeft = Math.random() < 0.5;
+        rockets.push({
+          x: fromLeft ? rand(0, W * 0.3) : rand(W * 0.7, W),
+          y: H + 10,
+          targetY: rand(H * 0.12, H * 0.5),
+          speed: rand(9, 14),
+          vx: (fromLeft ? 1 : -1) * rand(0.4, 1.6),
+          trail: []
+        });
+      }
+
+      function fireworkAtRandom() {
+        var kind = Math.random();
+        var color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        var scale = Math.random() < 0.25
+          ? rand(1.7, 2.3)
+          : (Math.random() < 0.5 ? rand(1, 1.4) : rand(0.55, 0.95));
+        if (kind < 0.4) {
+          addRocket();
+        } else {
+          var x = rand(W * 0.15, W * 0.85);
+          var y = rand(H * 0.1, H * 0.58);
+          addBurst(x, y, color, scale);
+          if (Math.random() < 0.35) {
+            setTimeout(function () {
+              addBurst(x + rand(-45, 45), y + rand(-45, 45), COLORS[Math.floor(Math.random() * COLORS.length)], scale * rand(0.5, 0.8));
+            }, rand(40, 130));
+          }
+        }
+      }
+
+      var launchTimer = 0;
+      var last = performance.now();
+
+      function loop(now) {
+        var dt = Math.min((now - last) / 16.7, 3);
+        last = now;
+
+        ctx.clearRect(0, 0, W, H);
+
+        for (var i = rockets.length - 1; i >= 0; i--) {
+          var r = rockets[i];
+          r.y -= r.speed * dt;
+          r.x += r.vx * dt;
+          r.trail.push({ x: r.x, y: r.y });
+          if (r.trail.length > 8) r.trail.shift();
+          if (r.y <= r.targetY) {
+            addBurst(r.x, r.y, COLORS[Math.floor(Math.random() * COLORS.length)], rand(1, 1.8));
+            rockets.splice(i, 1);
+            continue;
+          }
+          ctx.globalAlpha = 0.9;
+          ctx.fillStyle = '#ffd54a';
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          for (var t = 0; t < r.trail.length; t++) {
+            var tp = r.trail[t];
+            ctx.globalAlpha = (t + 1) / r.trail.length * 0.55;
+            ctx.fillStyle = '#ffc94a';
+            ctx.beginPath();
+            ctx.arc(tp.x, tp.y, (t + 1) * 0.6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        for (var p = particles.length - 1; p >= 0; p--) {
+          var pt = particles[p];
+          pt.life++;
+          pt.vx *= pt.drag;
+          pt.vy = pt.vy * pt.drag + 0.045;
+          pt.x += pt.vx * dt;
+          pt.y += pt.vy * dt;
+          var lifeRatio = 1 - pt.life / pt.maxLife;
+          if (lifeRatio <= 0) { particles.splice(p, 1); continue; }
+          ctx.globalAlpha = Math.min(1, lifeRatio * 1.4);
+          ctx.fillStyle = pt.color;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.size * lifeRatio + 0.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+
+        launchTimer += dt;
+        if (launchTimer > 40) {
+          launchTimer = 0;
+          fireworkAtRandom();
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      requestAnimationFrame(loop);
     })();
   </script>
 </body>

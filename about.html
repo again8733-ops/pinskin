@@ -125,6 +125,25 @@
     color: var(--navy-soft);
   }
 
+  .loc-box {
+    display: flex; align-items: center; gap: 20px;
+    padding: 26px 30px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0a1f44, #1e3a6e);
+    box-shadow: 0 12px 30px rgba(10,31,68,0.25);
+  }
+  .loc-icon {
+    width: 64px; height: 64px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+  }
+  .loc-text { display: flex; flex-direction: column; gap: 4px; }
+  .loc-label { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
+  .loc-value { font-size: 26px; font-weight: 900; letter-spacing: 1px; color: #fff; }
+
   .ev-row {
     display: flex; align-items: flex-start; gap: 16px;
     padding: 16px 0;
@@ -154,6 +173,8 @@
     .sem-body { padding: 20px 20px 24px; }
     .purpose { font-size: 16px; }
     .ev-text { font-size: 15px; }
+    .loc-box { padding: 20px 20px; }
+    .loc-value { font-size: 21px; }
   }
 </style>
 </head>
@@ -212,6 +233,22 @@
           <div class="ev-row">
             <div class="ev-num">6</div>
             <div class="ev-text"><strong>종강총회</strong> : 핀스킨의 한 학기를 마무리하며 그 학기의 성과를 알아보는 행사.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sem-card">
+        <div class="sem-head">
+          <div class="sem-head-icon">📍</div>
+          <div class="sem-label">동아리 방 위치</div>
+        </div>
+        <div class="sem-body">
+          <div class="loc-box">
+            <div class="loc-icon">📍</div>
+            <div class="loc-text">
+              <span class="loc-label">핀스킨 동아리 방 위치</span>
+              <span class="loc-value">학생회관 606호</span>
+            </div>
           </div>
         </div>
       </div>

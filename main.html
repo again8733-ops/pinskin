@@ -195,11 +195,30 @@
   .lock-screen {
     position: fixed; inset: 0; z-index: 100;
     display: flex; align-items: center; justify-content: center;
-    background: #ffffff;
+    background: linear-gradient(180deg, #0a1f44 0%, #142c54 60%, #24406f 100%);
     overflow: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
   }
   .lock-screen.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+  /* 네이비 캠퍼스 배경 */
+  .campus-bg {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    width: 100%;
+    z-index: 1;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* 네이비 폭죽 & 빵빠레 캔버스 */
+  #navyCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
 
   .lock-box {
     position: relative; z-index: 10;
@@ -332,9 +351,129 @@
 </head>
 <body>
   <div class="lock-screen" id="lockScreen">
-    <div class="blob blob1"></div>
-    <div class="blob blob2"></div>
-    <div class="blob blob3"></div>
+    <canvas id="navyCanvas"></canvas>
+
+    <svg class="campus-bg" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0b1f3d"/>
+          <stop offset="1" stop-color="#081a3a"/>
+        </linearGradient>
+        <radialGradient id="moonGlow">
+          <stop offset="0" stop-color="rgba(216,228,255,0.30)"/>
+          <stop offset="1" stop-color="rgba(216,228,255,0)"/>
+        </radialGradient>
+      </defs>
+
+      <rect x="0" y="320" width="1440" height="60" fill="url(#groundGrad)"/>
+
+      <circle cx="1240" cy="86" r="110" fill="url(#moonGlow)"/>
+      <circle cx="1240" cy="86" r="34" fill="rgba(219,228,255,0.35)"/>
+      <circle cx="1252" cy="78" r="6" fill="rgba(219,228,255,0.55)"/>
+
+      <g fill="rgba(219,228,255,0.35)">
+        <circle cx="120" cy="70" r="1.6"/>
+        <circle cx="260" cy="46" r="1.2"/>
+        <circle cx="430" cy="90" r="1.8"/>
+        <circle cx="560" cy="40" r="1.2"/>
+        <circle cx="700" cy="74" r="1.5"/>
+        <circle cx="860" cy="52" r="1.3"/>
+        <circle cx="1010" cy="84" r="1.7"/>
+        <circle cx="1150" cy="44" r="1.2"/>
+        <circle cx="1360" cy="66" r="1.5"/>
+        <circle cx="1480" cy="96" r="1.3"/>
+        <circle cx="330" cy="120" r="1.1"/>
+        <circle cx="900" cy="108" r="1.2"/>
+        <circle cx="70" cy="130" r="1.3"/>
+        <circle cx="620" cy="110" r="1.1"/>
+      </g>
+
+      <g fill="#12294f">
+        <rect x="60" y="200" width="110" height="140"/>
+        <rect x="190" y="170" width="90" height="170"/>
+        <rect x="700" y="180" width="100" height="160"/>
+        <rect x="1010" y="190" width="100" height="150"/>
+        <rect x="1300" y="185" width="110" height="155"/>
+      </g>
+
+      <g fill="#0c2247">
+        <rect x="300" y="130" width="130" height="210"/>
+        <rect x="830" y="140" width="140" height="200"/>
+        <rect x="1140" y="160" width="130" height="180"/>
+      </g>
+
+      <g fill="#16305e">
+        <rect x="470" y="100" width="180" height="240"/>
+        <rect x="445" y="150" width="30" height="190"/>
+        <rect x="645" y="150" width="30" height="190"/>
+      </g>
+
+      <rect x="500" y="255" width="120" height="85" fill="#0b1f3d"/>
+      <rect x="535" y="285" width="50" height="55" fill="#081a3a"/>
+
+      <g stroke="#b0c4ff" stroke-width="3" opacity="0.8">
+        <line x1="560" y1="100" x2="560" y2="52"/>
+        <line x1="540" y1="60" x2="580" y2="60"/>
+      </g>
+      <rect x="544" y="56" width="32" height="20" rx="2" fill="#b0c4ff" opacity="0.85"/>
+
+      <g fill="rgba(176,196,255,0.55)">
+        <rect x="70" y="230" width="14" height="18" rx="2"/>
+        <rect x="100" y="230" width="14" height="18" rx="2"/>
+        <rect x="130" y="230" width="14" height="18" rx="2"/>
+        <rect x="70" y="280" width="14" height="18" rx="2"/>
+        <rect x="200" y="200" width="14" height="18" rx="2"/>
+        <rect x="230" y="200" width="14" height="18" rx="2"/>
+        <rect x="710" y="210" width="14" height="18" rx="2"/>
+        <rect x="740" y="210" width="14" height="18" rx="2"/>
+        <rect x="770" y="210" width="14" height="18" rx="2"/>
+        <rect x="1020" y="220" width="14" height="18" rx="2"/>
+        <rect x="1050" y="220" width="14" height="18" rx="2"/>
+        <rect x="1310" y="215" width="14" height="18" rx="2"/>
+        <rect x="1340" y="215" width="14" height="18" rx="2"/>
+        <rect x="1370" y="215" width="14" height="18" rx="2"/>
+      </g>
+
+      <g fill="rgba(176,196,255,0.4)">
+        <rect x="320" y="160" width="16" height="20" rx="2"/>
+        <rect x="350" y="160" width="16" height="20" rx="2"/>
+        <rect x="320" y="210" width="16" height="20" rx="2"/>
+        <rect x="380" y="210" width="16" height="20" rx="2"/>
+        <rect x="850" y="170" width="16" height="20" rx="2"/>
+        <rect x="880" y="170" width="16" height="20" rx="2"/>
+        <rect x="910" y="170" width="16" height="20" rx="2"/>
+        <rect x="850" y="220" width="16" height="20" rx="2"/>
+        <rect x="1160" y="190" width="16" height="20" rx="2"/>
+        <rect x="1190" y="190" width="16" height="20" rx="2"/>
+        <rect x="1220" y="190" width="16" height="20" rx="2"/>
+      </g>
+
+      <g>
+        <rect x="488" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="508" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="528" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="548" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="568" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="588" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="608" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+        <rect x="628" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
+      </g>
+
+      <g fill="#0c2247">
+        <circle cx="170" cy="330" r="30"/>
+        <circle cx="150" cy="345" r="20"/>
+        <circle cx="445" cy="328" r="26"/>
+        <circle cx="665" cy="332" r="28"/>
+        <circle cx="795" cy="326" r="24"/>
+        <circle cx="940" cy="330" r="30"/>
+        <circle cx="960" cy="346" r="20"/>
+        <circle cx="1210" cy="328" r="26"/>
+        <circle cx="1410" cy="332" r="28"/>
+        <circle cx="1230" cy="346" r="18"/>
+      </g>
+
+      <path d="M0 320 L60 312 L120 320 L190 312 L300 322 L470 318 L645 322 L700 314 L830 318 L1010 314 L1140 322 L1300 318 L1440 312 L1440 380 L0 380 Z" fill="#081a3a" opacity="0.6"/>
+    </svg>
 
     <div class="lock-box" id="lockBox">
       <div class="lock-icon">🔒</div>
@@ -442,6 +581,7 @@
       function unlock() {
         screen.classList.add('done');
         btn.disabled = false;
+        if (window.__stopNavyFx) window.__stopNavyFx();
       }
 
       function fail() {
@@ -479,6 +619,223 @@
         input.addEventListener('input', function () { err.classList.remove('show'); });
         input.focus();
       }
+    })();
+  </script>
+
+  <script>
+    (function () {
+      var canvas = document.getElementById('navyCanvas');
+      if (!canvas || !canvas.getContext) return;
+      var ctx = canvas.getContext('2d');
+      var W = 0, H = 0, dpr = 1;
+
+      var NAVY = ['#dbe4ff', '#b0c4ff', '#8fa8e8', '#6f8fd4', '#4a6fb5', '#a3b8e8', '#c3d2ff', '#7b8fd4'];
+      var particles = [];
+      var rockets = [];
+      var confetti = [];
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        W = window.innerWidth;
+        H = window.innerHeight;
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+        canvas.style.width = W + 'px';
+        canvas.style.height = H + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      function rand(a, b) { return a + Math.random() * (b - a); }
+      function pick() { return NAVY[Math.floor(Math.random() * NAVY.length)]; }
+
+      function addBurst(x, y, color, scale) {
+        var count = Math.round(rand(28, 64) * scale);
+        for (var i = 0; i < count; i++) {
+          var angle = rand(0, Math.PI * 2);
+          var speed = rand(1.2, 5.4) * scale;
+          particles.push({
+            x: x, y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 0,
+            maxLife: Math.round(rand(50, 95)),
+            size: rand(1.2, 3.4) * scale,
+            color: color,
+            drag: 0.985
+          });
+        }
+      }
+
+      function addRocket() {
+        var fromLeft = Math.random() < 0.5;
+        rockets.push({
+          x: fromLeft ? rand(0, W * 0.3) : rand(W * 0.7, W),
+          y: H + 10,
+          targetY: rand(H * 0.1, H * 0.48),
+          speed: rand(9, 14),
+          vx: (fromLeft ? 1 : -1) * rand(0.4, 1.6),
+          trail: []
+        });
+      }
+
+      function fireworkAtRandom() {
+        var kind = Math.random();
+        var color = pick();
+        var scale = Math.random() < 0.25
+          ? rand(1.7, 2.3)
+          : (Math.random() < 0.5 ? rand(1, 1.4) : rand(0.55, 0.95));
+        if (kind < 0.4) {
+          addRocket();
+        } else {
+          var x = rand(W * 0.12, W * 0.88);
+          var y = rand(H * 0.08, H * 0.55);
+          addBurst(x, y, color, scale);
+          if (Math.random() < 0.35) {
+            setTimeout(function () {
+              addBurst(x + rand(-45, 45), y + rand(-45, 45), pick(), scale * rand(0.5, 0.8));
+            }, rand(40, 130));
+          }
+        }
+      }
+
+      function addPopper() {
+        var side = Math.random();
+        var x, y, dx, dy;
+        if (side < 0.45) {
+          x = rand(W * 0.2, W * 0.8);
+          y = H + 24;
+          dx = rand(-2, 2);
+          dy = -1;
+        } else if (side < 0.72) {
+          x = -12;
+          y = rand(H * 0.25, H * 0.95);
+          dx = 1;
+          dy = -0.4;
+        } else {
+          x = W + 12;
+          y = rand(H * 0.25, H * 0.95);
+          dx = -1;
+          dy = -0.4;
+        }
+        var n = Math.round(rand(34, 60));
+        for (var i = 0; i < n; i++) {
+          confetti.push({
+            x: x, y: y,
+            vx: dx * rand(4, 10) + rand(-4, 4),
+            vy: dy * rand(7, 14) - Math.random() * rand(0, 5),
+            life: 0,
+            maxLife: Math.round(rand(130, 240)),
+            w: rand(4, 8),
+            h: rand(7, 13),
+            color: pick(),
+            rot: rand(0, Math.PI * 2),
+            vr: rand(-0.18, 0.18),
+            sway: rand(0, Math.PI * 2)
+          });
+        }
+      }
+
+      var launchTimer = 0;
+      var popperTimer = 0;
+      var running = true;
+      var last = performance.now();
+
+      var lockScreen = document.getElementById('lockScreen');
+      if (lockScreen && lockScreen.classList.contains('done')) { running = false; }
+
+      window.__stopNavyFx = function () { running = false; };
+
+      function loop(now) {
+        if (!running) { ctx.clearRect(0, 0, W, H); return; }
+        var dt = Math.min((now - last) / 16.7, 3);
+        last = now;
+
+        ctx.clearRect(0, 0, W, H);
+
+        for (var i = rockets.length - 1; i >= 0; i--) {
+          var r = rockets[i];
+          r.y -= r.speed * dt;
+          r.x += r.vx * dt;
+          r.trail.push({ x: r.x, y: r.y });
+          if (r.trail.length > 8) r.trail.shift();
+          if (r.y <= r.targetY) {
+            addBurst(r.x, r.y, pick(), rand(1, 1.8));
+            rockets.splice(i, 1);
+            continue;
+          }
+          ctx.globalAlpha = 0.9;
+          ctx.fillStyle = '#b0c4ff';
+          ctx.beginPath();
+          ctx.arc(r.x, r.y, 2.5, 0, Math.PI * 2);
+          ctx.fill();
+          for (var t = 0; t < r.trail.length; t++) {
+            var tp = r.trail[t];
+            ctx.globalAlpha = (t + 1) / r.trail.length * 0.55;
+            ctx.fillStyle = '#6f8fd4';
+            ctx.beginPath();
+            ctx.arc(tp.x, tp.y, (t + 1) * 0.6, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        for (var p = particles.length - 1; p >= 0; p--) {
+          var pt = particles[p];
+          pt.life++;
+          pt.vx *= pt.drag;
+          pt.vy = pt.vy * pt.drag + 0.045;
+          pt.x += pt.vx * dt;
+          pt.y += pt.vy * dt;
+          var lifeRatio = 1 - pt.life / pt.maxLife;
+          if (lifeRatio <= 0) { particles.splice(p, 1); continue; }
+          ctx.globalAlpha = Math.min(1, lifeRatio * 1.4);
+          ctx.fillStyle = pt.color;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.size * lifeRatio + 0.4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        for (var c = confetti.length - 1; c >= 0; c--) {
+          var cf = confetti[c];
+          cf.life++;
+          cf.sway += 0.06;
+          cf.vy += 0.05 * dt;
+          cf.vx *= 0.995;
+          cf.vy *= 0.995;
+          cf.rot += cf.vr * dt;
+          cf.x += cf.vx * dt + Math.sin(cf.sway) * 0.8;
+          cf.y += cf.vy * dt;
+          var cr = 1 - cf.life / cf.maxLife;
+          if (cr <= 0 || cf.y > H + 40) { confetti.splice(c, 1); continue; }
+          ctx.globalAlpha = Math.min(1, cr * 1.6);
+          ctx.fillStyle = cf.color;
+          ctx.save();
+          ctx.translate(cf.x, cf.y);
+          ctx.rotate(cf.rot);
+          ctx.fillRect(-cf.w / 2, -cf.h / 2, cf.w, cf.h);
+          ctx.restore();
+        }
+
+        ctx.globalAlpha = 1;
+
+        launchTimer += dt;
+        if (launchTimer > 45) {
+          launchTimer = 0;
+          fireworkAtRandom();
+        }
+        popperTimer += dt;
+        if (popperTimer > 150) {
+          popperTimer = 0;
+          addPopper();
+        }
+
+        requestAnimationFrame(loop);
+      }
+
+      addPopper();
+      addPopper();
+      requestAnimationFrame(loop);
     })();
   </script>
 </body>

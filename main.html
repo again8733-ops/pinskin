@@ -342,10 +342,151 @@
     50%, 100% { left: 140%; }
   }
 
+  /* 핀스킨 자료 모달 */
+  .materials-modal {
+    position: fixed; inset: 0; z-index: 90;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(6,12,34,0.72);
+    backdrop-filter: blur(12px);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .materials-modal.open { opacity: 1; visibility: visible; }
+
+  .mm-box {
+    position: relative;
+    width: min(92vw, 460px);
+    text-align: center;
+    background:
+      radial-gradient(520px 300px at 85% 0%, rgba(88,72,190,0.35), transparent 60%),
+      radial-gradient(420px 260px at 0% 100%, rgba(30,58,110,0.5), transparent 60%),
+      linear-gradient(180deg, #081230, #0a1f44 60%, #142c54);
+    border: 1px solid rgba(219,228,255,0.18);
+    border-radius: 28px;
+    padding: 44px 30px 40px;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.55), 0 0 60px rgba(74,111,181,0.2);
+    transform: scale(0.85) translateY(30px);
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+    overflow: hidden;
+  }
+  .materials-modal.open .mm-box { transform: scale(1) translateY(0); }
+
+  .mm-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 15%, rgba(255,255,255,0.05), transparent 45%);
+    pointer-events: none;
+  }
+
+  .mm-close {
+    position: absolute; top: 16px; right: 18px;
+    width: 38px; height: 38px;
+    border: none; cursor: pointer;
+    border-radius: 50%;
+    font-size: 16px; font-weight: 700;
+    color: rgba(219,228,255,0.85);
+    background: rgba(219,228,255,0.12);
+    transition: all 0.3s ease;
+  }
+  .mm-close:hover { background: rgba(255,255,255,0.25); transform: rotate(90deg); }
+
+  .mm-title {
+    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+    font-size: 34px; font-weight: 900; letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 0 0 24px rgba(176,196,255,0.45);
+  }
+  .mm-sub {
+    margin-top: 8px;
+    font-size: 13px; font-weight: 700; letter-spacing: 3px;
+    color: rgba(219,228,255,0.75);
+  }
+
+  .mm-step {
+    position: relative;
+    display: flex; align-items: center; justify-content: center; gap: 14px;
+    width: 100%;
+    margin-top: 34px;
+    padding: 22px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 26px; font-weight: 900; letter-spacing: 6px;
+    color: #ffffff;
+    border: none; cursor: pointer;
+    border-radius: 20px;
+    background: linear-gradient(100deg, #0a1f44, #1e3a6e, #7b2dff, #0a1f44);
+    background-size: 260% 100%;
+    background-position: 0% 0;
+    box-shadow: 0 14px 34px rgba(0,0,0,0.45), 0 0 40px rgba(123,45,255,0.25);
+    opacity: 0; transform: translateY(24px);
+    transition: all 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+    overflow: hidden;
+  }
+  .materials-modal.open .mm-step.ready {
+    opacity: 1; transform: translateY(0);
+    animation: stepFloat 3.5s ease-in-out infinite;
+  }
+  @keyframes stepFloat {
+    0%, 100% { background-position: 0% 0; transform: translateY(0); }
+    50% { background-position: 100% 0; transform: translateY(-6px); }
+  }
+  .mm-step:hover { background-position: 100% 0; transform: translateY(-4px) !important; }
+  .mm-step.done { animation: none; transform: scale(0.92); opacity: 0.75; cursor: default; }
+
+  .mm-step-icon { font-size: 34px; filter: drop-shadow(0 0 14px rgba(176,196,255,0.5)); }
+  .mm-step-arrow {
+    font-size: 20px; color: rgba(219,228,255,0.9);
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+  }
+  .mm-step.ready .mm-step-arrow { transform: rotate(0); }
+
+  .mm-pdf {
+    margin-top: 20px;
+    opacity: 0; transform: translateY(16px);
+    transition: all 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
+    transition-delay: 0.1s;
+    pointer-events: none;
+  }
+  .mm-pdf.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  .mm-pdf-btn {
+    display: inline-block;
+    padding: 18px 46px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 18px; font-weight: 900; letter-spacing: 2px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 60px;
+    background: linear-gradient(100deg, #00c4a0, #00a3d4, #7b2dff, #00c4a0);
+    background-size: 260% 100%;
+    box-shadow: 0 12px 32px rgba(0,163,212,0.45), 0 0 40px rgba(0,196,160,0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+  .mm-pdf-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+    background-position: 100% 0;
+    box-shadow: 0 18px 44px rgba(0,196,160,0.55);
+  }
+  .mm-pdf-btn::before {
+    content: '';
+    position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+    transform: skewX(-20deg);
+    animation: mmShimmer 3s infinite;
+  }
+  @keyframes mmShimmer {
+    0% { left: -120%; }
+    50%, 100% { left: 140%; }
+  }
+
   @media (max-width: 700px) {
     .title { font-size: 32px; }
     .menu-card { min-height: 190px; }
     .lock-box { padding: 34px 24px 30px; }
+    .mm-step { font-size: 22px; letter-spacing: 4px; }
   }
 </style>
 </head>
@@ -546,6 +687,13 @@
         <div class="menu-arrow">→</div>
       </a>
 
+      <a class="menu-card" style="--c1:#00c4a0; --c2:#7b2dff; --glow:rgba(0,196,160,0.55);" href="#" onclick="openMaterials(event)">
+        <div class="icon">📚</div>
+        <div class="menu-label">핀스킨 자료</div>
+        <div class="menu-sub">학기 자료 모아보기</div>
+        <div class="menu-arrow">→</div>
+      </a>
+
       <a class="menu-card soon" style="--c1:#888; --c2:#555; --glow:rgba(255,255,255,0.2);" href="coming.html">
         <span class="soon-tag">미정</span>
         <div class="icon">🚧</div>
@@ -555,6 +703,49 @@
       </a>
     </div>
   </div>
+
+  <div class="materials-modal" id="materialsModal" onclick="if(event.target===this)closeMaterials()">
+    <div class="mm-box">
+      <button class="mm-close" onclick="closeMaterials()">✕</button>
+      <h2 class="mm-title">핀스킨 자료</h2>
+      <p class="mm-sub">— CLICK TO EXPLORE —</p>
+
+      <button class="mm-step" id="mmStep1" onclick="showPdfBtn()">
+        <span class="mm-step-icon">📂</span>
+        <span class="mm-step-label">26-1</span>
+        <span class="mm-step-arrow">▼</span>
+      </button>
+
+      <div class="mm-pdf" id="mmPdf">
+        <a class="mm-pdf-btn" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMaterials(e) {
+      if (e) e.preventDefault();
+      var s = document.getElementById('mmStep1');
+      var p = document.getElementById('mmPdf');
+      s.classList.remove('done');
+      p.classList.remove('show');
+      document.getElementById('materialsModal').classList.add('open');
+      setTimeout(function () { s.classList.add('ready'); }, 60);
+    }
+    function closeMaterials() {
+      document.getElementById('materialsModal').classList.remove('open');
+    }
+    function showPdfBtn() {
+      var s = document.getElementById('mmStep1');
+      var p = document.getElementById('mmPdf');
+      s.classList.remove('ready');
+      s.classList.add('done');
+      setTimeout(function () { p.classList.add('show'); }, 260);
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMaterials();
+    });
+  </script>
 
   <script>
     (function () {

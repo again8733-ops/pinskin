@@ -18,7 +18,10 @@
   body {
     font-family: 'Noto Sans KR', 'Poppins', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(180deg, #bfe4ff 0%, #dff0ff 45%, #f6fbff 100%);
+    background:
+      radial-gradient(1100px 620px at 82% -5%, rgba(88,72,190,0.30), transparent 60%),
+      radial-gradient(900px 560px at 8% 108%, rgba(30,58,110,0.55), transparent 60%),
+      linear-gradient(180deg, #060c22 0%, #0a1f44 50%, #16305e 100%);
     overflow: hidden;
     position: relative;
     display: flex;
@@ -26,7 +29,7 @@
     justify-content: center;
   }
 
-  /* 부드러운 그라데이션 블롭 */
+  /* 은하 성운 블롭 */
   .blob {
     position: absolute;
     border-radius: 50%;
@@ -34,9 +37,9 @@
     pointer-events: none;
     animation: floatBlob 16s ease-in-out infinite;
   }
-  .blob1 { width: 45vw; height: 45vw; background: rgba(255,255,255,0.55); top: -15%; left: -12%; opacity: 0.9; }
-  .blob2 { width: 40vw; height: 40vw; background: rgba(255,244,214,0.5); bottom: -18%; right: -10%; opacity: 0.85; animation-delay: -6s; }
-  .blob3 { width: 28vw; height: 28vw; background: rgba(210,236,255,0.7); top: 45%; left: 52%; opacity: 0.7; animation-delay: -11s; }
+  .blob1 { width: 45vw; height: 45vw; background: rgba(88,72,190,0.20); top: -15%; left: -12%; opacity: 0.9; }
+  .blob2 { width: 40vw; height: 40vw; background: rgba(0,110,220,0.14); bottom: -18%; right: -10%; opacity: 0.85; animation-delay: -6s; }
+  .blob3 { width: 28vw; height: 28vw; background: rgba(74,111,181,0.18); top: 45%; left: 52%; opacity: 0.7; animation-delay: -11s; }
 
   @keyframes floatBlob {
     0%, 100% { transform: translate(0, 0) scale(1); }
@@ -44,7 +47,7 @@
     66% { transform: translate(-4vw, 5vh) scale(0.92); }
   }
 
-  /* 떠다니는 하늘 입자 */
+  /* 떠다니는 별 입자 */
   .particle {
     position: absolute;
     bottom: -10px;
@@ -62,11 +65,12 @@
     100% { transform: translateY(-110vh) translateX(30px); opacity: 0; }
   }
 
-  /* 밝은 대학 캠퍼스 배경 */
+  /* 은하계 배경 */
   .campus-bg {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
+    inset: 0;
     width: 100%;
+    height: 100%;
     z-index: 1;
     pointer-events: none;
     display: block;
@@ -94,11 +98,11 @@
     position: absolute;
     inset: -16px;
     border-radius: 50%;
-    border: 3px solid rgba(10,31,68,0.18);
+    border: 3px solid rgba(219,228,255,0.35);
     animation: ringPulse 3.2s ease-in-out infinite;
     pointer-events: none;
   }
-  .logo-ring.ring2 { inset: -36px; border-color: rgba(10,31,68,0.1); animation-delay: 1s; }
+  .logo-ring.ring2 { inset: -36px; border-color: rgba(219,228,255,0.2); animation-delay: 1s; }
 
   @keyframes ringPulse {
     0%, 100% { transform: scale(1); opacity: 1; }
@@ -111,8 +115,8 @@
     border-radius: 50%;
     object-fit: cover;
     box-shadow:
-      0 0 55px rgba(10,31,68,0.16),
-      0 24px 55px rgba(10,31,68,0.2);
+      0 0 60px rgba(176,196,255,0.35),
+      0 24px 55px rgba(0,0,0,0.5);
     border: 5px solid #ffffff;
     background: #fff;
     animation: logoFloat 5s ease-in-out infinite;
@@ -127,9 +131,9 @@
     font-size: clamp(42px, 7vw, 72px);
     font-weight: 900;
     letter-spacing: 6px;
-    color: var(--navy);
+    color: #ffffff;
     animation: slideUp 1s ease-out both;
-    filter: drop-shadow(0 4px 14px rgba(10,31,68,0.15));
+    filter: drop-shadow(0 4px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 24px rgba(74,111,181,0.5));
   }
   @keyframes slideUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -137,7 +141,7 @@
   }
 
   .tagline {
-    color: var(--navy-soft);
+    color: rgba(219,228,255,0.92);
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -145,6 +149,7 @@
     margin-top: 14px;
     animation: slideUp 1.2s ease-out both;
     animation-delay: 0.3s;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.35);
   }
 
   /* 시작하기 버튼 */
@@ -198,7 +203,7 @@
     bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgba(10,31,68,0.45);
+    color: rgba(219,228,255,0.6);
     font-size: 12px;
     letter-spacing: 4px;
     animation: bounceHint 2s infinite;
@@ -215,122 +220,123 @@
   <div class="blob blob2"></div>
   <div class="blob blob3"></div>
 
-  <svg class="campus-bg" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+  <svg class="campus-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <defs>
-      <linearGradient id="cGround" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#9fd183"/>
-        <stop offset="1" stop-color="#79b95e"/>
-      </linearGradient>
-      <radialGradient id="cSun">
-        <stop offset="0" stop-color="rgba(255,238,160,0.85)"/>
-        <stop offset="1" stop-color="rgba(255,238,160,0)"/>
+      <radialGradient id="nebulaA">
+        <stop offset="0" stop-color="rgba(88,72,190,0.35)"/>
+        <stop offset="1" stop-color="rgba(88,72,190,0)"/>
       </radialGradient>
+      <radialGradient id="nebulaB">
+        <stop offset="0" stop-color="rgba(52,90,170,0.4)"/>
+        <stop offset="1" stop-color="rgba(52,90,170,0)"/>
+      </radialGradient>
+      <radialGradient id="planetGrad">
+        <stop offset="0" stop-color="#4a6fb5"/>
+        <stop offset="1" stop-color="#0a1f44"/>
+      </radialGradient>
+      <linearGradient id="starTrail" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="rgba(255,255,255,0)"/>
+        <stop offset="1" stop-color="rgba(219,228,255,0.95)"/>
+      </linearGradient>
     </defs>
 
-    <circle cx="1260" cy="100" r="150" fill="url(#cSun)"/>
-    <circle cx="1260" cy="100" r="46" fill="#ffe87a"/>
-    <circle cx="1272" cy="92" r="8" fill="rgba(255,255,255,0.75)"/>
+    <!-- 성운 -->
+    <ellipse cx="240" cy="190" rx="430" ry="270" fill="url(#nebulaA)"/>
+    <ellipse cx="1180" cy="560" rx="480" ry="300" fill="url(#nebulaB)"/>
+    <ellipse cx="720" cy="850" rx="520" ry="260" fill="url(#nebulaA)" opacity="0.6"/>
 
-    <g fill="rgba(255,255,255,0.85)">
-      <ellipse cx="180" cy="90" rx="70" ry="22"/>
-      <ellipse cx="240" cy="86" rx="55" ry="18"/>
-      <ellipse cx="520" cy="120" rx="80" ry="24"/>
-      <ellipse cx="585" cy="114" rx="60" ry="18"/>
-      <ellipse cx="900" cy="70" rx="90" ry="26"/>
-      <ellipse cx="975" cy="64" rx="65" ry="20"/>
-      <ellipse cx="150" cy="150" rx="60" ry="18"/>
+    <!-- 은하수 띠 -->
+    <ellipse cx="720" cy="420" rx="760" ry="130" fill="rgba(176,196,255,0.07)" transform="rotate(-14 720 420)"/>
+
+    <!-- 별자리 (큰 별) -->
+    <g fill="rgba(255,255,255,0.95)">
+      <circle cx="120" cy="120" r="2.4"/>
+      <circle cx="330" cy="70" r="1.8"/>
+      <circle cx="520" cy="180" r="2.6"/>
+      <circle cx="760" cy="90" r="2"/>
+      <circle cx="960" cy="150" r="2.8"/>
+      <circle cx="1120" cy="70" r="2.2"/>
+      <circle cx="1330" cy="140" r="2.5"/>
+      <circle cx="1420" cy="60" r="1.8"/>
     </g>
 
-    <rect x="0" y="330" width="1440" height="70" fill="url(#cGround)"/>
-
-    <g fill="#dde7f0">
-      <rect x="70" y="200" width="120" height="140"/>
-      <rect x="210" y="170" width="90" height="170"/>
-      <rect x="760" y="180" width="100" height="160"/>
-      <rect x="1100" y="200" width="100" height="140"/>
+    <!-- 반짝이는 별 -->
+    <g fill="rgba(176,196,255,0.85)">
+      <circle cx="200" cy="60" r="1.6"/>
+      <circle cx="420" cy="300" r="1.5"/>
+      <circle cx="640" cy="520" r="1.7"/>
+      <circle cx="860" cy="260" r="1.5"/>
+      <circle cx="1050" cy="400" r="1.8"/>
+      <circle cx="1270" cy="300" r="1.5"/>
+      <circle cx="1400" cy="460" r="1.6"/>
+      <circle cx="80" cy="420" r="1.5"/>
     </g>
 
-    <g fill="#f0e8da">
-      <rect x="330" y="140" width="130" height="200"/>
-      <rect x="900" y="150" width="140" height="190"/>
+    <!-- 일반 별들 -->
+    <g fill="rgba(255,255,255,0.7)">
+      <circle cx="60" cy="220" r="1.1"/>
+      <circle cx="160" cy="340" r="1"/>
+      <circle cx="260" cy="160" r="1.2"/>
+      <circle cx="300" cy="420" r="1"/>
+      <circle cx="380" cy="120" r="1.2"/>
+      <circle cx="470" cy="260" r="1"/>
+      <circle cx="580" cy="110" r="1.1"/>
+      <circle cx="600" cy="350" r="1.2"/>
+      <circle cx="700" cy="230" r="1"/>
+      <circle cx="820" cy="380" r="1.1"/>
+      <circle cx="900" cy="500" r="1"/>
+      <circle cx="990" cy="90" r="1.2"/>
+      <circle cx="1000" cy="300" r="1"/>
+      <circle cx="1100" cy="240" r="1.1"/>
+      <circle cx="1200" cy="120" r="1"/>
+      <circle cx="1240" cy="440" r="1.1"/>
+      <circle cx="1330" cy="250" r="1.2"/>
+      <circle cx="1430" cy="300" r="1"/>
+      <circle cx="50" cy="620" r="1.1"/>
+      <circle cx="170" cy="700" r="1"/>
+      <circle cx="280" cy="580" r="1.2"/>
+      <circle cx="430" cy="500" r="1"/>
+      <circle cx="530" cy="650" r="1.1"/>
+      <circle cx="660" cy="620" r="1"/>
+      <circle cx="780" cy="560" r="1.2"/>
+      <circle cx="900" cy="680" r="1"/>
+      <circle cx="1020" cy="600" r="1.1"/>
+      <circle cx="1140" cy="520" r="1"/>
+      <circle cx="1280" cy="620" r="1.2"/>
+      <circle cx="1380" cy="580" r="1"/>
+      <circle cx="120" cy="800" r="1.1"/>
+      <circle cx="340" cy="740" r="1"/>
+      <circle cx="560" cy="780" r="1.2"/>
+      <circle cx="750" cy="740" r="1"/>
+      <circle cx="960" cy="800" r="1.1"/>
+      <circle cx="1170" cy="720" r="1"/>
+      <circle cx="1350" cy="770" r="1.1"/>
+      <circle cx="1420" cy="860" r="1.2"/>
+      <circle cx="40" cy="870" r="1"/>
     </g>
 
-    <g fill="#e8a08c">
-      <rect x="520" y="110" width="180" height="230"/>
-      <rect x="495" y="160" width="30" height="180"/>
-      <rect x="695" y="160" width="30" height="180"/>
+    <!-- 고리 행성 (우측 상단) -->
+    <g transform="rotate(-18 1180 170)">
+      <ellipse cx="1180" cy="170" rx="130" ry="36" fill="none" stroke="rgba(176,196,255,0.55)" stroke-width="7"/>
+      <circle cx="1180" cy="170" r="60" fill="url(#planetGrad)"/>
+      <circle cx="1165" cy="156" r="20" fill="rgba(219,228,255,0.45)"/>
     </g>
 
-    <g fill="#8fb8dd">
-      <rect x="1240" y="150" width="130" height="190"/>
-      <rect x="1010" y="185" width="90" height="155"/>
-    </g>
-
-    <rect x="535" y="265" width="150" height="75" fill="#f6f0e4"/>
-    <rect x="560" y="290" width="40" height="50" fill="#d9e6f2"/>
-
-    <g stroke="#5a84c4" stroke-width="3">
-      <line x1="610" y1="110" x2="610" y2="60"/>
-    </g>
-    <rect x="592" y="62" width="36" height="22" rx="3" fill="#e8764f"/>
-
-    <g fill="rgba(255,255,255,0.9)">
-      <rect x="80" y="230" width="14" height="18" rx="2"/>
-      <rect x="110" y="230" width="14" height="18" rx="2"/>
-      <rect x="140" y="230" width="14" height="18" rx="2"/>
-      <rect x="80" y="280" width="14" height="18" rx="2"/>
-      <rect x="220" y="200" width="14" height="18" rx="2"/>
-      <rect x="250" y="200" width="14" height="18" rx="2"/>
-      <rect x="770" y="210" width="14" height="18" rx="2"/>
-      <rect x="800" y="210" width="14" height="18" rx="2"/>
-      <rect x="830" y="210" width="14" height="18" rx="2"/>
-      <rect x="1110" y="230" width="14" height="18" rx="2"/>
-      <rect x="1140" y="230" width="14" height="18" rx="2"/>
-    </g>
-
-    <g fill="rgba(255,255,255,0.85)">
-      <rect x="350" y="170" width="16" height="20" rx="2"/>
-      <rect x="380" y="170" width="16" height="20" rx="2"/>
-      <rect x="410" y="170" width="16" height="20" rx="2"/>
-      <rect x="350" y="220" width="16" height="20" rx="2"/>
-      <rect x="410" y="220" width="16" height="20" rx="2"/>
-      <rect x="920" y="180" width="16" height="20" rx="2"/>
-      <rect x="950" y="180" width="16" height="20" rx="2"/>
-      <rect x="980" y="180" width="16" height="20" rx="2"/>
-      <rect x="920" y="230" width="16" height="20" rx="2"/>
-    </g>
-
+    <!-- 작은 달 (좌측 하단) -->
     <g>
-      <rect x="550" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="570" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="590" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="610" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="630" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="650" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
-      <rect x="670" y="130" width="10" height="14" rx="2" fill="rgba(90,132,196,0.5)"/>
+      <circle cx="230" cy="720" r="36" fill="#1e3a6e"/>
+      <circle cx="219" cy="709" r="11" fill="rgba(219,228,255,0.4)"/>
+      <circle cx="242" cy="726" r="6" fill="rgba(219,228,255,0.3)"/>
+      <circle cx="252" cy="705" r="4" fill="rgba(219,228,255,0.25)"/>
     </g>
 
-    <g fill="#7cbf63">
-      <circle cx="180" cy="348" r="34"/>
-      <circle cx="158" cy="366" r="22"/>
-      <circle cx="500" cy="346" r="28"/>
-      <circle cx="725" cy="350" r="30"/>
-      <circle cx="880" cy="344" r="26"/>
-      <circle cx="1065" cy="348" r="30"/>
-      <circle cx="1210" cy="344" r="26"/>
-      <circle cx="1390" cy="350" r="30"/>
-      <circle cx="1365" cy="368" r="20"/>
-      <circle cx="700" cy="368" r="18"/>
+    <!-- 별똥별 -->
+    <g>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-430 310" dur="6s" repeatCount="indefinite"/>
+      <line x1="1090" y1="300" x2="1010" y2="380" stroke="url(#starTrail)" stroke-width="3" stroke-linecap="round">
+        <animate attributeName="opacity" values="0;0;1;0" keyTimes="0;0.78;0.84;0.95" dur="6s" repeatCount="indefinite"/>
+      </line>
     </g>
-
-    <g fill="#9fd48a">
-      <circle cx="300" cy="352" r="24"/>
-      <circle cx="650" cy="350" r="24"/>
-      <circle cx="970" cy="352" r="22"/>
-      <circle cx="1190" cy="350" r="24"/>
-    </g>
-
-    <path d="M0 330 L80 320 L160 330 L280 318 L430 328 L700 322 L900 330 L1100 320 L1300 330 L1440 322 L1440 400 L0 400 Z" fill="#6cab4f" opacity="0.55"/>
   </svg>
 
   <div class="content">

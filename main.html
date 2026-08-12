@@ -443,6 +443,10 @@
 
   .mm-pdf {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
     opacity: 0; transform: translateY(16px);
     transition: all 0.45s cubic-bezier(0.2, 0.8, 0.3, 1);
     transition-delay: 0.1s;
@@ -452,11 +456,13 @@
 
   .mm-pdf-btn {
     display: inline-block;
+    width: 100%;
     padding: 18px 46px;
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 18px; font-weight: 900; letter-spacing: 2px;
     color: #fff;
     text-decoration: none;
+    text-align: center;
     border-radius: 60px;
     background: linear-gradient(100deg, #00c4a0, #00a3d4, #7b2dff, #00c4a0);
     background-size: 260% 100%;
@@ -480,6 +486,16 @@
   @keyframes mmShimmer {
     0% { left: -120%; }
     50%, 100% { left: 140%; }
+  }
+
+  .mm-pdf-btn-secondary {
+    background: linear-gradient(100deg, #0a1f44, #1e3a6e, #7b2dff, #0a1f44);
+    background-size: 260% 100%;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.4), 0 0 30px rgba(123,45,255,0.25);
+  }
+  .mm-pdf-btn-secondary:hover {
+    background-position: 100% 0;
+    box-shadow: 0 18px 40px rgba(123,45,255,0.4);
   }
 
   @media (max-width: 700px) {
@@ -717,7 +733,8 @@
       </button>
 
       <div class="mm-pdf" id="mmPdf">
-        <a class="mm-pdf-btn" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
+        <a class="mm-pdf-btn" href="3.20 개강총회-ppt.pdf" target="_blank">개강총회자료보기</a>
+        <a class="mm-pdf-btn mm-pdf-btn-secondary" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
       </div>
     </div>
   </div>

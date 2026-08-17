@@ -197,6 +197,7 @@
       <div class="legend-item"><span class="legend-dot" style="background:#7b2dff;"></span>총회</div>
       <div class="legend-item"><span class="legend-dot" style="background:#ffb347;"></span>엠티</div>
       <div class="legend-item"><span class="legend-dot" style="background:#00a3d4;"></span>세미나</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#e74c3c;"></span>공휴일</div>
     </div>
 
     <div id="calContainer"></div>
@@ -231,7 +232,8 @@
           e[16] = [{ label: '개강총회·환영회 진행', color: '#7b2dff' }];
           e[17] = [{ label: '개강총회(대체)', color: '#7b2dff', alt: true }];
           rng(20, 22).forEach(function (d) { e[d] = [{ label: '자율스터디·세미나 참여 조사', color: '#1e3a6e' }]; });
-          rng(23, 30).forEach(function (d) { e[d] = [{ label: '공모전·대외활동 세미나(중 하루)', color: '#00a3d4' }]; });
+          rng(24, 27).forEach(function (d) { e[d] = [{ label: '추석연휴', color: '#e74c3c' }]; });
+          e[30] = [{ label: '공모전·대외활동 세미나', color: '#00a3d4' }];
           return e;
         })()
       },
@@ -239,6 +241,9 @@
         key: 10, days: 31, offset: 4,
         events: (function () {
           var e = {};
+          e[3] = [{ label: '개천절', color: '#e74c3c' }];
+          e[5] = [{ label: '대체공휴일', color: '#e74c3c' }];
+          e[9] = [{ label: '한글날', color: '#e74c3c' }];
           rng(12, 15).forEach(function (d) { e[d] = [{ label: '2학기 엠티 참여 조사', color: '#1e3a6e' }]; });
           return e;
         })()

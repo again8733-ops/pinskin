@@ -5,199 +5,200 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PINSKIN 소개</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --navy: #0a1f44;
-    --navy-soft: #1e3a6e;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
   }
 
   body {
-    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
-    background: #ffffff;
+    background: var(--paper);
     overflow-x: hidden;
-    padding: 60px 20px 100px;
+    padding: 64px 20px 100px;
     position: relative;
   }
 
-  .blob {
-    position: absolute; border-radius: 50%; filter: blur(100px);
-    animation: floatBlob 16s ease-in-out infinite; pointer-events: none;
-  }
-  .blob1 { width: 40vw; height: 40vw; background: #dbe4ff; top: -10%; left: -10%; opacity: 0.9; }
-  .blob2 { width: 35vw; height: 35vw; background: #cddcff; bottom: -10%; right: -5%; opacity: 0.85; animation-delay: -6s; }
-  .blob3 { width: 25vw; height: 25vw; background: #f0e6ff; top: 45%; left: 55%; opacity: 0.7; animation-delay: -10s; }
-  @keyframes floatBlob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(5vw, -5vh) scale(1.1); }
-    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
   }
 
   .wrap { position: relative; z-index: 10; max-width: 1000px; margin: 0 auto; }
 
   .back-btn {
-    position: fixed; top: 24px; left: 24px; z-index: 20;
-    color: var(--navy); text-decoration: none; font-size: 15px; font-weight: 700;
-    letter-spacing: 1px; padding: 10px 18px; border-radius: 40px;
-    border: 1px solid rgba(10,31,68,0.25); background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(8px); transition: all 0.3s ease;
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
   }
-  .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
 
-  .header { text-align: center; margin-bottom: 40px; animation: fadeDown 1s ease-out both; }
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
+    from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
   .title {
-    font-size: 46px; font-weight: 900; letter-spacing: 3px;
-    background: linear-gradient(90deg, #0a1f44, #1e3a6e, #4a6fb5, #0a1f44);
-    background-size: 300% 100%;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: gradientMove 6s linear infinite;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 58px; font-weight: 900; letter-spacing: -2px;
+    color: var(--navy); text-transform: uppercase; line-height: 1;
   }
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 18px; }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
 
   .bg-logo {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(85vw, 640px);
-    height: min(85vw, 640px);
-    border-radius: 50%;
-    object-fit: cover;
-    opacity: 0.2;
-    filter: blur(0.5px);
-    pointer-events: none;
-    z-index: 1;
-    animation: bgPulse 8s ease-in-out infinite;
-  }
-  @keyframes bgPulse {
-    0%, 100% { opacity: 0.16; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
   }
 
   .sems {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 20px;
+    display: flex; flex-direction: column; gap: 24px;
+    margin-top: 44px;
   }
 
   .sem-card {
-    border-radius: 24px;
-    background: rgba(255,255,255,0.9);
-    border: 1px solid rgba(10,31,68,0.14);
-    box-shadow: 0 12px 35px rgba(10,31,68,0.1);
-    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
     overflow: hidden;
-    animation: cardIn 0.8s ease-out both;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
   }
-  .sem-card:nth-child(1) { animation-delay: 0.15s; }
-  .sem-card:nth-child(2) { animation-delay: 0.3s; }
+  .sem-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
+  .sem-card:nth-child(1) { animation-delay: 0.05s; }
+  .sem-card:nth-child(2) { animation-delay: 0.15s; }
+  .sem-card:nth-child(3) { animation-delay: 0.25s; }
   @keyframes cardIn {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .sem-head {
     display: flex; align-items: center; gap: 14px;
-    padding: 22px 28px;
-    background: linear-gradient(100deg, #0a1f44, #1e3a6e);
+    padding: 20px 28px;
+    background: var(--navy);
+    border-bottom: 2px solid var(--navy);
   }
-  .sem-head-icon { font-size: 26px; }
-  .sem-label {
-    font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #fff;
+  .sem-tag {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px;
+    flex-shrink: 0;
   }
+  .sem-label { font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; color: #fff; }
+  .sem-label-sub { font-size: 11px; color: rgba(255,255,255,0.6); font-weight: 500; margin-top: 2px; letter-spacing: 1px; text-transform: uppercase; }
 
   .sem-body { padding: 26px 28px 30px; }
 
   .purpose {
-    font-size: 18px; line-height: 1.9; letter-spacing: 0.5px;
+    font-size: 16.5px; line-height: 1.85; letter-spacing: 0.1px;
     color: var(--navy-soft);
   }
 
   .loc-box {
     display: flex; align-items: center; gap: 20px;
-    padding: 26px 30px;
-    border-radius: 18px;
-    background: linear-gradient(135deg, #0a1f44, #1e3a6e);
-    box-shadow: 0 12px 30px rgba(10,31,68,0.25);
+    padding: 24px 26px;
+    border-radius: 14px;
+    background: var(--paper);
+    border: 2px solid var(--navy);
   }
   .loc-icon {
-    width: 64px; height: 64px; flex-shrink: 0;
+    width: 56px; height: 56px; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
-    font-size: 30px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 50%;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px;
+    background: var(--navy); color: #fff;
+    border-radius: 12px;
   }
   .loc-text { display: flex; flex-direction: column; gap: 4px; }
-  .loc-label { font-size: 14px; font-weight: 700; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
-  .loc-value { font-size: 26px; font-weight: 900; letter-spacing: 1px; color: #fff; }
+  .loc-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--navy-soft); text-transform: uppercase; }
+  .loc-value { font-size: 23px; font-weight: 700; letter-spacing: 0.2px; color: var(--navy); font-family: 'Space Grotesk', sans-serif; }
 
   .ev-row {
-    display: flex; align-items: flex-start; gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px dashed rgba(10,31,68,0.12);
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--line);
   }
   .ev-row:last-child { border-bottom: none; }
   .ev-num {
     flex-shrink: 0;
-    width: 34px; height: 34px;
+    width: 30px; height: 30px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 16px; font-weight: 900; color: #fff;
-    background: linear-gradient(135deg, #0a1f44, #1e3a6e);
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(10,31,68,0.25);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700; color: #fff;
+    background: var(--blue);
+    border-radius: 8px;
   }
-  .ev-text {
-    font-size: 17px; line-height: 1.8; color: var(--navy-soft); letter-spacing: 0.4px;
-  }
-  .ev-text strong {
-    color: var(--navy); font-weight: 900; letter-spacing: 1px;
-  }
+  .ev-text { font-size: 15.5px; line-height: 1.8; color: var(--navy-soft); letter-spacing: 0.1px; }
+  .ev-text strong { color: var(--navy); font-weight: 700; }
 
   @media (max-width: 700px) {
-    .title { font-size: 30px; }
-    .sem-head { padding: 18px 20px; }
-    .sem-label { font-size: 19px; }
+    .title { font-size: 38px; }
+    .sem-head { padding: 16px 20px; }
+    .sem-label { font-size: 18px; }
     .sem-body { padding: 20px 20px 24px; }
-    .purpose { font-size: 16px; }
-    .ev-text { font-size: 15px; }
-    .loc-box { padding: 20px 20px; }
-    .loc-value { font-size: 21px; }
+    .purpose { font-size: 15px; }
+    .ev-text { font-size: 14px; }
+    .loc-box { padding: 18px 18px; }
+    .loc-value { font-size: 19px; }
   }
 </style>
 </head>
 <body>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-
   <img class="bg-logo" src="핀스킨 로고.png" alt="">
 
-  <a class="back-btn" href="main.html">◀ 뒤로</a>
+  <a class="back-btn" href="main.html">← BACK</a>
 
   <div class="wrap">
     <div class="header">
-      <h1 class="title">PINSKIN 소개</h1>
-      <p class="subtitle">— A B O U T  P I N S K I N —</p>
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">ABOUT<span>.</span>US</h1>
+      <p class="subtitle">Who we are and what we do</p>
     </div>
 
     <div class="sems">
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🎯</div>
-          <div class="sem-label">핀스킨 설립 목적</div>
+          <div class="sem-tag">01</div>
+          <div>
+            <div class="sem-label">설립 목적</div>
+            <div class="sem-label-sub">Our Mission</div>
+          </div>
         </div>
         <div class="sem-body">
           <p class="purpose">공모전에 참여하고 싶지만 개인적으로 인원 모집이 쉽지 않아, 동아리 차원에서 인원 모집을 하여 더 쉽고 다양한 공모전에 도전할 수 있도록 하고 더 다채롭고 유쾌한 대학 생활을 만들기 위해 설립하게 되었음.</p>
@@ -206,8 +207,11 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🗓️</div>
-          <div class="sem-label">핀스킨의 주요 행사</div>
+          <div class="sem-tag">02</div>
+          <div>
+            <div class="sem-label">주요 행사</div>
+            <div class="sem-label-sub">Signature Events</div>
+          </div>
         </div>
         <div class="sem-body">
           <div class="ev-row">
@@ -239,14 +243,17 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">📍</div>
-          <div class="sem-label">동아리 방 위치</div>
+          <div class="sem-tag">03</div>
+          <div>
+            <div class="sem-label">동아리 방 위치</div>
+            <div class="sem-label-sub">Club Room</div>
+          </div>
         </div>
         <div class="sem-body">
           <div class="loc-box">
-            <div class="loc-icon">📍</div>
+            <div class="loc-icon">MAP</div>
             <div class="loc-text">
-              <span class="loc-label">핀스킨 동아리 방 위치</span>
+              <span class="loc-label">Location</span>
               <span class="loc-value">학생회관 606호</span>
             </div>
           </div>

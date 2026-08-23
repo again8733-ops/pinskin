@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PINSKIN</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,7 +16,7 @@
   }
 
   body {
-    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
     background:
       radial-gradient(1100px 620px at 82% -5%, rgba(88,72,190,0.30), transparent 60%),
@@ -126,11 +126,32 @@
     50% { transform: translateY(-12px); }
   }
 
+  .intro-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(219,228,255,0.35);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+    animation: slideUp 0.9s ease-out both;
+  }
+  .intro-badge .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #3d63ff;
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
   .club-name {
-    font-family: 'Poppins', 'Noto Sans KR', sans-serif;
-    font-size: clamp(42px, 7vw, 72px);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(42px, 7vw, 76px);
     font-weight: 900;
-    letter-spacing: 6px;
+    letter-spacing: -1px;
+    text-transform: uppercase;
     color: #ffffff;
     animation: slideUp 1s ease-out both;
     filter: drop-shadow(0 4px 18px rgba(0,0,0,0.55)) drop-shadow(0 0 24px rgba(74,111,181,0.5));
@@ -142,11 +163,11 @@
 
   .tagline {
     color: rgba(219,228,255,0.92);
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 3px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
     line-height: 1.7;
-    margin-top: 14px;
+    margin-top: 16px;
     animation: slideUp 1.2s ease-out both;
     animation-delay: 0.3s;
     text-shadow: 0 2px 10px rgba(0,0,0,0.35);
@@ -154,49 +175,33 @@
 
   /* 시작하기 버튼 */
   .start-btn {
-    display: inline-block;
-    margin-top: 36px;
-    padding: 17px 60px;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 21px;
-    font-weight: 900;
-    letter-spacing: 3px;
-    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+    padding: 16px 44px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #0a1f44;
     text-decoration: none;
-    border-radius: 60px;
-    background: linear-gradient(100deg, #0a1f44, #1e3a6e, #ffc94a, #0a1f44);
-    background-size: 260% 100%;
-    box-shadow: 0 12px 30px rgba(10,31,68,0.3);
+    text-transform: uppercase;
+    border-radius: 100px;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    box-shadow: 6px 6px 0 #3d63ff;
     position: relative;
-    overflow: hidden;
-    transition: all 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
     animation: slideUp 1.2s ease-out both;
     animation-delay: 0.6s;
     cursor: pointer;
-    border: none;
   }
   .start-btn:hover {
-    transform: translateY(-5px) scale(1.04);
-    background-position: 100% 0;
-    box-shadow: 0 18px 45px rgba(10,31,68,0.4);
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0 #3d63ff;
   }
-  .start-btn:active { transform: scale(0.96); }
-
-  .start-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
-    transform: skewX(-20deg);
-    animation: shimmer 3s infinite;
-  }
-  @keyframes shimmer {
-    0% { left: -120%; }
-    50%, 100% { left: 140%; }
-  }
+  .start-btn:active { transform: scale(0.97); }
 
   .scroll-hint {
     position: fixed;
@@ -345,10 +350,11 @@
       <div class="logo-ring ring2"></div>
       <img class="logo" src="핀스킨 로고.png" alt="PINSKIN 로고">
     </div>
+    <div class="intro-badge"><span class="dot"></span>COMPETITION CLUB</div>
     <h1 class="club-name">PINSKIN</h1>
-    <p class="tagline">경상국립대학교 중앙동아리 소속<br>공모전 동아리</p>
+    <p class="tagline">경상국립대학교 중앙동아리 소속 공모전 동아리</p>
     <br>
-    <a class="start-btn" href="main.html">PINSKIN 시작하기</a>
+    <a class="start-btn" href="main.html">ENTER PINSKIN →</a>
   </div>
 
   <div class="scroll-hint">SCROLL TO BEGIN</div>

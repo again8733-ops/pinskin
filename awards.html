@@ -5,183 +5,184 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PINSKIN 공모전 기록</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --navy: #0a1f44;
-    --navy-soft: #1e3a6e;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
   }
 
   body {
-    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
-    background: #ffffff;
+    background: var(--paper);
     overflow-x: hidden;
-    padding: 60px 20px 100px;
+    padding: 64px 20px 100px;
     position: relative;
   }
 
-  .blob {
-    position: absolute; border-radius: 50%; filter: blur(100px);
-    animation: floatBlob 16s ease-in-out infinite; pointer-events: none;
-  }
-  .blob1 { width: 40vw; height: 40vw; background: #dbe4ff; top: -10%; left: -10%; opacity: 0.9; }
-  .blob2 { width: 35vw; height: 35vw; background: #cddcff; bottom: -10%; right: -5%; opacity: 0.85; animation-delay: -6s; }
-  .blob3 { width: 25vw; height: 25vw; background: #f0e6ff; top: 45%; left: 55%; opacity: 0.7; animation-delay: -10s; }
-  @keyframes floatBlob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(5vw, -5vh) scale(1.1); }
-    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
   }
 
   .wrap { position: relative; z-index: 10; max-width: 1000px; margin: 0 auto; }
 
   .back-btn {
-    position: fixed; top: 24px; left: 24px; z-index: 20;
-    color: var(--navy); text-decoration: none; font-size: 15px; font-weight: 700;
-    letter-spacing: 1px; padding: 10px 18px; border-radius: 40px;
-    border: 1px solid rgba(10,31,68,0.25); background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(8px); transition: all 0.3s ease;
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
   }
-  .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
 
-  .header { text-align: center; margin-bottom: 40px; animation: fadeDown 1s ease-out both; }
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
+    from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
   .title {
-    font-size: 46px; font-weight: 900; letter-spacing: 3px;
-    background: linear-gradient(90deg, #0a1f44, #1e3a6e, #4a6fb5, #0a1f44);
-    background-size: 300% 100%;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: gradientMove 6s linear infinite;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 58px; font-weight: 900; letter-spacing: -2px;
+    color: var(--navy); text-transform: uppercase; line-height: 1;
   }
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 18px; }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
 
   .bg-logo {
-    position: fixed;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: min(85vw, 640px);
-    height: min(85vw, 640px);
-    border-radius: 50%;
-    object-fit: cover;
-    opacity: 0.2;
-    filter: blur(0.5px);
-    pointer-events: none;
-    z-index: 1;
-    animation: bgPulse 8s ease-in-out infinite;
-  }
-  @keyframes bgPulse {
-    0%, 100% { opacity: 0.16; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
   }
 
   .sems {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    margin-top: 20px;
+    display: flex; flex-direction: column; gap: 24px;
+    margin-top: 44px;
   }
 
   .sem-card {
-    border-radius: 24px;
-    background: rgba(255,255,255,0.9);
-    border: 1px solid rgba(10,31,68,0.14);
-    box-shadow: 0 12px 35px rgba(10,31,68,0.1);
-    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
     overflow: hidden;
-    animation: cardIn 0.8s ease-out both;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
   }
+  .sem-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
   @keyframes cardIn {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .sem-head {
     display: flex; align-items: center; gap: 14px;
-    padding: 22px 28px;
-    background: linear-gradient(100deg, #0a1f44, #1e3a6e);
+    padding: 20px 28px;
+    background: var(--navy);
   }
-  .sem-head-icon { font-size: 26px; }
-  .sem-label {
-    font-size: 24px; font-weight: 900; letter-spacing: 2px; color: #fff;
+  .sem-tag {
+    width: 46px; height: 38px; border-radius: 10px;
+    background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+    flex-shrink: 0;
   }
+  .sem-label { font-family: 'Space Grotesk', sans-serif; font-size: 21px; font-weight: 700; letter-spacing: -0.3px; color: #fff; }
 
-  .sem-body { padding: 22px 28px 26px; }
+  .sem-body { padding: 20px 28px 24px; }
 
   .aw-group {
     display: flex; align-items: center; gap: 10px;
-    margin: 8px 0 10px;
-    font-size: 15px; font-weight: 900; letter-spacing: 2px;
-    color: var(--navy-soft);
+    margin: 18px 0 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--blue); text-transform: uppercase;
   }
   .aw-group:first-child { margin-top: 0; }
   .aw-group::after {
     content: ''; flex: 1; height: 1px;
-    background: linear-gradient(90deg, rgba(10,31,68,0.18), transparent);
+    background: var(--line);
   }
 
   .aw-row {
-    display: flex; align-items: center; gap: 8px 14px;
+    display: flex; align-items: center; gap: 8px 12px;
     flex-wrap: wrap;
-    padding: 15px 0;
-    border-bottom: 1px dashed rgba(10,31,68,0.12);
+    padding: 13px 0;
+    border-bottom: 1px dashed var(--line);
   }
   .aw-row:last-child { border-bottom: none; }
   .aw-bullet {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: var(--navy-soft); flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 2px;
+    background: var(--navy); flex-shrink: 0;
   }
   .aw-name {
-    font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px;
+    font-size: 15.5px; font-weight: 600; color: var(--navy); letter-spacing: 0.1px;
   }
   .aw-tag {
-    font-size: 13px; font-weight: 900; letter-spacing: 1px;
-    color: #0a1f44;
-    background: linear-gradient(90deg, #ffd54a, #ffb347);
-    padding: 4px 14px;
-    border-radius: 30px;
-    box-shadow: 0 4px 15px rgba(255,213,74,0.5);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    color: #fff;
+    background: var(--navy);
+    padding: 4px 12px;
+    border-radius: 100px;
   }
 
   @media (max-width: 700px) {
-    .title { font-size: 30px; }
-    .sem-head { padding: 18px 20px; }
-    .sem-label { font-size: 19px; }
-    .sem-body { padding: 16px 20px 20px; }
-    .aw-name { font-size: 15px; }
-    .aw-tag { font-size: 12px; padding: 3px 10px; }
+    .title { font-size: 38px; }
+    .sem-head { padding: 16px 20px; }
+    .sem-label { font-size: 17px; }
+    .sem-body { padding: 14px 20px 18px; }
+    .aw-name { font-size: 14px; }
+    .aw-tag { font-size: 10px; padding: 3px 10px; }
   }
 </style>
 </head>
 <body>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-
   <img class="bg-logo" src="핀스킨 로고.png" alt="">
 
-  <a class="back-btn" href="main.html">◀ 뒤로</a>
+  <a class="back-btn" href="main.html">← BACK</a>
 
   <div class="wrap">
     <div class="header">
-      <h1 class="title">공모전 기록</h1>
-      <p class="subtitle">— A C T I V I T Y  A W A R D S —</p>
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">AWARDS<span>.</span>RECORD</h1>
+      <p class="subtitle">Competitions & activities since 2022</p>
     </div>
 
     <div class="sems">
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🏅</div>
+          <div class="sem-tag">22-1</div>
           <div class="sem-label">22-1 활동 공모전</div>
         </div>
         <div class="sem-body">
@@ -194,16 +195,16 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🥈</div>
+          <div class="sem-tag">22-2</div>
           <div class="sem-label">22-2 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제7회 파크랜드 대학생 마케팅 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">KOSAC 2022년 대한민국 대학생 광고대회</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">해양오염예방 콘텐츠 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">경제안보 크리에이티브 콘텐츠, 아이디어 공모전</span><span class="aw-tag">우수상 수상</span></div>
-          <div class="aw-group">교내</div>
+          <div class="aw-group">Internal</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">경영사례조사 경진대회</span><span class="aw-tag">우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">로켓피치 경연대회</span><span class="aw-tag">특별상 수상</span></div>
         </div>
@@ -211,11 +212,11 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🏅</div>
+          <div class="sem-tag">23-1</div>
           <div class="sem-label">23-1 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">CCC커튼콜 마케팅 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">KOSAC 대학생 광고대회</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">고용 노동 공공데이터 - 아이디어 기획 부문</span></div>
@@ -226,11 +227,11 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🥉</div>
+          <div class="sem-tag">23-2</div>
           <div class="sem-label">23-2 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">삼정펄프 '제1회 대학생 마케팅 공모전'</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">아이디어 유니버시아드 총 1팀 출전</span></div>
         </div>
@@ -238,33 +239,33 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🏅</div>
+          <div class="sem-tag">24-1</div>
           <div class="sem-label">24-1 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제일기획 광고 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">엔지니어링 산업 경진대회</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">소비자지향성 개선과제 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">소비자교육 콘텐츠 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">KOSAC 대학생 광고대회</span><span class="aw-tag">챌린저상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2024년 관세청 공공데이터 분석 활용 경진대회</span><span class="aw-tag">장려상 수상</span></div>
-          <div class="aw-group">교내</div>
+          <div class="aw-group">Internal</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제1회 좋은데이 마케팅 경진대회 (꿈길 주최)</span><span class="aw-tag">1등상, 2등상 수상</span></div>
         </div>
       </div>
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🥈</div>
+          <div class="sem-tag">24-2</div>
           <div class="sem-label">24-2 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제1회 공공데이터 활용 가족정책 아이디어 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제26회 아이디어 유니버시아드 대회</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">CJ 프레시웨이 대학생 외식 마케팅 아이디어 챌린지</span></div>
-          <div class="aw-group">교내</div>
+          <div class="aw-group">Internal</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제22회 로켓피치 경연대회</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제12회 경영사례조사</span></div>
         </div>
@@ -272,50 +273,50 @@
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🏅</div>
+          <div class="sem-tag">25-1</div>
           <div class="sem-label">25-1 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제9회 소비자지향성 개선과제 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제4회 전기안전 국민 공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025 대한민국 대학생 광고대회 (KOSAC)</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제4회 융복합 데이터 활용 창업 경진대회</span></div>
-          <div class="aw-group">대외활동</div>
+          <div class="aw-group">Extracurricular</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제31기 한국장학재단 대학생 재능봉사캠프 팀 - 에이아이:음</span><span class="aw-tag">선발</span></div>
         </div>
       </div>
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🥇</div>
+          <div class="sem-tag">25-2</div>
           <div class="sem-label">25-2 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">교외</div>
+          <div class="aw-group">External</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">빅데이터 우리동네 문제해결 경진대회 6팀 참가</span><span class="aw-tag">최우수상 수상</span><span class="aw-tag">장려상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025 동남권 대학생 아이디어톤 2팀 참여</span><span class="aw-tag">최우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">한화생명 미래 금융공모전</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">SCOUT 프렌즈데이</span><span class="aw-tag">최우수상 수상</span></div>
-          <div class="aw-group">교내</div>
+          <div class="aw-group">Internal</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제23회 로켓피치 경연대회 2팀 참여</span><span class="aw-tag">최우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025학년도 GNU 개척스토리 공모전 1팀 참여</span><span class="aw-tag">최우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025학년도 나만의 e-포트폴리오 기획 1팀 참여</span><span class="aw-tag">최우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">생성형 AI+X 활용 아이디어 경진대회 3팀 참여</span><span class="aw-tag">우수상 수상</span><span class="aw-tag">장려상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025년 2학기 개척학기제 성과발표회 1팀 참여</span><span class="aw-tag">우수상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2025 GNU IP EXPO 1팀 참여</span><span class="aw-tag">장려상 수상</span></div>
-          <div class="aw-group">대외활동</div>
+          <div class="aw-group">Extracurricular</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제32기 한국장학재단 대학생 재능봉사캠프 팀 - 에이아이:음</span><span class="aw-tag">선발</span></div>
         </div>
       </div>
 
       <div class="sem-card">
         <div class="sem-head">
-          <div class="sem-head-icon">🌟</div>
+          <div class="sem-tag">26-1</div>
           <div class="sem-label">26-1 활동 공모전</div>
         </div>
         <div class="sem-body">
-          <div class="aw-group">공모전</div>
+          <div class="aw-group">Competitions</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제5회 AI 공공데이터 활용 및 창업 경진대회 공모전</span><span class="aw-tag">장려상 수상</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제10회 소비자지향성 개선과제 공모전 1팀</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제17회 아모레퍼시픽 브랜드 챌린지 2팀</span></div>
@@ -323,13 +324,13 @@
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">[KOSAC] 2026 대한민국 대학생 광고대회 1팀</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">DB증권 2026 제12회 DB GAPS 투자대회 1팀</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 AI 에너지 스마트홈 메이커톤 1팀</span></div>
-          <div class="aw-group">서포터즈</div>
+          <div class="aw-group">Supporters</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">국민연금공단 서포터즈 (2팀 참여) - 영금백금</span><span class="aw-tag">선발</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026년 제19기 법무부 저스티스 서포터즈 - 법PT</span><span class="aw-tag">선발</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제10기 한국남동발전 대학생봉사단 2명</span><span class="aw-tag">선발</span></div>
-          <div class="aw-group">교내 활동</div>
+          <div class="aw-group">Campus Activities</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">GP 해외봉사 PINSKIN 부원 9명</span><span class="aw-tag">선발</span></div>
-          <div class="aw-group">대외활동</div>
+          <div class="aw-group">Extracurricular</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제33기 한국장학재단 대학생 재능봉사캠프 팀 - 에이아이:음</span><span class="aw-tag">선발</span></div>
         </div>
       </div>

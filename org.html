@@ -5,235 +5,268 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PINSKIN 조직도</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Poppins:wght@700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
     --navy: #0a1f44;
-    --navy-soft: #1e3a6e;
+    --navy-deep: #071531;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
   }
 
   body {
-    font-family: 'Noto Sans KR', 'Poppins', sans-serif;
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
-    background: #ffffff;
+    background: var(--paper);
     overflow-x: hidden;
-    padding: 60px 20px 80px;
+    padding: 64px 20px 100px;
     position: relative;
   }
 
-  .blob {
-    position: absolute; border-radius: 50%; filter: blur(100px);
-    animation: floatBlob 16s ease-in-out infinite; pointer-events: none;
-  }
-  .blob1 { width: 40vw; height: 40vw; background: #dbe4ff; top: -10%; left: -10%; opacity: 0.9; }
-  .blob2 { width: 35vw; height: 35vw; background: #cddcff; bottom: -10%; right: -5%; opacity: 0.85; animation-delay: -6s; }
-  .blob3 { width: 25vw; height: 25vw; background: #f0e6ff; top: 50%; left: 60%; opacity: 0.7; animation-delay: -10s; }
-  @keyframes floatBlob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33% { transform: translate(5vw, -5vh) scale(1.1); }
-    66% { transform: translate(-4vw, 4vh) scale(0.92); }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
   }
 
-  .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; }
+  .wrap { position: relative; z-index: 10; max-width: 1080px; margin: 0 auto; }
 
   .back-btn {
-    position: fixed; top: 24px; left: 24px; z-index: 20;
-    color: var(--navy); text-decoration: none; font-size: 15px; font-weight: 700;
-    letter-spacing: 1px; padding: 10px 18px; border-radius: 40px;
-    border: 1px solid rgba(10,31,68,0.25); background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(8px); transition: all 0.3s ease;
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
   }
-  .back-btn:hover { color: #fff; background: var(--navy); border-color: var(--navy); transform: translateX(-4px); }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
 
-  .header { text-align: center; margin-bottom: 20px; animation: fadeDown 1s ease-out both; }
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
   @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-30px); }
+    from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
   }
 
   .title {
-    font-size: 48px; font-weight: 900; letter-spacing: 3px;
-    background: linear-gradient(90deg, #0a1f44, #1e3a6e, #4a6fb5, #0a1f44);
-    background-size: 300% 100%;
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-    animation: gradientMove 6s linear infinite;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 76px; font-weight: 900; letter-spacing: -3px;
+    line-height: 0.95;
+    color: var(--navy);
+    text-transform: uppercase;
   }
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 300% 50%; }
-  }
-  .subtitle { color: var(--navy-soft); letter-spacing: 6px; margin-top: 10px; font-size: 18px; }
+  .title span { color: var(--blue); }
 
-  /* 배경 워터마크 로고 */
+  .subtitle {
+    color: var(--navy-soft); margin-top: 18px;
+    font-size: 16px; font-weight: 500; letter-spacing: 0.2px;
+  }
+
   .bg-logo {
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: min(85vw, 640px);
-    height: min(85vw, 640px);
+    width: min(60vw, 480px);
+    height: min(60vw, 480px);
     border-radius: 50%;
     object-fit: cover;
-    opacity: 0.2;
-    filter: blur(0.5px);
+    opacity: 0.04;
+    filter: grayscale(1) contrast(1.1);
     pointer-events: none;
-    z-index: 1;
-    animation: bgPulse 8s ease-in-out infinite;
-  }
-  @keyframes bgPulse {
-    0%, 100% { opacity: 0.16; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 0.24; transform: translate(-50%, -50%) scale(1.04); }
+    z-index: 0;
   }
 
-  .lead-team {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    color: var(--navy-soft); text-transform: uppercase;
+    margin: 56px 0 18px;
   }
-  .team-lead {
-    width: 100%;
-    max-width: 740px;
+  .section-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--line);
   }
+
+  /* ===== Leadership ===== */
+  .team-lead { width: 100%; }
 
   .teams {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    margin-top: 18px;
   }
 
+  /* ===== Cards ===== */
   .team {
-    border-radius: 24px;
-    padding: 34px 26px 36px;
-    text-align: center;
-    background: rgba(255,255,255,0.88);
-    border: 1px solid rgba(10,31,68,0.12);
-    box-shadow: 0 12px 35px rgba(10,31,68,0.1);
-    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 32px 28px 30px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
     position: relative;
     overflow: hidden;
-    transition: transform 0.35s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.35s ease;
-    animation: cardIn 0.9s ease-out both;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
   }
-  .team:nth-child(1) { animation-delay: 0.2s; }
-  .team:nth-child(2) { animation-delay: 0.35s; }
-  .team:nth-child(3) { animation-delay: 0.5s; }
-  .team:nth-child(4) { animation-delay: 0.65s; }
+  .team:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--blue);
+  }
+
+  .team:nth-child(1) { animation-delay: 0.1s; }
+  .team:nth-child(2) { animation-delay: 0.2s; }
+  .team:nth-child(3) { animation-delay: 0.3s; }
 
   @keyframes cardIn {
-    from { opacity: 0; transform: translateY(40px); }
+    from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .team::before {
-    content: ''; position: absolute; inset: 0;
-    background: linear-gradient(160deg, var(--c1), var(--c2));
-    opacity: 0.1; transition: opacity 0.35s ease;
-  }
-  .team:hover::before { opacity: 0.22; }
-  .team:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 0 40px var(--glow), 0 18px 40px rgba(10,31,68,0.15);
+  .team-num {
+    position: absolute; top: -10px; right: -6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 90px; font-weight: 900;
+    color: var(--navy); opacity: 0.06;
+    line-height: 1; pointer-events: none;
   }
 
-  .team-icon {
-    width: 90px; height: 90px; margin: 0 auto 18px;
+  .team-head {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 6px;
+  }
+  .team-tag {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--navy); color: #fff;
     display: flex; align-items: center; justify-content: center;
-    font-size: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--c1), var(--c2));
-    box-shadow: 0 0 25px var(--glow);
-    animation: iconFloat 3.5s ease-in-out infinite;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 17px;
+    flex-shrink: 0;
   }
-  @keyframes iconFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
+  .team-lead .team-tag { background: var(--blue); }
 
   .team-name {
-    font-size: 30px; font-weight: 900; letter-spacing: 2px; color: var(--navy);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px; font-weight: 700; letter-spacing: -0.3px; color: var(--navy);
+  }
+  .team-name-sub {
+    font-size: 12px; color: var(--navy-soft); font-weight: 500; margin-top: 1px;
   }
 
   .member-row {
     display: flex;
-    gap: 16px;
-    margin-top: 16px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
   }
-  .member-row .member {
-    flex: 1;
-    margin-top: 0;
-  }
+  .member-row .member { flex: 1; min-width: 140px; margin-top: 0; }
 
   .member {
-    margin-top: 16px;
-    padding: 14px 16px;
-    border-radius: 16px;
-    background: rgba(10,31,68,0.05);
-    border-left: 4px solid var(--c1);
+    margin-top: 12px;
+    padding: 13px 14px;
+    border-radius: 12px;
+    background: var(--paper);
+    border: 1px solid var(--line);
     text-align: left;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
   }
   .member:hover {
-    background: rgba(10,31,68,0.1);
-    transform: translateX(6px);
+    background: #fff;
+    border-color: var(--blue);
   }
   .member .role {
-    font-size: 15px; font-weight: 700; letter-spacing: 2px;
-    color: var(--c1); text-transform: uppercase;
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    color: #fff; background: var(--navy-soft);
+    padding: 3px 9px; border-radius: 100px;
+    text-transform: uppercase;
   }
   .member .name {
-    font-size: 25px; font-weight: 700; color: var(--navy); margin-top: 4px; letter-spacing: 1px;
+    font-size: 19px; font-weight: 700; color: var(--navy); margin-top: 8px; letter-spacing: -0.2px;
+    font-family: 'Inter', sans-serif;
   }
 
   @media (max-width: 700px) {
-    .title { font-size: 34px; }
-    .team-name { font-size: 25px; }
-    .member .name { font-size: 21px; }
-    .member .role { font-size: 13px; }
+    .title { font-size: 46px; letter-spacing: -1.5px; }
+    .team-name { font-size: 19px; }
+    .member .name { font-size: 17px; }
+    .member-row { flex-direction: column; }
+    .member-row .member { min-width: 0; }
   }
 </style>
 </head>
 <body>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-
   <img class="bg-logo" src="핀스킨 로고.png" alt="">
 
-  <a class="back-btn" href="main.html">◀ 뒤로</a>
+  <a class="back-btn" href="main.html">← BACK</a>
   <div class="wrap">
     <div class="header">
-      <h1 class="title">PINSKIN 조직도</h1>
-      <p class="subtitle">— O R G A N I Z A T I O N —</p>
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">ORG<span>.</span>CHART</h1>
+      <p class="subtitle">Who's who — meet the crew running PINSKIN</p>
     </div>
 
-    <div class="lead-team">
-      <div class="team team-lead" style="--c1:#ff2d95; --c2:#ff6b9d; --glow:rgba(255,45,149,0.55);">
-        <div class="team-icon">🛠️</div>
-        <div class="team-name">운영팀</div>
-        <div class="member-row">
-          <div class="member">
-            <div class="role">회장</div>
-            <div class="name">이건주</div>
-          </div>
-          <div class="member">
-            <div class="role">부회장</div>
-            <div class="name">김수호</div>
-          </div>
-          <div class="member">
-            <div class="role">총무</div>
-            <div class="name">김지유</div>
-          </div>
+    <div class="section-label">Executive Board</div>
+    <div class="team team-lead">
+      <div class="team-num">01</div>
+      <div class="team-head">
+        <div class="team-tag">EB</div>
+        <div>
+          <div class="team-name">Executive Team</div>
+          <div class="team-name-sub">Leading the club forward</div>
+        </div>
+      </div>
+      <div class="member-row">
+        <div class="member">
+          <div class="role">회장</div>
+          <div class="name">이건주</div>
+        </div>
+        <div class="member">
+          <div class="role">부회장</div>
+          <div class="name">김수호</div>
+        </div>
+        <div class="member">
+          <div class="role">총무</div>
+          <div class="name">김지유</div>
         </div>
       </div>
     </div>
 
+    <div class="section-label">Teams</div>
     <div class="teams">
-      <div class="team" style="--c1:#00d4ff; --c2:#4da8ff; --glow:rgba(0,212,255,0.55);">
-        <div class="team-icon">📣</div>
-        <div class="team-name">홍보팀</div>
+      <div class="team">
+        <div class="team-num">02</div>
+        <div class="team-head">
+          <div class="team-tag">PR</div>
+          <div>
+            <div class="team-name">PR Team</div>
+            <div class="team-name-sub">Public Relations</div>
+          </div>
+        </div>
         <div class="member">
           <div class="role">홍보팀장</div>
           <div class="name">옥서윤</div>
@@ -244,9 +277,15 @@
         </div>
       </div>
 
-      <div class="team" style="--c1:#ffd54a; --c2:#ff9f45; --glow:rgba(255,213,74,0.55);">
-        <div class="team-icon">💡</div>
-        <div class="team-name">기획팀</div>
+      <div class="team">
+        <div class="team-num">03</div>
+        <div class="team-head">
+          <div class="team-tag">PL</div>
+          <div>
+            <div class="team-name">Planning Team</div>
+            <div class="team-name-sub">Strategy &amp; Events</div>
+          </div>
+        </div>
         <div class="member">
           <div class="role">기획팀장</div>
           <div class="name">심우연</div>
@@ -257,9 +296,15 @@
         </div>
       </div>
 
-      <div class="team" style="--c1:#7b2dff; --c2:#b44dff; --glow:rgba(123,45,255,0.55);">
-        <div class="team-icon">🤝</div>
-        <div class="team-name">인사팀</div>
+      <div class="team">
+        <div class="team-num">04</div>
+        <div class="team-head">
+          <div class="team-tag">HR</div>
+          <div>
+            <div class="team-name">HR Team</div>
+            <div class="team-name-sub">Human Resources</div>
+          </div>
+        </div>
         <div class="member">
           <div class="role">인사팀장</div>
           <div class="name">최해원</div>

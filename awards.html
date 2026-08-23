@@ -149,12 +149,20 @@
     font-size: 15.5px; font-weight: 600; color: var(--navy); letter-spacing: 0.1px;
   }
   .aw-tag {
+    display: inline-flex; align-items: center; gap: 4px;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
-    color: #fff;
-    background: var(--navy);
-    padding: 4px 12px;
+    color: #3a2a06;
+    background: linear-gradient(135deg, #ffe49a, #d4a537 55%, #b8892a);
+    padding: 4px 12px 4px 10px;
     border-radius: 100px;
+    border: 1px solid #a67c25;
+    box-shadow: 0 2px 8px rgba(180,140,40,0.45), inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .aw-tag::before {
+    content: '★';
+    font-size: 10px;
+    color: #8a5f10;
   }
 
   @media (max-width: 700px) {

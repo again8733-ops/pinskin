@@ -194,6 +194,7 @@
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:#0a1f44;"></span>조사 · 준비</div>
       <div class="legend-item"><span class="legend-dot" style="background:#3d63ff;"></span>진행</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#2f9e44;"></span>회의</div>
       <div class="legend-item"><span class="legend-dot" style="background:#ff9f45;"></span>선발</div>
       <div class="legend-item"><span class="legend-dot" style="background:#7b2dff;"></span>총회</div>
       <div class="legend-item"><span class="legend-dot" style="background:#00a3a3;"></span>엠티</div>
@@ -229,6 +230,7 @@
         events: (function () {
           var e = {};
           rng(1, 7).forEach(function (d) { e[d] = [{ label: '운영진 인수인계·가두모집 준비', color: '#0a1f44' }]; });
+          e[1].push({ label: '운영진 회의 (오후 7시·동아리방)', color: '#2f9e44' });
           rng(8, 9).forEach(function (d) { e[d] = [{ label: '가두모집 진행', color: '#3d63ff' }]; });
           rng(10, 11).forEach(function (d) { e[d] = [{ label: '신입부원 선발', color: '#ff9f45' }]; });
           rng(12, 13).forEach(function (d) { e[d] = [{ label: '개강총회·환영회 참여 조사', color: '#0a1f44' }]; });

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PINSKIN 행사 일정표</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -77,9 +77,9 @@
   }
 
   .title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 58px; font-weight: 900; letter-spacing: -2px;
-    color: var(--navy); text-transform: uppercase; line-height: 1;
+    font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+    font-size: 52px; font-weight: 900; letter-spacing: -0.5px;
+    color: var(--navy); line-height: 1.1;
   }
   .title span { color: var(--blue); }
 
@@ -187,18 +187,18 @@
   <div class="wrap">
     <div class="header">
       <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
-      <h1 class="title">EVENT<span>.</span>SCHEDULE</h1>
-      <p class="subtitle">2026 Fall Semester Calendar</p>
+      <h1 class="title">행사 일정표</h1>
+      <p class="subtitle">— 2026년 2학기 —</p>
     </div>
 
     <div class="legend">
-      <div class="legend-item"><span class="legend-dot" style="background:#0a1f44;"></span>Research · Prep</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#3d63ff;"></span>In Progress</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#ff9f45;"></span>Selection</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#7b2dff;"></span>Ceremony</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#00a3a3;"></span>Retreat (MT)</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#00a3d4;"></span>Seminar</div>
-      <div class="legend-item"><span class="legend-dot" style="background:#e0475c;"></span>Holiday</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#0a1f44;"></span>조사 · 준비</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#3d63ff;"></span>진행</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#ff9f45;"></span>선발</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#7b2dff;"></span>총회</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#00a3a3;"></span>엠티</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#00a3d4;"></span>세미나</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#e0475c;"></span>공휴일</div>
     </div>
 
     <div id="calContainer"></div>
@@ -213,14 +213,14 @@
       return out;
     };
 
-    var monthNames = { 8: 'AUG', 9: 'SEP', 10: 'OCT', 11: 'NOV', 12: 'DEC' };
+    var monthNames = { 8: '8월', 9: '9월', 10: '10월', 11: '11월', 12: '12월' };
 
     var months = [
       {
         key: 8, days: 31, offset: 6,
         events: (function () {
           var e = {};
-          rng(24, 31).forEach(function (d) { e[d] = [{ label: 'Handover & Recruiting Prep', color: '#0a1f44' }]; });
+          rng(24, 31).forEach(function (d) { e[d] = [{ label: '운영진 인수인계·가두모집 준비', color: '#0a1f44' }]; });
           return e;
         })()
       },
@@ -228,15 +228,15 @@
         key: 9, days: 30, offset: 2,
         events: (function () {
           var e = {};
-          rng(1, 7).forEach(function (d) { e[d] = [{ label: 'Handover & Recruiting Prep', color: '#0a1f44' }]; });
-          rng(8, 9).forEach(function (d) { e[d] = [{ label: 'Street Recruiting', color: '#3d63ff' }]; });
-          rng(10, 11).forEach(function (d) { e[d] = [{ label: 'New Member Selection', color: '#ff9f45' }]; });
-          rng(12, 13).forEach(function (d) { e[d] = [{ label: 'Opening Ceremony RSVP', color: '#0a1f44' }]; });
-          e[16] = [{ label: 'Opening Ceremony', color: '#7b2dff' }];
-          e[17] = [{ label: 'Opening Ceremony (Makeup)', color: '#7b2dff', alt: true }];
-          rng(20, 22).forEach(function (d) { e[d] = [{ label: 'Study & Seminar RSVP', color: '#0a1f44' }]; });
-          rng(24, 27).forEach(function (d) { e[d] = [{ label: 'Chuseok Holiday', color: '#e0475c' }]; });
-          e[30] = [{ label: 'Competition Seminar', color: '#00a3d4' }];
+          rng(1, 7).forEach(function (d) { e[d] = [{ label: '운영진 인수인계·가두모집 준비', color: '#0a1f44' }]; });
+          rng(8, 9).forEach(function (d) { e[d] = [{ label: '가두모집 진행', color: '#3d63ff' }]; });
+          rng(10, 11).forEach(function (d) { e[d] = [{ label: '신입부원 선발', color: '#ff9f45' }]; });
+          rng(12, 13).forEach(function (d) { e[d] = [{ label: '개강총회·환영회 참여 조사', color: '#0a1f44' }]; });
+          e[16] = [{ label: '개강총회·환영회 진행', color: '#7b2dff' }];
+          e[17] = [{ label: '개강총회(대체)', color: '#7b2dff', alt: true }];
+          rng(20, 22).forEach(function (d) { e[d] = [{ label: '자율스터디·세미나 참여 조사', color: '#0a1f44' }]; });
+          rng(24, 27).forEach(function (d) { e[d] = [{ label: '추석연휴', color: '#e0475c' }]; });
+          e[30] = [{ label: '공모전·대외활동 세미나', color: '#00a3d4' }];
           return e;
         })()
       },
@@ -244,10 +244,10 @@
         key: 10, days: 31, offset: 4,
         events: (function () {
           var e = {};
-          e[3] = [{ label: 'National Foundation Day', color: '#e0475c' }];
-          e[5] = [{ label: 'Substitute Holiday', color: '#e0475c' }];
-          e[9] = [{ label: 'Hangeul Day', color: '#e0475c' }];
-          rng(12, 15).forEach(function (d) { e[d] = [{ label: 'Fall MT RSVP', color: '#0a1f44' }]; });
+          e[3] = [{ label: '개천절', color: '#e0475c' }];
+          e[5] = [{ label: '대체공휴일', color: '#e0475c' }];
+          e[9] = [{ label: '한글날', color: '#e0475c' }];
+          rng(12, 15).forEach(function (d) { e[d] = [{ label: '2학기 엠티 참여 조사', color: '#0a1f44' }]; });
           return e;
         })()
       },
@@ -255,10 +255,10 @@
         key: 11, days: 30, offset: 0,
         events: (function () {
           var e = {};
-          rng(7, 8).forEach(function (d) { e[d] = [{ label: 'Fall MT (Session 1)', color: '#00a3a3' }]; });
-          rng(14, 15).forEach(function (d) { e[d] = [{ label: 'Fall MT (Session 2)', color: '#00a3a3' }]; });
-          rng(17, 19).forEach(function (d) { e[d] = [{ label: 'Survey · Finance · Closing RSVP', color: '#0a1f44' }]; });
-          e[25] = [{ label: 'Closing Ceremony', color: '#7b2dff' }];
+          rng(7, 8).forEach(function (d) { e[d] = [{ label: '2학기 엠티 진행(1차)', color: '#00a3a3' }]; });
+          rng(14, 15).forEach(function (d) { e[d] = [{ label: '2학기 엠티 진행(2차)', color: '#00a3a3' }]; });
+          rng(17, 19).forEach(function (d) { e[d] = [{ label: '만족도 조사·회계 보고·종강총회 조사', color: '#0a1f44' }]; });
+          e[25] = [{ label: '종강총회 진행', color: '#7b2dff' }];
           return e;
         })()
       },
@@ -276,7 +276,7 @@
       sec.innerHTML =
         '<div class="cal-head"><div class="cal-month">' + monthNames[month.key] + '</div>' +
         '<div class="cal-year">2026</div></div>' +
-        '<div class="weekdays"><div class="sun">Su</div><div>Mo</div><div>Tu</div><div>We</div><div>Th</div><div>Fr</div><div class="sat">Sa</div></div>' +
+        '<div class="weekdays"><div class="sun">일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div class="sat">토</div></div>' +
         '<div class="cal-grid" id="grid-' + month.key + '"></div>';
 
       container.appendChild(sec);
@@ -310,7 +310,7 @@
       if (month.key === 12) {
         var note = document.createElement('div');
         note.className = 'cal-empty';
-        note.textContent = '— No events scheduled for December —';
+        note.textContent = '— 12월은 예정된 행사가 없습니다 —';
         sec.appendChild(note);
       }
     });

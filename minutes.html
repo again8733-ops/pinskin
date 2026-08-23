@@ -135,6 +135,29 @@
   .minute-title { margin-top: 12px; font-size: 18px; font-weight: 700; color: var(--navy); }
   .minute-desc { margin-top: 6px; font-size: 14.5px; color: var(--navy-soft); line-height: 1.7; }
 
+  .minute-card.pending {
+    border-style: dashed;
+    box-shadow: none;
+    background: var(--paper);
+  }
+  .minute-card.pending:hover { transform: none; box-shadow: none; }
+  .minute-date.pending { background: var(--navy-soft); }
+  .minute-agenda {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line);
+    list-style: none;
+  }
+  .minute-agenda li {
+    position: relative;
+    padding: 6px 0 6px 18px;
+    font-size: 14.5px; color: var(--navy-soft); line-height: 1.7;
+  }
+  .minute-agenda li::before {
+    content: ''; position: absolute; left: 2px; top: 15px;
+    width: 6px; height: 6px; border-radius: 2px; background: var(--blue);
+  }
+
   /* ===== 2차 비밀번호 잠금 화면 ===== */
   .lock-screen {
     position: fixed; inset: 0; z-index: 100;
@@ -235,10 +258,12 @@
       <p class="subtitle">운영진 회의록</p>
     </div>
 
-    <div class="empty-card">
-      <div class="empty-icon">MM</div>
-      <div class="empty-title">아직 등록된 회의록이 없습니다</div>
-      <p class="empty-sub">회의가 끝나면 이곳에 날짜와 안건, 결정 사항을 기록해주세요.</p>
+    <div class="minutes-list">
+      <div class="minute-card pending">
+        <span class="minute-date pending">2026.08.23 · 예정</span>
+        <div class="minute-title">운영진 회의</div>
+        <p class="minute-desc">오늘 저녁 회의가 예정되어 있습니다. 회의가 끝나면 자료를 전달해주세요 — 안건과 결정 사항을 정리해서 이 카드에 채워 넣습니다.</p>
+      </div>
     </div>
   </div>
 

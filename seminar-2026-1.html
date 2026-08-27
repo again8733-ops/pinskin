@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 2026-1 세미나 자료</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow-x: hidden;
+    padding: 64px 20px 100px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
+
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 46px; font-weight: 900; letter-spacing: -1px;
+    color: var(--navy); line-height: 1.15;
+  }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .bg-logo {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
+  }
+
+  .file-list { display: flex; flex-direction: column; gap: 16px; margin-top: 44px; }
+
+  .file-card {
+    display: flex; align-items: center; gap: 18px;
+    text-decoration: none;
+    border-radius: 18px;
+    padding: 22px 26px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
+  }
+  .file-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .file-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700; color: var(--navy-soft);
+    flex-shrink: 0; width: 20px;
+  }
+
+  .file-tag {
+    width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 12px;
+    color: #fff;
+  }
+  .file-tag.pdf { background: var(--red, #e0475c); }
+  .file-tag.ppt { background: var(--blue); }
+
+  .file-name { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; color: var(--navy); }
+  .file-sub { margin-top: 4px; font-size: 13px; color: var(--navy-soft); }
+  .file-arrow { margin-left: auto; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--blue); font-size: 18px; flex-shrink: 0; }
+
+  @media (max-width: 700px) {
+    .title { font-size: 32px; }
+    .file-card { padding: 18px 18px; gap: 12px; }
+    .file-tag { width: 40px; height: 40px; font-size: 10px; }
+    .file-name { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="seminar.html">← BACK</a>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">2026-1<span>.</span>세미나</h1>
+      <p class="subtitle">공모전 세미나 발표 자료</p>
+    </div>
+
+    <div class="file-list">
+      <a class="file-card" href="핀스킨 세미나 진행자료 김나경.pdf" target="_blank">
+        <div class="file-num">01</div>
+        <div class="file-tag pdf">PDF</div>
+        <div>
+          <div class="file-name">세미나 진행자료</div>
+          <div class="file-sub">김나경</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+
+      <a class="file-card" href="핀스킨 세미나 성장 스토리 구혜림.pptx" target="_blank">
+        <div class="file-num">02</div>
+        <div class="file-tag ppt">PPT</div>
+        <div>
+          <div class="file-name">성장 스토리</div>
+          <div class="file-sub">구혜림</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+
+      <a class="file-card" href="핀스킨 세미나 로켓피치 김수호.pptx" target="_blank">
+        <div class="file-num">03</div>
+        <div class="file-tag ppt">PPT</div>
+        <div>
+          <div class="file-name">로켓피치</div>
+          <div class="file-sub">김수호</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+
+      <a class="file-card" href="핀스킨 세미나 생성형 AI+X 임대원.pptx" target="_blank">
+        <div class="file-num">04</div>
+        <div class="file-tag ppt">PPT</div>
+        <div>
+          <div class="file-name">생성형 AI+X</div>
+          <div class="file-sub">임대원</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+
+      <a class="file-card" href="핀스킨 세미나 한국장학재단 재능봉사캠프 이건주 이영채.pdf" target="_blank">
+        <div class="file-num">05</div>
+        <div class="file-tag pdf">PDF</div>
+        <div>
+          <div class="file-name">한국장학재단 재능봉사캠프</div>
+          <div class="file-sub">이건주, 이영채</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+
+      <a class="file-card" href="핀스킨 세미나 GPP 선정 스토리 최현수.pptx" target="_blank">
+        <div class="file-num">06</div>
+        <div class="file-tag ppt">PPT</div>
+        <div>
+          <div class="file-name">GPP 선정 스토리</div>
+          <div class="file-sub">최현수</div>
+        </div>
+        <div class="file-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

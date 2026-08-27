@@ -231,11 +231,10 @@
           var e = {};
           rng(1, 7).forEach(function (d) { e[d] = [{ label: '운영진 인수인계·가두모집 준비', color: '#0a1f44' }]; });
           e[1].push({ label: '운영진 회의 (오후 7시·동아리방)', color: '#2f9e44' });
-          rng(8, 9).forEach(function (d) { e[d] = [{ label: '가두모집 진행', color: '#3d63ff' }]; });
-          rng(10, 11).forEach(function (d) { e[d] = [{ label: '신입부원 선발', color: '#ff9f45' }]; });
-          rng(12, 13).forEach(function (d) { e[d] = [{ label: '개강총회·환영회 참여 조사', color: '#0a1f44' }]; });
-          e[16] = [{ label: '개강총회·환영회 진행', color: '#7b2dff' }];
-          e[17] = [{ label: '개강총회(대체)', color: '#7b2dff', alt: true }];
+          rng(9, 10).forEach(function (d) { e[d] = [{ label: '가두모집 진행', color: '#3d63ff' }]; });
+          rng(11, 12).forEach(function (d) { e[d] = [{ label: '신입부원 선발', color: '#ff9f45' }]; });
+          rng(12, 13).forEach(function (d) { e[d] = (e[d] || []).concat([{ label: '개강총회·환영회 참여 조사', color: '#0a1f44' }]); });
+          e[17] = [{ label: '개강총회·환영회 진행', color: '#7b2dff' }];
           rng(20, 22).forEach(function (d) { e[d] = [{ label: '자율스터디·세미나 참여 조사', color: '#0a1f44' }]; });
           rng(24, 27).forEach(function (d) { e[d] = [{ label: '추석연휴', color: '#e0475c' }]; });
           e[30] = [{ label: '공모전·대외활동 세미나', color: '#00a3d4' }];

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 세미나 자료</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow-x: hidden;
+    padding: 64px 20px 100px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
+
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px; font-weight: 900; letter-spacing: -1px;
+    color: var(--navy); line-height: 1.1;
+  }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .bg-logo {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
+  }
+
+  .report-list { display: flex; flex-direction: column; gap: 18px; margin-top: 44px; }
+
+  .report-card {
+    display: flex; align-items: center; gap: 18px;
+    text-decoration: none;
+    border-radius: 20px;
+    padding: 26px 28px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
+  }
+  .report-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .report-tag {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 14px;
+  }
+  .report-name { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--navy); }
+  .report-sub { margin-top: 4px; font-size: 13.5px; color: var(--navy-soft); }
+  .report-arrow { margin-left: auto; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--blue); font-size: 20px; }
+
+  .report-card.soon {
+    opacity: 0.6; cursor: default; border-style: dashed; box-shadow: 6px 6px 0 var(--line);
+  }
+  .report-card.soon:hover { transform: none; box-shadow: 6px 6px 0 var(--line); }
+  .report-card.soon .report-tag { background: var(--navy-soft); }
+
+  @media (max-width: 700px) {
+    .title { font-size: 36px; }
+    .report-card { padding: 20px 20px; gap: 14px; }
+    .report-tag { width: 44px; height: 44px; font-size: 12px; }
+    .report-name { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="main.html">← BACK</a>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">세미나<span>.</span>자료</h1>
+      <p class="subtitle">학기별 공모전 세미나 발표 자료</p>
+    </div>
+
+    <div class="report-list">
+      <a class="report-card" href="seminar-2026-1.html">
+        <div class="report-tag">26-1</div>
+        <div>
+          <div class="report-name">2026년 1학기 세미나</div>
+          <div class="report-sub">공모전 세미나 발표 자료 모음</div>
+        </div>
+        <div class="report-arrow">→</div>
+      </a>
+
+      <div class="report-card soon">
+        <div class="report-tag">?</div>
+        <div>
+          <div class="report-name">다음 학기 세미나</div>
+          <div class="report-sub">세미나가 끝나면 이곳에 추가됩니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

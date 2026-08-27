@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 2026-1 기말회계</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --green: #2f9e44;
+    --red: #e0475c;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow-x: hidden;
+    padding: 64px 20px 100px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
+
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px; font-weight: 900; letter-spacing: -1px;
+    color: var(--navy); line-height: 1.15;
+  }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .bg-logo {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
+  }
+
+  /* 요약 통계 */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-top: 44px;
+  }
+  .stat-tile {
+    border-radius: 16px;
+    padding: 22px 22px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 5px 5px 0 var(--navy);
+  }
+  .stat-tile.total {
+    background: var(--navy);
+    box-shadow: 5px 5px 0 var(--blue);
+  }
+  .stat-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    color: var(--navy-soft); text-transform: uppercase;
+  }
+  .stat-tile.total .stat-label { color: rgba(255,255,255,0.65); }
+  .stat-value {
+    margin-top: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px; font-weight: 700; color: var(--navy);
+    letter-spacing: -0.3px;
+  }
+  .stat-tile.total .stat-value { color: #fff; }
+  .stat-value.income { color: var(--green); }
+  .stat-value.expense { color: var(--red); }
+  .stat-tile.total .stat-value.income,
+  .stat-tile.total .stat-value.expense { color: #fff; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px;
+    color: var(--navy-soft); text-transform: uppercase;
+    margin: 48px 0 18px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  /* 거래 내역 */
+  .ledger {
+    border-radius: 20px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    padding: 8px 28px;
+  }
+
+  .tx-row {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding: 18px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .tx-row:last-child { border-bottom: none; }
+
+  .tx-left { min-width: 200px; flex: 1; }
+  .tx-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: #fff; background: var(--navy-soft);
+    display: inline-block; padding: 3px 10px; border-radius: 100px;
+  }
+  .tx-date.carry { background: var(--blue); }
+  .tx-desc { margin-top: 8px; font-size: 15.5px; font-weight: 700; color: var(--navy); line-height: 1.5; }
+  .tx-note { margin-top: 4px; font-size: 13px; color: var(--navy-soft); line-height: 1.6; }
+
+  .tx-right { text-align: right; flex-shrink: 0; }
+  .tx-amount { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; }
+  .tx-amount.income { color: var(--green); }
+  .tx-amount.expense { color: var(--red); }
+  .tx-balance { margin-top: 4px; font-size: 12px; color: var(--navy-soft); }
+
+  .note-box {
+    margin-top: 24px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    font-size: 13.5px; color: var(--navy-soft); line-height: 1.8;
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 32px; }
+    .stat-value { font-size: 19px; }
+    .ledger { padding: 4px 18px; }
+    .tx-desc { font-size: 14px; }
+    .tx-right { text-align: left; }
+  }
+</style>
+</head>
+<body>
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="finance.html">← BACK</a>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">2026년 1학기<br>기말회계</h1>
+      <p class="subtitle">2026.02.26 — 2026.06.11 회비 입출금 내역</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat-tile">
+        <div class="stat-label">이월 잔액</div>
+        <div class="stat-value">546,545원</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">총 수입</div>
+        <div class="stat-value income">+6,925,372원</div>
+      </div>
+      <div class="stat-tile">
+        <div class="stat-label">총 지출</div>
+        <div class="stat-value expense">-6,710,798원</div>
+      </div>
+      <div class="stat-tile total">
+        <div class="stat-label">최종 잔액</div>
+        <div class="stat-value">761,119원</div>
+      </div>
+    </div>
+
+    <div class="section-label">거래 내역</div>
+
+    <div class="ledger">
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date carry">2026.02.26 · 이월</span>
+          <div class="tx-desc">2025년 2학기 운영금 입금</div>
+          <div class="tx-note">2025-2 운영금 이월</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+546,545원</div>
+          <div class="tx-balance">잔액 546,545원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.02.27</span>
+          <div class="tx-desc">입출금 통장 이자</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+4원</div>
+          <div class="tx-balance">잔액 546,549원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.03</span>
+          <div class="tx-desc">기존 회원 회비 입금</div>
+          <div class="tx-note">잔류회원 93명</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+930,000원</div>
+          <div class="tx-balance">잔액 1,476,549원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.06</span>
+          <div class="tx-desc">비즈하우스</div>
+          <div class="tx-note">가두모집용 스티커 제작</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-16,104원</div>
+          <div class="tx-balance">잔액 1,460,445원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.07</span>
+          <div class="tx-desc">쿠팡(쿠페이)</div>
+          <div class="tx-note">가두모집 이벤트용 간식 구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-36,330원</div>
+          <div class="tx-balance">잔액 1,424,115원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.07</span>
+          <div class="tx-desc">쿠팡(쿠페이)</div>
+          <div class="tx-note">동아리방 간식구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-61,900원</div>
+          <div class="tx-balance">잔액 1,362,215원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.08</span>
+          <div class="tx-desc">쿠팡(쿠페이), 다이소 등</div>
+          <div class="tx-note">가두모집용물품 구매, 지류 프린트 및 판넬 구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-34,870원</div>
+          <div class="tx-balance">잔액 1,327,345원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.12</span>
+          <div class="tx-desc">배달의 민족</div>
+          <div class="tx-note">가두모집 운영진 점심식사 맥도날드<br>(총동아리 지원금으로 충당)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-74,800원</div>
+          <div class="tx-balance">잔액 1,252,545원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.13</span>
+          <div class="tx-desc">카카오페이</div>
+          <div class="tx-note">가두모집 부스 이벤트 당첨자 상품 증정</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-51,000원</div>
+          <div class="tx-balance">잔액 1,201,545원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.15</span>
+          <div class="tx-desc">신입회원 회비 입금</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+720,000원</div>
+          <div class="tx-balance">잔액 1,921,545원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.19</span>
+          <div class="tx-desc">2026-1 신입생환영회 참석비</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+750,000원</div>
+          <div class="tx-balance">잔액 2,671,545원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.20</span>
+          <div class="tx-desc">인프린트</div>
+          <div class="tx-note">개강총회 준비물 프린트</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-200원</div>
+          <div class="tx-balance">잔액 2,671,345원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.20</span>
+          <div class="tx-desc">2026-1 신입생환영회<br>박기현, 송미옥(양철집), 정주화(아스라이경상대)</div>
+          <div class="tx-note">1차 모던: 1,023,400원<br>2차 양철집: 770,000원<br>3차 아스라이: 282,000원</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-2,075,400원</div>
+          <div class="tx-balance">잔액 595,945원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.23</span>
+          <div class="tx-desc">쿠팡(쿠페이), ㈜다큐</div>
+          <div class="tx-note">세미나용 다과, 물품 구매 및 프린트, 동방 보드마카구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-146,220원</div>
+          <div class="tx-balance">잔액 449,725원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.24</span>
+          <div class="tx-desc">2026-1 신입생환영회</div>
+          <div class="tx-note">미리 받은 참석비 제외 입금, 소수점 반올림 입금 회비 귀속,<br>신입생환영회비 일부 회비 지원,<br>2차 인원 누락으로 인한 차액 환불로 인한 지출금 포함</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+1,124,255원</div>
+          <div class="tx-balance">잔액 1,573,980원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.25</span>
+          <div class="tx-desc">㈜다큐</div>
+          <div class="tx-note">세미나용 지류 프린트</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-180원</div>
+          <div class="tx-balance">잔액 1,573,800원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.25</span>
+          <div class="tx-desc">정지혜</div>
+          <div class="tx-note">세미나 뒷풀이 1차(조커닭)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-478,000원</div>
+          <div class="tx-balance">잔액 1,095,800원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.26</span>
+          <div class="tx-desc">카카오페이</div>
+          <div class="tx-note">세미나 발표자용 후원</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-60,000원</div>
+          <div class="tx-balance">잔액 1,035,800원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.27</span>
+          <div class="tx-desc">핀스킨 세미나 뒷풀이</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+478,016원</div>
+          <div class="tx-balance">잔액 1,513,816원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.28</span>
+          <div class="tx-desc">입출금 통장 이자</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+106원</div>
+          <div class="tx-balance">잔액 1,513,922원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.03.31</span>
+          <div class="tx-desc">독서 소모임 도서 구매</div>
+          <div class="tx-note">독서모임용 도서 2권 구매(혼모노, 파과)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-32,220원</div>
+          <div class="tx-balance">잔액 1,481,702원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.04.03</span>
+          <div class="tx-desc">26-1 핀엠티 숙소 예약금</div>
+          <div class="tx-note">핀엠티 숙소 예약금 입금(호수 언저리 펜션)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-500,000원</div>
+          <div class="tx-balance">잔액 981,702원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.04.10</span>
+          <div class="tx-desc">프렌즈 체크카드 캐시백</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+3,787원</div>
+          <div class="tx-balance">잔액 985,489원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.04.25</span>
+          <div class="tx-desc">입출금 통장 이자</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+82원</div>
+          <div class="tx-balance">잔액 985,571원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.04.27</span>
+          <div class="tx-desc">26-1 핀엠티 참가비</div>
+          <div class="tx-note">1인당 4만원 총 53명 참가(늦참 인원 70%)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+2,108,000원</div>
+          <div class="tx-balance">잔액 3,093,571원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.03</span>
+          <div class="tx-desc">주식회사 카카오페이</div>
+          <div class="tx-note">26-1 핀엠티 여행자보험 가입</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-40,410원</div>
+          <div class="tx-balance">잔액 3,053,161원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.06</span>
+          <div class="tx-desc">26-1 핀엠티 앞풀이</div>
+          <div class="tx-note">1차 청년포차: 363,600원<br>2차 장미맨숀: 316,000원</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-679,600원</div>
+          <div class="tx-balance">잔액 2,373,561원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.08</span>
+          <div class="tx-desc">26-1 핀엠티 앞풀이</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+699,598원</div>
+          <div class="tx-balance">잔액 3,073,159원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.06 ~ 05.10</span>
+          <div class="tx-desc">2026-1 핀엠티</div>
+          <div class="tx-note">
+            숙소비: 1,200,000원 · 식재료/주류/육류: 918,444원<br>
+            택시비: 255,960원 · 준비물/소모품: 79,400원<br>
+            여행자 보험: 40,410원 · 기타(음료 등): 11,000원<br>
+            바비큐·주류 지원금: 500,000원 (총동아리 지원)<br>
+            총 지출액 2,505,214원 ÷ 회비입금 53명 = 인당 47,268.2원<br>
+            지원금 반영 시 최종 인당 부담액 37,834.2원
+          </div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-1,964,804원</div>
+          <div class="tx-balance">잔액 1,088,362원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.18</span>
+          <div class="tx-desc">쿠팡(쿠페이)</div>
+          <div class="tx-note">동아리방 5월 간식 구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-87,940원</div>
+          <div class="tx-balance">잔액 1,000,422원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.21</span>
+          <div class="tx-desc">쿠팡(쿠페이)</div>
+          <div class="tx-note">상품 환불액 입금</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+13,830원</div>
+          <div class="tx-balance">잔액 1,014,252원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.23</span>
+          <div class="tx-desc">입출금 통장 이자</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+136원</div>
+          <div class="tx-balance">잔액 1,014,388원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.27</span>
+          <div class="tx-desc">롯데시네마 엠비씨네</div>
+          <div class="tx-note">핀무비 결제(24명 참석)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-207,000원</div>
+          <div class="tx-balance">잔액 807,388원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.27</span>
+          <div class="tx-desc">가마치통닭 진주가좌점</div>
+          <div class="tx-note">핀무비 뒷풀이(8명 참석)</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-93,000원</div>
+          <div class="tx-balance">잔액 714,388원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.28</span>
+          <div class="tx-desc">스터디 인원 보상</div>
+          <div class="tx-note">목요일 스터디 폐지 관련 성실 참석자 보상</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-10,000원</div>
+          <div class="tx-balance">잔액 704,388원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.29</span>
+          <div class="tx-desc">핀무비 뒷풀이</div>
+          <div class="tx-note">반올림 입금 회비 귀속</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+93,075원</div>
+          <div class="tx-balance">잔액 797,463원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.29</span>
+          <div class="tx-desc">㈜다큐</div>
+          <div class="tx-note">종강총회 참석자 명단 프린트</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-120원</div>
+          <div class="tx-balance">잔액 797,343원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.05.31</span>
+          <div class="tx-desc">종강총회 경품</div>
+          <div class="tx-note">종강총회 경품 추첨 상품 구매 및 증정</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-50,000원</div>
+          <div class="tx-balance">잔액 747,343원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.06.10</span>
+          <div class="tx-desc">프렌즈 체크카드 캐시백</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount income">+4,483원</div>
+          <div class="tx-balance">잔액 751,826원</div>
+        </div>
+      </div>
+
+      <div class="tx-row">
+        <div class="tx-left">
+          <span class="tx-date">2026.06.11</span>
+          <div class="tx-desc">다이소 진주 가좌점</div>
+          <div class="tx-note">동아리방 간식구매</div>
+        </div>
+        <div class="tx-right">
+          <div class="tx-amount expense">-10,700원</div>
+          <div class="tx-balance">잔액 741,126원</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="note-box">※ 총 수입/총 지출/최종 잔액은 원본 회계 파일의 합계 기준이며, 이월 잔액(546,545원)은 총 수입 합계에 포함되지 않습니다. 원본 파일: "2026-1 핀스킨 기말 및 2026년 1학기 최종 회비 사용 내역.xlsx"</p>
+  </div>
+
+  <script>
+    if (sessionStorage.getItem('pinskin_auth') !== 'yes') { location.replace('index.html'); }
+  </script>
+</body>
+</html>

@@ -223,42 +223,79 @@
   }
   .menu-card:hover .menu-arrow { gap: 12px; }
 
-  .section-label {
-    display: flex; align-items: center; gap: 12px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px; font-weight: 700; letter-spacing: 2px;
-    color: var(--navy-soft); text-transform: uppercase;
-    margin: 40px 0 18px;
+  .resource-box {
+    margin-top: 30px;
+    border-radius: 26px;
+    padding: 30px 28px 28px;
+    background: #fff;
+    border: 2px solid var(--navy);
+    box-shadow: 8px 8px 0 var(--line);
   }
-  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-  .section-label:first-of-type { margin-top: 0; }
+  .resource-box .resource-title {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(20px, 3.4vw, 26px); font-weight: 900; letter-spacing: -0.5px;
+    color: var(--navy);
+    margin-bottom: 20px;
+  }
+  .resource-box .resource-title .tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    color: #fff; background: var(--navy-soft);
+    padding: 4px 11px; border-radius: 100px;
+    text-transform: uppercase;
+  }
 
   .featured-box {
-    border-radius: 24px;
-    padding: 28px;
-    background: var(--navy);
+    border-radius: 26px;
+    padding: 32px 28px 28px;
+    background: linear-gradient(135deg, var(--navy) 0%, #14275a 45%, var(--blue) 130%);
     box-shadow: 8px 8px 0 var(--blue);
     position: relative;
     overflow: hidden;
+    animation: boxGlow 3.5s ease-in-out infinite;
+  }
+  @keyframes boxGlow {
+    0%, 100% { box-shadow: 8px 8px 0 var(--blue); }
+    50% { box-shadow: 8px 8px 0 var(--blue), 0 0 40px 4px rgba(61,99,255,0.45); }
   }
   .featured-box::before {
     content: '';
     position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(255,255,255,0.09) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
     background-size: 20px 20px;
     pointer-events: none;
   }
-  .featured-box .featured-label {
+  .featured-box::after {
+    content: '';
+    position: absolute; top: 0; left: -60%;
+    width: 40%; height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255,255,255,0.16), transparent);
+    transform: skewX(-20deg);
+    animation: shimmerSweep 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes shimmerSweep {
+    0% { left: -60%; }
+    50%, 100% { left: 130%; }
+  }
+  .featured-box .featured-eyebrow {
     position: relative; z-index: 1;
     display: flex; align-items: center; gap: 8px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px; font-weight: 700; letter-spacing: 2px;
-    color: #fff; text-transform: uppercase;
-    margin-bottom: 18px;
+    font-size: 11px; font-weight: 700; letter-spacing: 2.5px;
+    color: rgba(255,255,255,0.65); text-transform: uppercase;
+    margin-bottom: 6px;
   }
-  .featured-box .featured-label .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+  .featured-box .featured-eyebrow .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #fff;
     animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  .featured-box .featured-label {
+    position: relative; z-index: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(24px, 4vw, 32px); font-weight: 900; letter-spacing: -0.5px;
+    color: #fff;
+    margin-bottom: 20px;
   }
   .featured-box .menu {
     position: relative; z-index: 1;
@@ -267,7 +304,7 @@
     box-shadow: 5px 5px 0 rgba(0,0,0,0.35);
   }
   .featured-box .menu-card:hover {
-    box-shadow: 9px 9px 0 var(--blue);
+    box-shadow: 9px 9px 0 #fff;
   }
 
   /* ===== 핀스킨 자료 모달 ===== */
@@ -426,7 +463,8 @@
     </div>
 
     <div class="featured-box">
-      <div class="featured-label"><span class="dot"></span>PICK UP</div>
+      <div class="featured-eyebrow"><span class="dot"></span>PICK UP</div>
+      <div class="featured-label">🔥 공모전 &amp; 대외활동</div>
       <div class="menu">
         <a class="menu-card" href="contest.html">
           <div class="menu-tag">CI</div>
@@ -451,28 +489,30 @@
       </div>
     </div>
 
-    <div class="section-label">Club Resources</div>
-    <div class="menu">
-      <a class="menu-card" href="finance.html">
-        <div class="menu-tag">FR</div>
-        <div class="menu-label">Finance Report</div>
-        <div class="menu-sub">회계 보고</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
+    <div class="resource-box">
+      <div class="resource-title">핀스킨 회원 열람 가능 자료 <span class="tag">MEMBERS</span></div>
+      <div class="menu">
+        <a class="menu-card" href="finance.html">
+          <div class="menu-tag">FR</div>
+          <div class="menu-label">Finance Report</div>
+          <div class="menu-sub">회계 보고</div>
+          <div class="menu-arrow">EXPLORE →</div>
+        </a>
 
-      <a class="menu-card" href="seminar.html">
-        <div class="menu-tag">SM</div>
-        <div class="menu-label">Seminar Files</div>
-        <div class="menu-sub">핀스킨 세미나 자료</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
+        <a class="menu-card" href="seminar.html">
+          <div class="menu-tag">SM</div>
+          <div class="menu-label">Seminar Files</div>
+          <div class="menu-sub">핀스킨 세미나 자료</div>
+          <div class="menu-arrow">EXPLORE →</div>
+        </a>
 
-      <a class="menu-card" href="#" onclick="openMaterials(event)">
-        <div class="menu-tag">PM</div>
-        <div class="menu-label">Materials</div>
-        <div class="menu-sub">학기 자료 모아보기</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
+        <a class="menu-card" href="#" onclick="openMaterials(event)">
+          <div class="menu-tag">PM</div>
+          <div class="menu-label">Materials</div>
+          <div class="menu-sub">학기 자료 모아보기</div>
+          <div class="menu-arrow">EXPLORE →</div>
+        </a>
+      </div>
     </div>
   </div>
 

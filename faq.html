@@ -135,36 +135,86 @@
   }
   .faq-a-text strong { color: var(--navy); font-weight: 700; }
 
-  .faq-table-wrap { margin-top: 14px; overflow-x: auto; }
-  .faq-table {
-    width: 100%; border-collapse: collapse;
-    font-size: 14px;
-    min-width: 360px;
+  /* 단과대학 비율 도넛 차트 */
+  .donut-wrap {
+    margin-top: 16px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 32px;
   }
-  .faq-table th, .faq-table td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--line);
-    text-align: left;
+
+  .donut {
+    position: relative;
+    width: 200px; height: 200px; flex-shrink: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+      #2a78d6 0% 28.87%,
+      #eb6834 28.87% 47.42%,
+      #1baf7a 47.42% 62.89%,
+      #eda100 62.89% 77.32%,
+      #e87ba4 77.32% 83.51%,
+      #008300 83.51% 86.60%,
+      #4a3aa7 86.60% 89.69%,
+      #e34948 89.69% 100%
+    );
+    box-shadow: 0 0 0 2px var(--navy);
   }
-  .faq-table th {
+  .donut::after {
+    content: '';
+    position: absolute; inset: 28px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 0 2px var(--navy);
+    display: flex;
+  }
+  .donut-center {
+    position: absolute; inset: 28px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  .donut-center .n {
     font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px; font-weight: 900; color: var(--navy); line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .donut-center .l {
+    margin-top: 4px;
     font-size: 11px; font-weight: 700; letter-spacing: 1px;
-    color: #fff; background: var(--navy);
-    text-transform: uppercase;
+    color: var(--navy-soft); text-transform: uppercase;
   }
-  .faq-table td { color: var(--navy-soft); }
-  .faq-table td.num { color: var(--navy); font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
-  .faq-table tr.total td {
-    color: var(--navy); font-weight: 700;
-    background: var(--paper);
-    border-bottom: none;
+
+  .donut-legend {
+    flex: 1; min-width: 220px;
+    display: flex; flex-direction: column; gap: 9px;
   }
+  .donut-legend .row {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px;
+  }
+  .donut-legend .swatch {
+    width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0;
+  }
+  .donut-legend .name { color: var(--navy); font-weight: 600; }
+  .donut-legend .val {
+    margin-left: auto;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: var(--navy-soft);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .donut-note {
+    margin-top: 16px;
+    font-size: 13px; color: var(--navy-soft); line-height: 1.8;
+  }
+  .donut-note strong { color: var(--navy); font-weight: 700; }
 
   @media (max-width: 700px) {
     .title { font-size: 36px; }
     .faq-card { padding: 22px 20px 24px; }
     .faq-q-text { font-size: 16px; }
     .faq-a-text { font-size: 14px; }
+    .donut-wrap { gap: 20px; }
+    .donut { width: 168px; height: 168px; }
+    .donut::after, .donut-center { inset: 24px; }
+    .donut-center .n { font-size: 24px; }
   }
 </style>
 </head>
@@ -200,29 +250,25 @@
         <div class="faq-a">
           <div class="faq-a-tag">A2</div>
           <div class="faq-a-text">
-            <div class="faq-table-wrap">
-              <table class="faq-table">
-                <thead>
-                  <tr><th>단과대학</th><th>인원</th><th>비율</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>경영대학</td><td class="num">28</td><td class="num">28.9%</td></tr>
-                  <tr><td>공과대학</td><td class="num">18</td><td class="num">18.6%</td></tr>
-                  <tr><td>IT공과대학</td><td class="num">15</td><td class="num">15.5%</td></tr>
-                  <tr><td>사회과학대학</td><td class="num">14</td><td class="num">14.4%</td></tr>
-                  <tr><td>인문대학</td><td class="num">6</td><td class="num">6.2%</td></tr>
-                  <tr><td>자연과학대학</td><td class="num">3</td><td class="num">3.1%</td></tr>
-                  <tr><td>우주항공대학</td><td class="num">3</td><td class="num">3.1%</td></tr>
-                  <tr><td>농업생명과학대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
-                  <tr><td>사범대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
-                  <tr><td>건설환경공과대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
-                  <tr><td>법과대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
-                  <tr><td>상경대학(칠암)</td><td class="num">1</td><td class="num">1.0%</td></tr>
-                  <tr><td>의과대학</td><td class="num">1</td><td class="num">1.0%</td></tr>
-                  <tr class="total"><td>합계</td><td class="num">97</td><td class="num">100%</td></tr>
-                </tbody>
-              </table>
+            <div class="donut-wrap">
+              <div class="donut" role="img" aria-label="단과대학별 인원 비율 도넛 차트">
+                <div class="donut-center">
+                  <span class="n">97</span>
+                  <span class="l">TOTAL</span>
+                </div>
+              </div>
+              <div class="donut-legend">
+                <div class="row"><span class="swatch" style="background:#2a78d6;"></span><span class="name">경영대학</span><span class="val">28명 · 28.9%</span></div>
+                <div class="row"><span class="swatch" style="background:#eb6834;"></span><span class="name">공과대학</span><span class="val">18명 · 18.6%</span></div>
+                <div class="row"><span class="swatch" style="background:#1baf7a;"></span><span class="name">IT공과대학</span><span class="val">15명 · 15.5%</span></div>
+                <div class="row"><span class="swatch" style="background:#eda100;"></span><span class="name">사회과학대학</span><span class="val">14명 · 14.4%</span></div>
+                <div class="row"><span class="swatch" style="background:#e87ba4;"></span><span class="name">인문대학</span><span class="val">6명 · 6.2%</span></div>
+                <div class="row"><span class="swatch" style="background:#008300;"></span><span class="name">자연과학대학</span><span class="val">3명 · 3.1%</span></div>
+                <div class="row"><span class="swatch" style="background:#4a3aa7;"></span><span class="name">우주항공대학</span><span class="val">3명 · 3.1%</span></div>
+                <div class="row"><span class="swatch" style="background:#e34948;"></span><span class="name">기타 6개 단과대학</span><span class="val">10명 · 10.3%</span></div>
+              </div>
             </div>
+            <p class="donut-note"><strong>기타:</strong> 농업생명과학대학 2명 · 사범대학 2명 · 건설환경공과대학 2명 · 법과대학 2명 · 상경대학(칠암) 1명 · 의과대학 1명</p>
           </div>
         </div>
       </div>

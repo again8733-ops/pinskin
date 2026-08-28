@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 공모전 정보</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow-x: hidden;
+    padding: 64px 20px 100px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 1000px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
+
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px; font-weight: 900; letter-spacing: -1px;
+    color: var(--navy); line-height: 1.1;
+  }
+  .title span { color: var(--blue); }
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .bg-logo {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 44px;
+  }
+
+  .info-card {
+    border-radius: 20px;
+    padding: 26px 26px 24px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    display: flex; flex-direction: column;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
+  }
+  .info-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .info-tag {
+    align-self: flex-start;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: #fff; background: var(--navy-soft);
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .info-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .info-card p {
+    font-size: 14.5px; color: var(--navy-soft); line-height: 1.7;
+  }
+
+  .note-box {
+    margin-top: 30px;
+    padding: 18px 22px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px dashed var(--line);
+    font-size: 13px; color: var(--navy-soft); line-height: 1.8;
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 36px; }
+    .info-card { padding: 22px 20px 20px; }
+  }
+</style>
+</head>
+<body>
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="members.html">← BACK</a>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN_Members_Only</div>
+      <h1 class="title">공모전<span>.</span>정보</h1>
+      <p class="subtitle">PINSKIN이 준비한 공모전 소식과 준비 자료</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="info-card">
+        <div class="info-tag">진행중</div>
+        <h3>공모전 예시 1</h3>
+        <p>여기에 진행 중인 공모전 이름과 간단한 설명, 접수 기간을 적어주세요.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-tag">예정</div>
+        <h3>공모전 예시 2</h3>
+        <p>곧 시작되는 공모전 일정과 참가 자격 등의 정보를 적어주세요.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-tag">TIP</div>
+        <h3>공모전 준비 팁</h3>
+        <p>기획서 작성 팁, 자주 하는 실수 등 팀원들에게 도움이 될 내용을 적어주세요.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-tag">자료</div>
+        <h3>제출 자료 안내</h3>
+        <p>공모전 제출 양식, 필수 서류 등 자료 링크를 정리해서 넣어주세요.</p>
+      </div>
+    </div>
+
+    <p class="note-box">※ 이 영역은 실제 공모전 정보로 계속 업데이트될 예정입니다.</p>
+  </div>
+</body>
+</html>

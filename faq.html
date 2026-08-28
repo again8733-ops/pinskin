@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 자주 묻는 질문</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --line: #e3e7ef;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow-x: hidden;
+    padding: 64px 20px 100px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap { position: relative; z-index: 10; max-width: 900px; margin: 0 auto; }
+
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
+
+  .header { text-align: center; margin-bottom: 8px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 22px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 52px; font-weight: 900; letter-spacing: -1px;
+    color: var(--navy); line-height: 1.1;
+  }
+  .title span { color: var(--blue); }
+
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .bg-logo {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(60vw, 480px); height: min(60vw, 480px);
+    border-radius: 50%; object-fit: cover; opacity: 0.04;
+    filter: grayscale(1) contrast(1.1); pointer-events: none; z-index: 0;
+  }
+
+  .faq-list { display: flex; flex-direction: column; gap: 20px; margin-top: 44px; }
+
+  .faq-card {
+    border-radius: 20px;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    padding: 28px 30px 30px;
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
+  }
+  .faq-card:hover { transform: translate(-4px, -4px); box-shadow: 10px 10px 0 var(--blue); }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .faq-q {
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .faq-q-tag {
+    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 10px;
+    background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+  }
+  .faq-q-text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px; font-weight: 700; color: var(--navy);
+    line-height: 1.5; padding-top: 5px;
+  }
+
+  .faq-a {
+    display: flex; align-items: flex-start; gap: 14px;
+    margin-top: 16px; padding-top: 16px;
+    border-top: 1px dashed var(--line);
+  }
+  .faq-a-tag {
+    flex-shrink: 0;
+    width: 34px; height: 34px; border-radius: 10px;
+    background: var(--blue); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
+  }
+  .faq-a-text {
+    font-size: 15.5px; color: var(--navy-soft); line-height: 1.8; padding-top: 5px;
+  }
+  .faq-a-text strong { color: var(--navy); font-weight: 700; }
+
+  .faq-table-wrap { margin-top: 14px; overflow-x: auto; }
+  .faq-table {
+    width: 100%; border-collapse: collapse;
+    font-size: 14px;
+    min-width: 360px;
+  }
+  .faq-table th, .faq-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+  }
+  .faq-table th {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    color: #fff; background: var(--navy);
+    text-transform: uppercase;
+  }
+  .faq-table td { color: var(--navy-soft); }
+  .faq-table td.num { color: var(--navy); font-weight: 700; font-family: 'Space Grotesk', sans-serif; }
+  .faq-table tr.total td {
+    color: var(--navy); font-weight: 700;
+    background: var(--paper);
+    border-bottom: none;
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 36px; }
+    .faq-card { padding: 22px 20px 24px; }
+    .faq-q-text { font-size: 16px; }
+    .faq-a-text { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+  <img class="bg-logo" src="핀스킨 로고.png" alt="">
+
+  <a class="back-btn" href="main.html">← BACK</a>
+
+  <div class="wrap">
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB</div>
+      <h1 class="title">자주 묻는<span>.</span>질문</h1>
+      <p class="subtitle">FAQ — 핀스킨에 대해 궁금한 점들</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-card">
+        <div class="faq-q">
+          <div class="faq-q-tag">Q1</div>
+          <div class="faq-q-text">동아리의 회비는 얼마인가요?</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-tag">A1</div>
+          <div class="faq-a-text">만원입니다. 추가로 <strong>핀스킨 부원이 과반수 포함된 팀으로 공모전 수상 시 만원을 다시 환급</strong>해드립니다!</div>
+        </div>
+      </div>
+
+      <div class="faq-card">
+        <div class="faq-q">
+          <div class="faq-q-tag">Q2</div>
+          <div class="faq-q-text">각 단과대학별 비율이 어떻게 되나요?</div>
+        </div>
+        <div class="faq-a">
+          <div class="faq-a-tag">A2</div>
+          <div class="faq-a-text">
+            <div class="faq-table-wrap">
+              <table class="faq-table">
+                <thead>
+                  <tr><th>단과대학</th><th>인원</th><th>비율</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>경영대학</td><td class="num">28</td><td class="num">28.9%</td></tr>
+                  <tr><td>공과대학</td><td class="num">18</td><td class="num">18.6%</td></tr>
+                  <tr><td>IT공과대학</td><td class="num">15</td><td class="num">15.5%</td></tr>
+                  <tr><td>사회과학대학</td><td class="num">14</td><td class="num">14.4%</td></tr>
+                  <tr><td>인문대학</td><td class="num">6</td><td class="num">6.2%</td></tr>
+                  <tr><td>자연과학대학</td><td class="num">3</td><td class="num">3.1%</td></tr>
+                  <tr><td>우주항공대학</td><td class="num">3</td><td class="num">3.1%</td></tr>
+                  <tr><td>농업생명과학대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
+                  <tr><td>사범대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
+                  <tr><td>건설환경공과대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
+                  <tr><td>법과대학</td><td class="num">2</td><td class="num">2.1%</td></tr>
+                  <tr><td>상경대학(칠암)</td><td class="num">1</td><td class="num">1.0%</td></tr>
+                  <tr><td>의과대학</td><td class="num">1</td><td class="num">1.0%</td></tr>
+                  <tr class="total"><td>합계</td><td class="num">97</td><td class="num">100%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

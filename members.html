@@ -21,9 +21,9 @@
     font-family: 'Inter', 'Noto Sans KR', sans-serif;
     min-height: 100vh;
     background: var(--paper);
-    overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
+    overflow-x: hidden;
     position: relative;
+    padding: 64px 20px 100px;
   }
 
   body::before {
@@ -31,35 +31,18 @@
     position: fixed; inset: 0;
     background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
     background-size: 26px 26px;
-    mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+    mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
     pointer-events: none; z-index: 0;
   }
 
-  .wrap {
-    position: relative; z-index: 10; text-align: center;
-    animation: popIn 0.7s cubic-bezier(0.2,0.8,0.3,1) both;
-    background: #fff;
-    border: 2px solid var(--navy);
-    box-shadow: 8px 8px 0 var(--navy);
-    border-radius: 24px;
-    padding: 56px 48px;
-    max-width: 440px;
-    margin: 20px;
+  .back-btn {
+    position: fixed; top: 22px; left: 22px; z-index: 20;
+    color: var(--navy); text-decoration: none; font-size: 14px; font-weight: 700;
+    padding: 10px 18px 10px 14px; border-radius: 100px;
+    border: 2px solid var(--navy); background: #fff;
+    transition: all 0.25s ease;
   }
-  .wrap.hidden { display: none; }
-
-  @keyframes popIn {
-    from { opacity: 0; transform: scale(0.9) translateY(24px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  .wrap.shake { animation: shake 0.4s ease; }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-10px); }
-    40% { transform: translateX(10px); }
-    60% { transform: translateX(-7px); }
-    80% { transform: translateX(7px); }
-  }
+  .back-btn:hover { color: #fff; background: var(--navy); transform: translateX(-3px); }
 
   .badge-pill {
     display: inline-flex; align-items: center; gap: 8px;
@@ -67,7 +50,7 @@
     background: var(--navy); color: #fff;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
-    margin-bottom: 26px;
+    margin-bottom: 22px;
   }
   .badge-pill .dot {
     width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
@@ -78,6 +61,38 @@
     50% { opacity: 0.4; transform: scale(0.7); }
   }
 
+  /* ===== 비밀번호 화면 ===== */
+  .lock-overlay {
+    position: fixed; inset: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .lock-overlay.hidden { display: none; }
+
+  .lock-card {
+    position: relative; z-index: 10; text-align: center;
+    animation: popIn 0.7s cubic-bezier(0.2,0.8,0.3,1) both;
+    background: #fff;
+    border: 2px solid var(--navy);
+    box-shadow: 8px 8px 0 var(--navy);
+    border-radius: 24px;
+    padding: 56px 48px;
+    max-width: 440px;
+    margin: 20px;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(24px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .lock-card.shake { animation: shake 0.4s ease; }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-10px); }
+    40% { transform: translateX(10px); }
+    60% { transform: translateX(-7px); }
+    80% { transform: translateX(7px); }
+  }
+
   .lock-icon {
     width: 62px; height: 62px; margin: 0 auto 20px;
     border-radius: 14px;
@@ -86,13 +101,11 @@
     font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px;
   }
 
-  .title {
+  .lock-title {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 30px; font-weight: 900; letter-spacing: -1px; color: var(--navy);
   }
-  .title span { color: var(--blue); }
-
-  .sub {
+  .lock-sub {
     margin-top: 14px;
     color: var(--navy-soft);
     font-size: 15px; font-weight: 500;
@@ -132,69 +145,312 @@
   .login-btn:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-2px); }
   .login-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
 
-  .back-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    margin-top: 36px;
-    padding: 12px 30px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px; font-weight: 700; letter-spacing: 1px;
-    color: #fff; text-decoration: none;
-    border-radius: 100px;
-    border: 2px solid var(--navy);
-    background: var(--navy);
-    transition: all 0.25s ease;
+  /* ===== 콘텐츠(메뉴) 화면 ===== */
+  .wrap { position: relative; z-index: 10; max-width: 1100px; margin: 0 auto; }
+  .wrap.hidden { display: none; }
+
+  .header { text-align: center; margin-bottom: 50px; animation: fadeDown 0.8s ease-out both; }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  .back-btn:hover {
-    background: var(--blue);
-    border-color: var(--blue);
-    transform: translateY(-3px);
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 58px; font-weight: 900; letter-spacing: -2px;
+    color: var(--navy); text-transform: uppercase; line-height: 1;
+  }
+  .title span { color: var(--blue); }
+  .subtitle { color: var(--navy-soft); margin-top: 16px; font-size: 15px; font-weight: 500; }
+
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 22px;
+    justify-content: center;
   }
 
-  .dot-bounce span {
-    display: inline-block;
-    width: 8px; height: 8px; margin: 0 4px;
-    border-radius: 50%;
-    background: var(--navy);
-    animation: bounce 1.2s ease-in-out infinite;
+  .menu-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
+    padding: 28px 26px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    box-shadow: 6px 6px 0 var(--navy);
+    transition: transform 0.25s cubic-bezier(0.2,0.8,0.3,1), box-shadow 0.25s ease;
+    animation: cardIn 0.7s ease-out both;
   }
-  .dot-bounce span:nth-child(2) { animation-delay: 0.15s; background: var(--blue); }
-  .dot-bounce span:nth-child(3) { animation-delay: 0.3s; }
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); opacity: 0.4; }
-    50% { transform: translateY(-12px); opacity: 1; }
+  .menu-card:nth-child(1) { animation-delay: 0.05s; }
+  .menu-card:nth-child(2) { animation-delay: 0.1s; }
+  .menu-card:nth-child(3) { animation-delay: 0.15s; }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .menu-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--blue);
+  }
+
+  .menu-tag {
+    width: 46px; height: 46px; border-radius: 12px;
+    background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .menu-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 21px; font-weight: 700; letter-spacing: -0.3px; color: var(--navy);
+  }
+  .menu-sub {
+    margin-top: 8px; font-size: 13.5px; color: var(--navy-soft); line-height: 1.5;
+  }
+
+  .menu-arrow {
+    margin-top: auto;
+    padding-top: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 700; color: var(--blue);
+    display: flex; align-items: center; gap: 6px;
+    transition: gap 0.25s ease;
+  }
+  .menu-card:hover .menu-arrow { gap: 12px; }
+
+  /* ===== 핀스킨 자료 모달 ===== */
+  .materials-modal {
+    position: fixed; inset: 0; z-index: 90;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(6,12,34,0.72);
+    backdrop-filter: blur(10px);
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .materials-modal.open { opacity: 1; visibility: visible; }
+
+  .mm-box {
+    position: relative;
+    width: min(92vw, 440px);
+    text-align: center;
+    background: #ffffff;
+    border: 2px solid var(--navy);
+    border-radius: 24px;
+    padding: 42px 30px 38px;
+    box-shadow: 12px 12px 0 var(--blue);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+    overflow: hidden;
+  }
+  .materials-modal.open .mm-box { transform: scale(1) translateY(0); }
+
+  .mm-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 34px; height: 34px;
+    border: 2px solid var(--navy); cursor: pointer;
+    border-radius: 10px;
+    font-size: 14px; font-weight: 700;
+    color: var(--navy);
+    background: #fff;
+    transition: all 0.25s ease;
+  }
+  .mm-close:hover { background: var(--navy); color: #fff; }
+
+  .mm-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  .mm-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
+    color: var(--navy);
+  }
+  .mm-sub {
+    margin-top: 6px;
+    font-size: 12.5px; font-weight: 500; letter-spacing: 0.3px;
+    color: var(--navy-soft);
+  }
+
+  .mm-step {
+    position: relative;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px; font-weight: 700; letter-spacing: 3px;
+    color: #fff;
+    border: 2px solid var(--navy); cursor: pointer;
+    border-radius: 16px;
+    background: var(--navy);
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+  .materials-modal.open .mm-step.ready {
+    opacity: 1; transform: translateY(0);
+  }
+  .mm-step:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px) !important; }
+  .mm-step.done { transform: scale(0.94); opacity: 0.7; cursor: default; }
+  .mm-step.done:hover { background: var(--navy); border-color: var(--navy); transform: scale(0.94) !important; }
+
+  .mm-step-arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+  }
+  .mm-step.ready .mm-step-arrow { transform: rotate(0); }
+
+  .mm-pdf {
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0; transform: translateY(14px);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+    transition-delay: 0.1s;
+    pointer-events: none;
+  }
+  .mm-pdf.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  .mm-pdf-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 16px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
+    color: var(--navy);
+    text-decoration: none;
+    text-align: center;
+    border-radius: 100px;
+    border: 2px solid var(--navy);
+    background: #fff;
+    transition: all 0.25s ease;
+  }
+  .mm-pdf-btn:hover {
+    background: var(--navy);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 700px) {
+    .title { font-size: 40px; }
+    .menu-card { min-height: 170px; }
+    .lock-card { padding: 34px 24px 30px; }
+    .mm-step { font-size: 17px; letter-spacing: 2px; }
   }
 </style>
 </head>
 <body>
-  <div class="wrap" id="lockView">
-    <div class="lock-icon">MO</div>
-    <div class="badge-pill"><span class="dot"></span>PINSKIN_Members_Only</div>
-    <h1 class="title">비밀번호 확인</h1>
-    <p class="sub">회원 전용 공간입니다</p>
+  <a class="back-btn" href="main.html">← BACK</a>
 
-    <div class="pw-wrap">
-      <input class="pw-input" id="pwInput" type="password" placeholder="••••••" autocomplete="off" maxlength="30">
+  <div class="lock-overlay" id="lockOverlay">
+    <div class="lock-card" id="lockCard">
+      <div class="lock-icon">MO</div>
+      <div class="badge-pill"><span class="dot"></span>PINSKIN_Members_Only</div>
+      <h1 class="lock-title">비밀번호 확인</h1>
+      <p class="lock-sub">회원 전용 공간입니다</p>
+
+      <div class="pw-wrap">
+        <input class="pw-input" id="pwInput" type="password" placeholder="••••••" autocomplete="off" maxlength="30">
+      </div>
+      <p class="error-msg" id="errorMsg">비밀번호가 올바르지 않습니다</p>
+
+      <button class="login-btn" id="loginBtn">ENTER →</button>
     </div>
-    <p class="error-msg" id="errorMsg">비밀번호가 올바르지 않습니다</p>
-
-    <button class="login-btn" id="loginBtn">ENTER →</button>
   </div>
 
   <div class="wrap hidden" id="contentView">
-    <div class="badge-pill"><span class="dot"></span>PINSKIN_Members_Only</div>
-    <h1 class="title">준비 중입니다</h1>
-    <p class="sub">회원 전용 공간을 준비하고 있어요</p>
-    <div class="dot-bounce" style="margin-top: 26px;">
-      <span></span><span></span><span></span>
+    <div class="header">
+      <div class="badge-pill"><span class="dot"></span>PINSKIN_Members_Only</div>
+      <h1 class="title">MEMBERS<span>.</span>ONLY</h1>
+      <p class="subtitle">회원 전용 자료</p>
     </div>
-    <br>
-    <a class="back-btn" href="main.html">← BACK</a>
+
+    <div class="menu">
+      <a class="menu-card" href="finance.html">
+        <div class="menu-tag">FR</div>
+        <div class="menu-label">Finance Report</div>
+        <div class="menu-sub">회계 보고</div>
+        <div class="menu-arrow">EXPLORE →</div>
+      </a>
+
+      <a class="menu-card" href="seminar.html">
+        <div class="menu-tag">SM</div>
+        <div class="menu-label">Seminar Files</div>
+        <div class="menu-sub">핀스킨 세미나 자료</div>
+        <div class="menu-arrow">EXPLORE →</div>
+      </a>
+
+      <a class="menu-card" href="#" onclick="openMaterials(event)">
+        <div class="menu-tag">PM</div>
+        <div class="menu-label">Materials</div>
+        <div class="menu-sub">학기 자료 모아보기</div>
+        <div class="menu-arrow">EXPLORE →</div>
+      </a>
+    </div>
   </div>
+
+  <div class="materials-modal" id="materialsModal" onclick="if(event.target===this)closeMaterials()">
+    <div class="mm-box">
+      <button class="mm-close" onclick="closeMaterials()">✕</button>
+      <div class="mm-badge">PINSKIN</div>
+      <h2 class="mm-title">자료실</h2>
+      <p class="mm-sub">CLICK TO EXPLORE</p>
+
+      <button class="mm-step" id="mmStep1" onclick="showPdfBtn()">
+        <span class="mm-step-label">26-1</span>
+        <span class="mm-step-arrow">▼</span>
+      </button>
+
+      <div class="mm-pdf" id="mmPdf">
+        <a class="mm-pdf-btn" href="3.20 개강총회-ppt.pdf" target="_blank">개강총회자료보기</a>
+        <a class="mm-pdf-btn" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openMaterials(e) {
+      if (e) e.preventDefault();
+      var s = document.getElementById('mmStep1');
+      var p = document.getElementById('mmPdf');
+      s.classList.remove('done');
+      p.classList.remove('show');
+      document.getElementById('materialsModal').classList.add('open');
+      setTimeout(function () { s.classList.add('ready'); }, 60);
+    }
+    function closeMaterials() {
+      document.getElementById('materialsModal').classList.remove('open');
+    }
+    function showPdfBtn() {
+      var s = document.getElementById('mmStep1');
+      var p = document.getElementById('mmPdf');
+      s.classList.remove('ready');
+      s.classList.add('done');
+      setTimeout(function () { p.classList.add('show'); }, 260);
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMaterials();
+    });
+  </script>
 
   <script>
     (function () {
       var HASH = '0f6e0d14f4a92e440b52fceace84e93f47dadfdd375c5a0d6a8d1c009dfa8c31';
-      var lockView = document.getElementById('lockView');
+      var lockOverlay = document.getElementById('lockOverlay');
+      var lockCard = document.getElementById('lockCard');
       var contentView = document.getElementById('contentView');
       var input = document.getElementById('pwInput');
       var btn = document.getElementById('loginBtn');
@@ -214,14 +470,14 @@
       }
 
       function unlock() {
-        lockView.classList.add('hidden');
+        lockOverlay.classList.add('hidden');
         contentView.classList.remove('hidden');
       }
 
       function fail() {
-        lockView.classList.remove('shake');
-        void lockView.offsetWidth;
-        lockView.classList.add('shake');
+        lockCard.classList.remove('shake');
+        void lockCard.offsetWidth;
+        lockCard.classList.add('shake');
         err.classList.add('show');
         input.value = '';
         input.focus();

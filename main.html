@@ -281,132 +281,10 @@
   .choice-btn.secondary:hover { border-color: var(--navy); transform: translateY(-2px); }
   .choice-btn.secondary:active { transform: scale(0.97); }
 
-  /* 핀스킨 자료 모달 */
-  .materials-modal {
-    position: fixed; inset: 0; z-index: 90;
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px;
-    background: rgba(6,12,34,0.72);
-    backdrop-filter: blur(10px);
-    opacity: 0; visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-  }
-  .materials-modal.open { opacity: 1; visibility: visible; }
-
-  .mm-box {
-    position: relative;
-    width: min(92vw, 440px);
-    text-align: center;
-    background: #ffffff;
-    border: 2px solid var(--navy);
-    border-radius: 24px;
-    padding: 42px 30px 38px;
-    box-shadow: 12px 12px 0 var(--blue);
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
-    overflow: hidden;
-  }
-  .materials-modal.open .mm-box { transform: scale(1) translateY(0); }
-
-  .mm-close {
-    position: absolute; top: 16px; right: 16px;
-    width: 34px; height: 34px;
-    border: 2px solid var(--navy); cursor: pointer;
-    border-radius: 10px;
-    font-size: 14px; font-weight: 700;
-    color: var(--navy);
-    background: #fff;
-    transition: all 0.25s ease;
-  }
-  .mm-close:hover { background: var(--navy); color: #fff; }
-
-  .mm-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 6px 14px; border-radius: 100px;
-    background: var(--navy); color: #fff;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px; font-weight: 700; letter-spacing: 2px;
-    margin-bottom: 16px;
-  }
-
-  .mm-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
-    color: var(--navy);
-  }
-  .mm-sub {
-    margin-top: 6px;
-    font-size: 12.5px; font-weight: 500; letter-spacing: 0.3px;
-    color: var(--navy-soft);
-  }
-
-  .mm-step {
-    position: relative;
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    width: 100%;
-    margin-top: 30px;
-    padding: 20px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px; font-weight: 700; letter-spacing: 3px;
-    color: #fff;
-    border: 2px solid var(--navy); cursor: pointer;
-    border-radius: 16px;
-    background: var(--navy);
-    opacity: 0; transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
-  }
-  .materials-modal.open .mm-step.ready {
-    opacity: 1; transform: translateY(0);
-  }
-  .mm-step:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px) !important; }
-  .mm-step.done { transform: scale(0.94); opacity: 0.7; cursor: default; }
-  .mm-step.done:hover { background: var(--navy); border-color: var(--navy); transform: scale(0.94) !important; }
-
-  .mm-step-arrow {
-    font-size: 16px;
-    transition: transform 0.3s ease;
-    transform: rotate(-90deg);
-  }
-  .mm-step.ready .mm-step-arrow { transform: rotate(0); }
-
-  .mm-pdf {
-    margin-top: 18px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    opacity: 0; transform: translateY(14px);
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
-    transition-delay: 0.1s;
-    pointer-events: none;
-  }
-  .mm-pdf.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-
-  .mm-pdf-btn {
-    display: inline-block;
-    width: 100%;
-    padding: 16px 30px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 14px; font-weight: 700; letter-spacing: 1px;
-    color: var(--navy);
-    text-decoration: none;
-    text-align: center;
-    border-radius: 100px;
-    border: 2px solid var(--navy);
-    background: #fff;
-    transition: all 0.25s ease;
-  }
-  .mm-pdf-btn:hover {
-    background: var(--navy);
-    color: #fff;
-    transform: translateY(-2px);
-  }
-
   @media (max-width: 700px) {
     .title { font-size: 40px; }
     .menu-card { min-height: 170px; }
     .lock-box { padding: 34px 24px 30px; }
-    .mm-step { font-size: 17px; letter-spacing: 2px; }
   }
 </style>
 </head>
@@ -607,27 +485,6 @@
         <div class="menu-arrow">EXPLORE →</div>
       </a>
 
-      <a class="menu-card" href="finance.html">
-        <div class="menu-tag">FR</div>
-        <div class="menu-label">Finance Report</div>
-        <div class="menu-sub">회계 보고</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
-
-      <a class="menu-card" href="seminar.html">
-        <div class="menu-tag">SM</div>
-        <div class="menu-label">Seminar Files</div>
-        <div class="menu-sub">핀스킨 세미나 자료</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
-
-      <a class="menu-card" href="#" onclick="openMaterials(event)">
-        <div class="menu-tag">PM</div>
-        <div class="menu-label">Materials</div>
-        <div class="menu-sub">학기 자료 모아보기</div>
-        <div class="menu-arrow">EXPLORE →</div>
-      </a>
-
       <a class="menu-card" href="faq.html">
         <div class="menu-tag">QA</div>
         <div class="menu-label">FAQ</div>
@@ -644,50 +501,6 @@
       </a>
     </div>
   </div>
-
-  <div class="materials-modal" id="materialsModal" onclick="if(event.target===this)closeMaterials()">
-    <div class="mm-box">
-      <button class="mm-close" onclick="closeMaterials()">✕</button>
-      <div class="mm-badge">PINSKIN</div>
-      <h2 class="mm-title">자료실</h2>
-      <p class="mm-sub">CLICK TO EXPLORE</p>
-
-      <button class="mm-step" id="mmStep1" onclick="showPdfBtn()">
-        <span class="mm-step-label">26-1</span>
-        <span class="mm-step-arrow">▼</span>
-      </button>
-
-      <div class="mm-pdf" id="mmPdf">
-        <a class="mm-pdf-btn" href="3.20 개강총회-ppt.pdf" target="_blank">개강총회자료보기</a>
-        <a class="mm-pdf-btn" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function openMaterials(e) {
-      if (e) e.preventDefault();
-      var s = document.getElementById('mmStep1');
-      var p = document.getElementById('mmPdf');
-      s.classList.remove('done');
-      p.classList.remove('show');
-      document.getElementById('materialsModal').classList.add('open');
-      setTimeout(function () { s.classList.add('ready'); }, 60);
-    }
-    function closeMaterials() {
-      document.getElementById('materialsModal').classList.remove('open');
-    }
-    function showPdfBtn() {
-      var s = document.getElementById('mmStep1');
-      var p = document.getElementById('mmPdf');
-      s.classList.remove('ready');
-      s.classList.add('done');
-      setTimeout(function () { p.classList.add('show'); }, 260);
-    }
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMaterials();
-    });
-  </script>
 
   <script>
     (function () {

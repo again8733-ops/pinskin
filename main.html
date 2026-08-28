@@ -217,19 +217,19 @@
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
 
-  .lock-icon {
-    width: 68px; height: 68px;
-    margin: 0 auto 20px;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 22px;
-    background: var(--navy);
-    color: #fff;
+  .lock-logo {
+    width: 110px; height: 110px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--navy);
+    box-shadow: 5px 5px 0 var(--navy);
+    display: block;
   }
 
   .lock-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px; font-weight: 900; letter-spacing: -0.5px; color: var(--navy);
+    font-size: 44px; font-weight: 900; letter-spacing: -1px; color: var(--navy);
     text-transform: uppercase;
   }
   .lock-sub {
@@ -415,17 +415,17 @@
     </svg>
 
     <div class="lock-box" id="lockBox">
-      <div class="lock-icon">PIN</div>
-      <h1 class="lock-title">Welcome</h1>
+      <img class="lock-logo" src="핀스킨 로고.png" alt="PINSKIN 로고">
+      <h1 class="lock-title">PINSKIN</h1>
       <p class="lock-sub">어느 곳으로 들어가시겠어요?</p>
 
       <div class="choice-list">
         <button class="choice-btn primary" id="officialBtn">
-          PINSKIN_Official
+          Official
           <span class="choice-sub">전체 메뉴 바로가기</span>
         </button>
         <button class="choice-btn secondary" id="membersBtn">
-          PINSKIN_Members_Only
+          Members_Only
           <span class="choice-sub">준비 중</span>
         </button>
       </div>

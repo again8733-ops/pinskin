@@ -15,9 +15,9 @@
     --blue: #3d63ff;
     --line: #e3e7ef;
     --paper: #f7f8fb;
-    --gold-a: #ffe49a;
-    --gold-b: #d4a537;
-    --gold-c: #b8892a;
+    --urgent-a: #ff8a8a;
+    --urgent-b: #e0475c;
+    --urgent-c: #a3283a;
   }
 
   body {
@@ -120,11 +120,16 @@
     position: absolute; top: -12px; right: 18px;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
-    color: #3a2a06;
+    color: #fff;
     padding: 4px 12px; border-radius: 100px;
-    border: 1px solid var(--gold-c);
-    background: linear-gradient(135deg, var(--gold-a), var(--gold-b) 55%, var(--gold-c));
-    box-shadow: 0 2px 8px rgba(180,140,40,0.45);
+    border: 1px solid var(--urgent-c);
+    background: linear-gradient(135deg, var(--urgent-a), var(--urgent-b) 55%, var(--urgent-c));
+    box-shadow: 0 2px 10px rgba(224,71,92,0.55);
+    animation: urgentPulse 1.3s ease-in-out infinite;
+  }
+  @keyframes urgentPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 2px 10px rgba(224,71,92,0.55); }
+    50% { transform: scale(1.08); box-shadow: 0 2px 16px rgba(224,71,92,0.85); }
   }
   .status-badge.new {
     color: #fff; border-color: var(--navy);

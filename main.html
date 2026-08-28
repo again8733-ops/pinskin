@@ -206,15 +206,6 @@
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
 
-  .lock-box.shake { animation: shake 0.45s ease; }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20% { transform: translateX(-12px); }
-    40% { transform: translateX(12px); }
-    60% { transform: translateX(-8px); }
-    80% { transform: translateX(8px); }
-  }
-
   .lock-icon {
     width: 68px; height: 68px;
     margin: 0 auto 20px;
@@ -234,63 +225,50 @@
     margin-top: 8px; font-size: 13.5px; color: var(--navy-soft); font-weight: 500;
   }
 
-  .pw-wrap { position: relative; margin-top: 26px; }
-  .pw-input {
-    width: 100%;
-    padding: 15px 18px;
-    font-size: 19px;
-    font-weight: 700;
-    letter-spacing: 6px;
-    text-align: center;
-    color: var(--navy);
-    background: var(--paper);
-    border: 2px solid var(--line);
-    border-radius: 14px;
-    outline: none;
-    transition: all 0.25s ease;
-    font-family: 'Space Grotesk', 'Inter', sans-serif;
-  }
-  .pw-input:focus {
-    border-color: var(--navy);
-    background: #fff;
+  .choice-list {
+    display: flex; flex-direction: column; gap: 14px;
+    margin-top: 28px;
   }
 
-  .pw-hint {
-    margin-top: 10px;
-    font-size: 12px;
-    color: var(--navy-soft);
-    letter-spacing: 0.3px;
-  }
-  .error-msg {
-    margin-top: 12px;
-    font-size: 13px;
-    font-weight: 700;
-    color: #e0475c;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  .error-msg.show { opacity: 1; }
-
-  .login-btn {
+  .choice-btn {
     display: block;
     width: 100%;
-    margin-top: 22px;
-    padding: 15px;
+    padding: 18px 20px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .choice-btn .choice-sub {
+    display: block;
+    margin-top: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-transform: none;
+  }
+
+  .choice-btn.primary {
     color: #fff;
     background: var(--navy);
     border: 2px solid var(--navy);
-    border-radius: 14px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.25s ease;
   }
-  .login-btn:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-2px); }
-  .login-btn:active { transform: scale(0.97); }
-  .login-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+  .choice-btn.primary .choice-sub { color: rgba(255,255,255,0.65); }
+  .choice-btn.primary:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-2px); }
+  .choice-btn.primary:active { transform: scale(0.97); }
+
+  .choice-btn.secondary {
+    color: var(--navy);
+    background: #fff;
+    border: 2px dashed var(--line);
+  }
+  .choice-btn.secondary .choice-sub { color: var(--navy-soft); }
+  .choice-btn.secondary:hover { border-color: var(--navy); transform: translateY(-2px); }
+  .choice-btn.secondary:active { transform: scale(0.97); }
 
   /* 핀스킨 자료 모달 */
   .materials-modal {
@@ -549,16 +527,19 @@
 
     <div class="lock-box" id="lockBox">
       <div class="lock-icon">PIN</div>
-      <h1 class="lock-title">Members Only</h1>
-      <p class="lock-sub">비밀번호를 입력해주세요</p>
+      <h1 class="lock-title">Welcome</h1>
+      <p class="lock-sub">어느 곳으로 들어가시겠어요?</p>
 
-      <div class="pw-wrap">
-        <input class="pw-input" id="pwInput" type="password" placeholder="•••••••" autocomplete="off" maxlength="30">
+      <div class="choice-list">
+        <button class="choice-btn primary" id="officialBtn">
+          PINSKIN_Official
+          <span class="choice-sub">전체 메뉴 바로가기</span>
+        </button>
+        <button class="choice-btn secondary" id="membersBtn">
+          PINSKIN_Members_Only
+          <span class="choice-sub">준비 중</span>
+        </button>
       </div>
-      <p class="pw-hint">회원 전용 페이지입니다.</p>
-      <p class="error-msg" id="errorMsg">비밀번호가 올바르지 않습니다</p>
-
-      <button class="login-btn" id="loginBtn">ENTER →</button>
     </div>
   </div>
 
@@ -690,66 +671,23 @@
 
   <script>
     (function () {
-      var HASH = 'bdcec6b82751839d4c6248a3a6bad29c96e957a1f05ce120ce14f4fadd7eae3e';
       var screen = document.getElementById('lockScreen');
-      var box = document.getElementById('lockBox');
-      var input = document.getElementById('pwInput');
-      var btn = document.getElementById('loginBtn');
-      var err = document.getElementById('errorMsg');
+      var officialBtn = document.getElementById('officialBtn');
+      var membersBtn = document.getElementById('membersBtn');
 
-      function toHex(buffer) {
-        return Array.prototype.map.call(new Uint8Array(buffer), function (b) {
-          return ('0' + b.toString(16)).slice(-2);
-        }).join('');
-      }
-
-      function sha256(str) {
-        if (window.crypto && crypto.subtle) {
-          return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str)).then(toHex);
-        }
-        return Promise.reject(new Error('no-crypto'));
-      }
-
-      function unlock() {
+      function enterOfficial() {
+        sessionStorage.setItem('pinskin_mode', 'official');
         screen.classList.add('done');
-        btn.disabled = false;
         if (window.__stopNavyFx) window.__stopNavyFx();
       }
 
-      function fail() {
-        box.classList.remove('shake');
-        void box.offsetWidth;
-        box.classList.add('shake');
-        err.classList.add('show');
-        input.value = '';
-        input.focus();
-        btn.disabled = false;
-      }
-
-      function enter() {
-        var v = input.value.trim();
-        if (!v) { input.focus(); return; }
-        btn.disabled = true;
-        err.classList.remove('show');
-        sha256(v).then(function (h) {
-          if (h === HASH) {
-            sessionStorage.setItem('pinskin_auth', 'yes');
-            location.replace('home.html');
-          } else {
-            fail();
-          }
-        }).catch(fail);
-      }
-
-      if (sessionStorage.getItem('pinskin_auth') === 'yes') {
-        unlock();
+      if (sessionStorage.getItem('pinskin_mode') === 'official') {
+        enterOfficial();
       } else {
-        btn.addEventListener('click', enter);
-        input.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') enter();
+        officialBtn.addEventListener('click', enterOfficial);
+        membersBtn.addEventListener('click', function () {
+          location.href = 'members.html';
         });
-        input.addEventListener('input', function () { err.classList.remove('show'); });
-        input.focus();
       }
     })();
   </script>

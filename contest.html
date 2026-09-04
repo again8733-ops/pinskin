@@ -118,12 +118,53 @@
   }
   .info-card h3 {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1.4;
+    font-size: 17px; font-weight: 700; color: var(--navy); line-height: 1.4;
     margin-bottom: 10px;
   }
   .info-card p {
-    font-size: 14.5px; color: var(--navy-soft); line-height: 1.7;
+    font-size: 14px; color: var(--navy-soft); line-height: 1.7;
   }
+
+  .status-badge {
+    position: absolute; top: -12px; right: 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px;
+    color: #fff;
+    padding: 4px 12px; border-radius: 100px;
+    border: 1px solid var(--navy);
+    background: var(--blue);
+    box-shadow: 0 2px 8px rgba(61,99,255,0.45);
+  }
+
+  .info-card { position: relative; }
+
+  .deadline-tag {
+    align-self: flex-start;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+    color: #fff; background: var(--navy-soft);
+    padding: 4px 12px; border-radius: 100px;
+    margin-bottom: 14px;
+  }
+
+  .info-card p.category { color: var(--navy); font-weight: 600; }
+  .info-card p.team-size, .info-card p.recruit-deadline {
+    margin-top: 6px; color: var(--navy); font-weight: 600;
+  }
+
+  .card-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    align-self: flex-start;
+    margin-top: 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px; font-weight: 700; color: #fff;
+    background: var(--navy);
+    padding: 10px 18px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  .card-link:hover { background: var(--blue); transform: translateX(3px); }
 
   .note-box {
     margin-top: 30px;
@@ -155,28 +196,124 @@
 
     <div class="card-grid">
       <div class="info-card">
-        <div class="info-tag">진행중</div>
-        <h3>공모전 예시 1</h3>
-        <p>여기에 진행 중인 공모전 이름과 간단한 설명, 접수 기간을 적어주세요.</p>
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/21 마감</div>
+        <h3>2026 정부광고 아이디어 공모전</h3>
+        <p class="category">📂 마케팅·기획·광고 · 공공·정책·사회문제해결</p>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/10</p>
+        <a class="card-link" href="https://buly.kr/7QOrXjp" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
       </div>
+
       <div class="info-card">
-        <div class="info-tag">예정</div>
-        <h3>공모전 예시 2</h3>
-        <p>곧 시작되는 공모전 일정과 참가 자격 등의 정보를 적어주세요.</p>
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/22 마감</div>
+        <h3>제1회 AI금융빅데이터플랫폼 소비데이터 활용 분석·아이디어 공모전</h3>
+        <p class="category">📂 공학·기술 · 데이터·AI·IT · 금융·회계·경제</p>
+        <p class="team-size">👥 인원수 : 최대 3인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/10</p>
+        <a class="card-link" href="https://buly.kr/4mfUpOb" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
       </div>
+
       <div class="info-card">
-        <div class="info-tag">TIP</div>
-        <h3>공모전 준비 팁</h3>
-        <p>기획서 작성 팁, 자주 하는 실수 등 팀원들에게 도움이 될 내용을 적어주세요.</p>
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/30 마감</div>
+        <h3>[GS칼텍스] 에너지플러스 바로주유 영상 공모전</h3>
+        <p class="category">📂 디자인·영상 · 마케팅·기획·광고</p>
+        <p class="team-size">👥 인원수 : 최대 3인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/4mfUpOb" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
       </div>
+
       <div class="info-card">
-        <div class="info-tag">자료</div>
-        <h3>제출 자료 안내</h3>
-        <p>공모전 제출 양식, 필수 서류 등 자료 링크를 정리해서 넣어주세요.</p>
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/30 마감</div>
+        <h3>2026년 국가표준식품성분 데이터베이스(DB) 활용 아이디어 공모전</h3>
+        <p class="category">📂 공학·기술 · 데이터·AI·IT · 공공·정책·사회문제해결</p>
+        <p class="team-size">👥 인원수 : 개인 또는 팀</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/90dgN9j" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/30 마감</div>
+        <h3>[과학기술정보통신부] 2026 AI·디지털 기반 사회문제 해결 챌린지</h3>
+        <p class="category">📂 공학·기술 · 데이터·AI·IT · 공공·정책·사회문제해결</p>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/7mENVTA" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~9/30 마감</div>
+        <h3>[한국잡지협회] 제19회 잡지 미디어 콘텐츠 공모전</h3>
+        <p class="category">📂 예술·문학 · 디자인·영상</p>
+        <p class="team-size">👥 인원수 : 최대 5인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/FAfHlWo" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <div class="deadline-tag">~9/30 마감</div>
+        <h3>2026 충북 AI 광고제</h3>
+        <p class="category">📂 데이터·AI·IT · 디자인·영상 · 마케팅·기획·광고</p>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~7/30</p>
+        <a class="card-link" href="https://buly.kr/4QphBuk" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/4 마감</div>
+        <h3>WDC BUSAN 2028 프로그램 연계 시민 참여 디자인 아이디어 공모전</h3>
+        <p class="category">📂 마케팅·기획·광고 · 건축·도시·토목</p>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/BpHo4Gl" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/6 마감</div>
+        <h3>2026 추계학술대회 대학생 ERP 아이디어 공모전</h3>
+        <p class="category">📂 공학·기술 · 데이터·AI·IT</p>
+        <p class="team-size">👥 인원수 : 제한 없음</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/1n6c9fU" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/8 마감</div>
+        <h3>2026 제9회 핀테크 아이디어 공모전</h3>
+        <p class="category">📂 데이터·AI·IT · 금융·회계·경제</p>
+        <p class="team-size">👥 인원수 : 최대 5인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/EzlRin6" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/15 마감</div>
+        <h3>인스타그램 콘텐츠 공모전 'Flip'</h3>
+        <p class="category">📂 디자인·영상 · 마케팅·기획·광고</p>
+        <p class="team-size">👥 인원수 : 개인 또는 최대 6인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/25</p>
+        <a class="card-link" href="https://buly.kr/uWpFVc" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/31 마감</div>
+        <h3>[제주관광공사] 2026 제주 관광 데이터 활용사례 공모전</h3>
+        <p class="category">📂 데이터·AI·IT · 공공·정책·사회문제해결</p>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://buly.kr/7QOqkm9" target="_blank" rel="noopener noreferrer">신청 링크 바로가기 →</a>
       </div>
     </div>
-
-    <p class="note-box">※ 이 영역은 실제 공모전 정보로 계속 업데이트될 예정입니다.</p>
   </div>
 </body>
 </html>

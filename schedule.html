@@ -237,9 +237,13 @@
           rng(11, 12).forEach(function (d) { e[d] = [{ label: '신입부원 선발', color: '#ff9f45' }]; });
           rng(12, 13).forEach(function (d) { e[d] = (e[d] || []).concat([{ label: '개강총회·환영회 참여 조사', color: '#0a1f44' }]); });
           e[17] = [{ label: '개강총회·환영회 진행', color: '#7b2dff' }];
-          e[18] = [{ label: '자율스터디 조사', color: '#0a1f44' }];
-          e[19] = [{ label: '공모전 세미나 조사', color: '#0a1f44' }];
-          e[20] = [{ label: '독서 소모임 조사', color: '#0a1f44' }];
+          rng(18, 20).forEach(function (d) {
+            e[d] = [
+              { label: '자율스터디 조사', color: '#0a1f44' },
+              { label: '공모전 세미나 조사', color: '#0a1f44' },
+              { label: '독서 소모임 조사', color: '#0a1f44' }
+            ];
+          });
           rng(24, 27).forEach(function (d) { e[d] = [{ label: '추석연휴', color: '#e0475c' }]; });
           e[30] = [{ label: '공모전·대외활동 세미나', color: '#00a3d4' }];
           return e;

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PINSKIN 2026-2 중간회계</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0a1f44;
+    --navy-soft: #4a5d84;
+    --blue: #3d63ff;
+    --paper: #f7f8fb;
+  }
+
+  body {
+    font-family: 'Inter', 'Noto Sans KR', sans-serif;
+    min-height: 100vh;
+    background: var(--paper);
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .wrap {
+    position: relative; z-index: 10; text-align: center;
+    animation: popIn 0.7s cubic-bezier(0.2,0.8,0.3,1) both;
+    background: #fff;
+    border: 2px solid var(--navy);
+    box-shadow: 8px 8px 0 var(--navy);
+    border-radius: 24px;
+    padding: 56px 48px;
+    max-width: 440px;
+    margin: 20px;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9) translateY(24px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .badge-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 100px;
+    background: var(--navy); color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px; font-weight: 700; letter-spacing: 2.5px;
+    margin-bottom: 26px;
+  }
+  .badge-pill .dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--blue);
+    animation: dotPulse 1.6s ease-in-out infinite;
+  }
+  @keyframes dotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px; font-weight: 900; letter-spacing: -1px; color: var(--navy);
+  }
+
+  .sub {
+    margin-top: 14px;
+    color: var(--navy-soft);
+    font-size: 15px; font-weight: 500;
+  }
+  .sub .hl {
+    color: var(--navy); font-weight: 800;
+    background: rgba(10,31,68,0.08);
+    padding: 1px 7px; border-radius: 6px;
+  }
+
+  .back-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 36px;
+    padding: 12px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 1px;
+    color: #fff; text-decoration: none;
+    border-radius: 100px;
+    border: 2px solid var(--navy);
+    background: var(--navy);
+    transition: all 0.25s ease;
+  }
+  .back-btn:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    transform: translateY(-3px);
+  }
+
+  .dot-bounce span {
+    display: inline-block;
+    width: 8px; height: 8px; margin: 0 4px;
+    border-radius: 50%;
+    background: var(--navy);
+    animation: bounce 1.2s ease-in-out infinite;
+  }
+  .dot-bounce span:nth-child(2) { animation-delay: 0.15s; background: var(--blue); }
+  .dot-bounce span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.4; }
+    50% { transform: translateY(-12px); opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="badge-pill"><span class="dot"></span>PINSKIN CLUB · 26-2</div>
+    <h1 class="title">준비 중입니다</h1>
+    <p class="sub">2026년 2학기 중간회계는 <span class="hl">10월 중</span>으로 업로드 예정입니다.</p>
+    <div class="dot-bounce" style="margin-top: 26px;">
+      <span></span><span></span><span></span>
+    </div>
+    <br>
+    <a class="back-btn" href="finance.html">← BACK</a>
+  </div>
+</body>
+</html>

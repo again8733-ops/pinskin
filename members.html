@@ -396,15 +396,14 @@
     opacity: 1; transform: translateY(0);
   }
   .mm-step:hover { background: var(--blue); border-color: var(--blue); transform: translateY(-3px) !important; }
-  .mm-step.done { transform: scale(0.94); opacity: 0.7; cursor: default; }
-  .mm-step.done:hover { background: var(--navy); border-color: var(--navy); transform: scale(0.94) !important; }
+  .mm-step.open { background: var(--blue); border-color: var(--blue); }
 
   .mm-step-arrow {
     font-size: 16px;
     transition: transform 0.3s ease;
     transform: rotate(-90deg);
   }
-  .mm-step.ready .mm-step-arrow { transform: rotate(0); }
+  .mm-step.open .mm-step-arrow { transform: rotate(0); }
 
   .mm-pdf {
     margin-top: 0;
@@ -550,7 +549,7 @@
       <h2 class="mm-title">자료실</h2>
       <p class="mm-sub">CLICK TO EXPLORE</p>
 
-      <button class="mm-step" id="mmStep1" onclick="showPdfBtn(1)">
+      <button class="mm-step" id="mmStep1" onclick="toggleStep(1)">
         <span class="mm-step-label">26-1</span>
         <span class="mm-step-arrow">▼</span>
       </button>
@@ -560,7 +559,7 @@
         <a class="mm-pdf-btn" href="핀스킨 종강총회.pdf" target="_blank">종강총회자료보기</a>
       </div>
 
-      <button class="mm-step" id="mmStep2" onclick="showPdfBtn(2)">
+      <button class="mm-step" id="mmStep2" onclick="toggleStep(2)">
         <span class="mm-step-label">26-2</span>
         <span class="mm-step-arrow">▼</span>
       </button>
@@ -578,7 +577,7 @@
       MM_STEPS.forEach(function (n) {
         var s = document.getElementById('mmStep' + n);
         var p = document.getElementById('mmPdf' + n);
-        s.classList.remove('done');
+        s.classList.remove('open');
         p.classList.remove('show');
       });
       document.getElementById('materialsModal').classList.add('open');
@@ -591,12 +590,16 @@
     function closeMaterials() {
       document.getElementById('materialsModal').classList.remove('open');
     }
-    function showPdfBtn(n) {
+    function toggleStep(n) {
       var s = document.getElementById('mmStep' + n);
       var p = document.getElementById('mmPdf' + n);
-      s.classList.remove('ready');
-      s.classList.add('done');
-      setTimeout(function () { p.classList.add('show'); }, 260);
+      if (p.classList.contains('show')) {
+        p.classList.remove('show');
+        s.classList.remove('open');
+      } else {
+        s.classList.add('open');
+        setTimeout(function () { p.classList.add('show'); }, 200);
+      }
     }
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMaterials();

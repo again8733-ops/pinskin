@@ -104,6 +104,7 @@
   .sem-card:nth-child(2) { animation-delay: 0.15s; }
   .sem-card:nth-child(3) { animation-delay: 0.25s; }
   .sem-card:nth-child(4) { animation-delay: 0.35s; }
+  .sem-card:nth-child(5) { animation-delay: 0.45s; }
   @keyframes cardIn {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
@@ -167,6 +168,38 @@
   }
   .ev-text { font-size: 15.5px; line-height: 1.8; color: var(--navy-soft); letter-spacing: 0.1px; }
   .ev-text strong { color: var(--navy); font-weight: 700; }
+
+  .purpose .hl {
+    color: var(--navy); font-weight: 800;
+    background: rgba(10,31,68,0.08);
+    padding: 1px 7px; border-radius: 6px;
+  }
+
+  .example-box { margin-top: 18px; display: flex; flex-direction: column; gap: 10px; }
+  .example-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border-radius: 12px;
+    background: var(--paper); border: 1px solid var(--line);
+    font-size: 14.5px; color: var(--navy-soft); line-height: 1.6;
+  }
+  .example-tag {
+    flex-shrink: 0;
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700;
+    color: #fff; padding: 5px 13px; border-radius: 100px; white-space: nowrap;
+  }
+  .example-tag.full { background: #2f9e44; }
+  .example-tag.half { background: #ff9f45; }
+
+  .warning-box {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: rgba(224,71,92,0.1);
+    border: 1px solid rgba(224,71,92,0.35);
+    color: #b23a3a;
+    font-size: 14.5px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
 
   @media (max-width: 700px) {
     .title { font-size: 38px; }
@@ -273,6 +306,26 @@
       <div class="sem-card">
         <div class="sem-head">
           <div class="sem-tag">04</div>
+          <div>
+            <div class="sem-label">핀스킨 환급 제도</div>
+            <div class="sem-label-sub">Refund Policy</div>
+          </div>
+        </div>
+        <div class="sem-body">
+          <p class="purpose"><strong class="hl">핀스킨 환급제도</strong>는 핀스킨 인원이 <strong class="hl">과반수</strong>로 참여한 팀 또는 개인이 수상을 할 경우 회비 <strong class="hl">전액</strong>을 환급해주는 제도. 과반수를 넘지 못할 경우 회비 <strong class="hl">절반</strong> 환급.</p>
+
+          <div class="example-box">
+            <div class="example-row"><span class="example-tag full">전액 환급</span>예시) 팀원 2명 중 1명이 핀스킨 부원일 경우 회비 전액 환급!</div>
+            <div class="example-row"><span class="example-tag half">절반 환급</span>예시) 팀원 3명 중 1명이 핀스킨 부원일 경우 회비 절반 환급!</div>
+          </div>
+
+          <div class="warning-box">⚠️ 서포터즈 및 대외활동 선발의 경우 회비를 환급해주지 않습니다!</div>
+        </div>
+      </div>
+
+      <div class="sem-card">
+        <div class="sem-head">
+          <div class="sem-tag">05</div>
           <div>
             <div class="sem-label">동아리 방 위치</div>
             <div class="sem-label-sub">Club Room</div>

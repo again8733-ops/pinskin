@@ -177,6 +177,35 @@
   }
   .card-link:hover { background: var(--blue); transform: translateX(3px); }
 
+  .info-card.pick {
+    border-color: #fb8500;
+    box-shadow: 6px 6px 0 #fb8500;
+  }
+  .info-card.pick:hover { box-shadow: 10px 10px 0 #ffb703; }
+
+  .pick-ribbon {
+    position: absolute; top: -14px; left: 18px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10.5px; font-weight: 800; letter-spacing: 0.3px;
+    color: #fff; white-space: nowrap;
+    padding: 5px 14px; border-radius: 100px;
+    background: linear-gradient(135deg, #ffb703, #fb8500);
+    box-shadow: 0 2px 10px rgba(251,133,0,0.55);
+  }
+
+  .section-divider {
+    display: flex; align-items: center; gap: 14px;
+    margin: 56px 0 8px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: ''; flex: 1; height: 2px; background: var(--line);
+  }
+  .section-divider-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px; font-weight: 800; color: var(--navy-soft);
+    white-space: nowrap;
+  }
+
   .note-box {
     margin-top: 30px;
     padding: 18px 22px;
@@ -204,6 +233,111 @@
       <h1 class="title">공모전<span>.</span>정보</h1>
       <p class="subtitle">PINSKIN이 준비한 공모전 소식과 준비 자료</p>
     </div>
+
+    <div class="card-grid">
+      <div class="info-card pick">
+        <span class="pick-ribbon">📢 운영진 강력 추천 · 교내 공모전</span>
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/19 마감</div>
+        <h3>제24회 경상국립대학교 로켓피치 경연대회</h3>
+        <div class="category-tags"><span class="cat-tag">창업·비즈니스 모델</span></div>
+        <p class="team-size">👥 인원수 : 최대 3인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://www.gnu.ac.kr/main/na/ntt/selectNttInfo.do?mi=1126&bbsId=1028&nttSn=8480321" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/4 마감</div>
+        <h3>WDC BUSAN 2028 프로그램 연계 시민 참여 디자인 아이디어 공모전</h3>
+        <div class="category-tags"><span class="cat-tag">마케팅·기획·광고</span><span class="cat-tag">건축·도시·토목</span></div>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/BpHo4Gl" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/6 마감</div>
+        <h3>2026 추계학술대회 대학생 ERP 아이디어 공모전</h3>
+        <div class="category-tags"><span class="cat-tag">공학·기술</span><span class="cat-tag">데이터·AI·IT</span></div>
+        <p class="team-size">👥 인원수 : 제한 없음</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/1n6c9fU" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/8 마감</div>
+        <h3>2026 제9회 핀테크 아이디어 공모전</h3>
+        <div class="category-tags"><span class="cat-tag">데이터·AI·IT</span><span class="cat-tag">금융·회계·경제</span></div>
+        <p class="team-size">👥 인원수 : 최대 5인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
+        <a class="card-link" href="https://buly.kr/EzlRin6" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/15 마감</div>
+        <h3>인스타그램 콘텐츠 공모전 'Flip'</h3>
+        <div class="category-tags"><span class="cat-tag">디자인·영상</span><span class="cat-tag">마케팅·기획·광고</span></div>
+        <p class="team-size">👥 인원수 : 개인 또는 최대 6인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/25</p>
+        <a class="card-link" href="https://buly.kr/uWpFVc" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/15 마감</div>
+        <h3>2026 KoMap AI 경진대회</h3>
+        <div class="category-tags"><span class="cat-tag">공학·기술</span><span class="cat-tag">데이터·AI·IT</span></div>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://komap.ai/front/main/main" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/30 마감</div>
+        <h3>[aT KAMIS] 2026 KAMIS 활용사례 공모전</h3>
+        <div class="category-tags"><span class="cat-tag">디자인·영상</span><span class="cat-tag">마케팅·기획·광고</span></div>
+        <p class="team-size">👥 인원수 : 개인 또는 최대 3인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://seolmoon.com/Join/index.html?" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/31 마감</div>
+        <h3>[제주관광공사] 2026 제주 관광 데이터 활용사례 공모전</h3>
+        <div class="category-tags"><span class="cat-tag">데이터·AI·IT</span><span class="cat-tag">공공·정책·사회문제해결</span></div>
+        <p class="team-size">👥 인원수 : 최대 4인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://buly.kr/7QOqkm9" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~10/31 마감</div>
+        <h3>[과학기술정보통신부] 2026 데이터+AI 혁신챌린지 데이터안심구역 경진대회</h3>
+        <div class="category-tags"><span class="cat-tag">데이터·AI·IT</span><span class="cat-tag">공학·기술</span></div>
+        <p class="team-size">👥 인원수 : 최대 5인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
+        <a class="card-link" href="https://dsz.kdata.or.kr/contest/introduce/main.do" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+
+      <div class="info-card">
+        <span class="status-badge">NEW</span>
+        <div class="deadline-tag">~11/9 마감</div>
+        <h3>2026 KOSAC 영상콘텐츠챌린지</h3>
+        <div class="category-tags"><span class="cat-tag">디자인·영상</span><span class="cat-tag">마케팅·기획·광고</span></div>
+        <p class="team-size">👥 인원수 : 최대 5인</p>
+        <p class="recruit-deadline">⏳ 팀원 모집 : ~10/10</p>
+        <a class="card-link" href="https://kosac.ad.co.kr/" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
+      </div>
+    </div>
+
+    <div class="section-divider"><span class="section-divider-label">⏳ 팀원 모집 마감 직전 공모전</span></div>
 
     <div class="card-grid">
       <div class="info-card">
@@ -273,56 +407,6 @@
         <p class="team-size">👥 인원수 : 최대 4인</p>
         <p class="recruit-deadline">⏳ 팀원 모집 : ~7/30</p>
         <a class="card-link" href="https://buly.kr/4QphBuk" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
-      </div>
-
-      <div class="info-card">
-        <span class="status-badge">NEW</span>
-        <div class="deadline-tag">~10/4 마감</div>
-        <h3>WDC BUSAN 2028 프로그램 연계 시민 참여 디자인 아이디어 공모전</h3>
-        <div class="category-tags"><span class="cat-tag">마케팅·기획·광고</span><span class="cat-tag">건축·도시·토목</span></div>
-        <p class="team-size">👥 인원수 : 최대 4인</p>
-        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
-        <a class="card-link" href="https://buly.kr/BpHo4Gl" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
-      </div>
-
-      <div class="info-card">
-        <span class="status-badge">NEW</span>
-        <div class="deadline-tag">~10/6 마감</div>
-        <h3>2026 추계학술대회 대학생 ERP 아이디어 공모전</h3>
-        <div class="category-tags"><span class="cat-tag">공학·기술</span><span class="cat-tag">데이터·AI·IT</span></div>
-        <p class="team-size">👥 인원수 : 제한 없음</p>
-        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
-        <a class="card-link" href="https://buly.kr/1n6c9fU" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
-      </div>
-
-      <div class="info-card">
-        <span class="status-badge">NEW</span>
-        <div class="deadline-tag">~10/8 마감</div>
-        <h3>2026 제9회 핀테크 아이디어 공모전</h3>
-        <div class="category-tags"><span class="cat-tag">데이터·AI·IT</span><span class="cat-tag">금융·회계·경제</span></div>
-        <p class="team-size">👥 인원수 : 최대 5인</p>
-        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/15</p>
-        <a class="card-link" href="https://buly.kr/EzlRin6" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
-      </div>
-
-      <div class="info-card">
-        <span class="status-badge">NEW</span>
-        <div class="deadline-tag">~10/15 마감</div>
-        <h3>인스타그램 콘텐츠 공모전 'Flip'</h3>
-        <div class="category-tags"><span class="cat-tag">디자인·영상</span><span class="cat-tag">마케팅·기획·광고</span></div>
-        <p class="team-size">👥 인원수 : 개인 또는 최대 6인</p>
-        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/25</p>
-        <a class="card-link" href="https://buly.kr/uWpFVc" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
-      </div>
-
-      <div class="info-card">
-        <span class="status-badge">NEW</span>
-        <div class="deadline-tag">~10/31 마감</div>
-        <h3>[제주관광공사] 2026 제주 관광 데이터 활용사례 공모전</h3>
-        <div class="category-tags"><span class="cat-tag">데이터·AI·IT</span><span class="cat-tag">공공·정책·사회문제해결</span></div>
-        <p class="team-size">👥 인원수 : 최대 4인</p>
-        <p class="recruit-deadline">⏳ 팀원 모집 : ~9/30</p>
-        <a class="card-link" href="https://buly.kr/7QOqkm9" target="_blank" rel="noopener noreferrer">신청 링크 및 참고 링크</a>
       </div>
     </div>
   </div>

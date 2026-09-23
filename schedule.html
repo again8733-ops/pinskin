@@ -202,6 +202,8 @@
       <div class="legend-item"><span class="legend-dot" style="background:#e0475c;"></span>공휴일</div>
       <div class="legend-item"><span class="legend-dot" style="background:#8a94a6;"></span>학사일정</div>
       <div class="legend-item"><span class="legend-dot" style="background:#e64980;"></span>정보 업데이트</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#0ca678;"></span>자율스터디</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#f08c00;"></span>동방 사용 제한</div>
     </div>
 
     <div id="calContainer"></div>
@@ -248,6 +250,14 @@
           rng(24, 27).forEach(function (d) { e[d] = [{ label: '추석연휴', color: '#e0475c' }]; });
           e[30] = [{ label: '공모전·대외활동 세미나', color: '#00a3d4' }];
           [2, 9, 16, 23, 30].forEach(function (d) { e[d] = (e[d] || []).concat([{ label: '대외활동 및 서포터즈 정보 업데이트', color: '#e64980' }]); });
+          [22, 29].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (19:30~22:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (19:30~22:00)', color: '#f08c00' }
+          ]); });
+          [23, 30].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (10:00~12:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (10:00~12:00)', color: '#f08c00' }
+          ]); });
           return e;
         })()
       },
@@ -260,6 +270,20 @@
           e[9] = [{ label: '한글날', color: '#e0475c' }];
           rng(12, 15).forEach(function (d) { e[d] = [{ label: '2학기 엠티 참여 조사', color: '#0a1f44' }]; });
           [7, 14, 21, 28].forEach(function (d) { e[d] = (e[d] || []).concat([{ label: '대외활동 및 서포터즈 정보 업데이트', color: '#e64980' }]); });
+          [6, 13, 20, 27].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (19:30~22:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (19:30~22:00)', color: '#f08c00' }
+          ]); });
+          [7, 14, 21, 28].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (10:00~12:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (10:00~12:00)', color: '#f08c00' }
+          ]); });
+          [1, 8, 15, 22, 29].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (10:00~12:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (10:00~12:00)', color: '#f08c00' },
+            { label: '자율스터디 (19:30~22:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (19:30~22:00)', color: '#f08c00' }
+          ]); });
           return e;
         })()
       },
@@ -271,6 +295,20 @@
           rng(17, 19).forEach(function (d) { e[d] = [{ label: '만족도 조사·회계 보고·종강총회 조사', color: '#0a1f44' }]; });
           e[25] = [{ label: '종강총회 진행', color: '#7b2dff' }];
           [4, 11, 18, 25].forEach(function (d) { e[d] = (e[d] || []).concat([{ label: '대외활동 및 서포터즈 정보 업데이트', color: '#e64980' }]); });
+          [3, 10, 17, 24].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (19:30~22:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (19:30~22:00)', color: '#f08c00' }
+          ]); });
+          [4, 11, 18].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (10:00~12:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (10:00~12:00)', color: '#f08c00' }
+          ]); });
+          [5, 12, 19].forEach(function (d) { e[d] = (e[d] || []).concat([
+            { label: '자율스터디 (10:00~12:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (10:00~12:00)', color: '#f08c00' },
+            { label: '자율스터디 (19:30~22:00)', color: '#0ca678' },
+            { label: '동방 사용 제한 (19:30~22:00)', color: '#f08c00' }
+          ]); });
           return e;
         })()
       },

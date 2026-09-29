@@ -443,6 +443,13 @@
     transform: translateY(-2px);
   }
 
+  .mm-links {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .mm-pdf-note {
     width: 100%;
     padding: 16px 14px;
@@ -539,11 +546,11 @@
           <div class="menu-arrow">EXPLORE →</div>
         </a>
 
-        <a class="menu-card" href="https://buttercup-pest-0b0.notion.site/3dc46e57c5eb8086a7f0ec466ea9da3c?source=copy_link" target="_blank" rel="noopener noreferrer">
+        <a class="menu-card" href="#" onclick="openNotionModal(event)">
           <div class="menu-tag">NT</div>
           <div class="menu-label">Notion Template</div>
           <div class="menu-sub">핀스킨 공모전 노션 템플릿</div>
-          <div class="menu-arrow">OPEN ↗</div>
+          <div class="menu-arrow">EXPLORE →</div>
         </a>
       </div>
     </div>
@@ -573,6 +580,20 @@
 
       <div class="mm-pdf" id="mmPdf2">
         <a class="mm-pdf-btn" href="2026학년도 2학기 핀스킨 개강총회.pdf" target="_blank">개강총회 자료</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="materials-modal" id="notionModal" onclick="if(event.target===this)closeNotionModal()">
+    <div class="mm-box">
+      <button class="mm-close" onclick="closeNotionModal()">✕</button>
+      <div class="mm-badge">PINSKIN</div>
+      <h2 class="mm-title">공모전 노션</h2>
+      <p class="mm-sub">CLICK TO EXPLORE</p>
+
+      <div class="mm-links">
+        <a class="mm-pdf-btn" href="https://buttercup-pest-0b0.notion.site/3dc46e57c5eb8086a7f0ec466ea9da3c?source=copy_link" target="_blank" rel="noopener noreferrer">노션 템플릿 연결</a>
+        <a class="mm-pdf-btn" href="공모전·팀 프로젝트.pdf" target="_blank">노션 이용법</a>
       </div>
     </div>
   </div>
@@ -608,8 +629,15 @@
         setTimeout(function () { p.classList.add('show'); }, 200);
       }
     }
+    function openNotionModal(e) {
+      if (e) e.preventDefault();
+      document.getElementById('notionModal').classList.add('open');
+    }
+    function closeNotionModal() {
+      document.getElementById('notionModal').classList.remove('open');
+    }
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMaterials();
+      if (e.key === 'Escape') { closeMaterials(); closeNotionModal(); }
     });
   </script>
 

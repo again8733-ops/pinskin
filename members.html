@@ -10,11 +10,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --navy: #0a1f44;
-    --navy-soft: #4a5d84;
-    --blue: #3d63ff;
-    --line: #e3e7ef;
-    --paper: #f7f8fb;
+    --navy: #3a2317;
+    --navy-soft: #7a5a3e;
+    --blue: #c9711f;
+    --line: #e8dcc8;
+    --paper: #fbf4e8;
   }
 
   body {
@@ -29,7 +29,7 @@
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(58,35,23,0.08) 1px, transparent 1px);
     background-size: 26px 26px;
     mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
     pointer-events: none; z-index: 0;
@@ -128,7 +128,7 @@
   .pw-input:focus { border-color: var(--navy); background: #fff; }
 
   .error-msg {
-    margin-top: 10px; font-size: 12.5px; font-weight: 700; color: #e0475c;
+    margin-top: 10px; font-size: 12.5px; font-weight: 700; color: #b3374b;
     opacity: 0; transition: opacity 0.3s ease;
   }
   .error-msg.show { opacity: 1; }
@@ -167,8 +167,8 @@
     margin-top: 16px;
     padding: 8px 16px;
     border-radius: 100px;
-    background: rgba(224,71,92,0.1);
-    border: 1px solid rgba(224,71,92,0.35);
+    background: rgba(179,55,75,0.1);
+    border: 1px solid rgba(179,55,75,0.35);
     color: #b23a3a;
     font-size: 12.5px; font-weight: 700;
   }
@@ -259,7 +259,7 @@
   .featured-box {
     border-radius: 26px;
     padding: 32px 28px 28px;
-    background: linear-gradient(135deg, var(--navy) 0%, #14275a 45%, var(--blue) 130%);
+    background: linear-gradient(135deg, var(--navy) 0%, #6b3f22 45%, var(--blue) 130%);
     box-shadow: 8px 8px 0 var(--blue);
     position: relative;
     overflow: hidden;
@@ -267,7 +267,7 @@
   }
   @keyframes boxGlow {
     0%, 100% { box-shadow: 8px 8px 0 var(--blue); }
-    50% { box-shadow: 8px 8px 0 var(--blue), 0 0 40px 4px rgba(61,99,255,0.45); }
+    50% { box-shadow: 8px 8px 0 var(--blue), 0 0 40px 4px rgba(201,113,31,0.45); }
   }
   .featured-box::before {
     content: '';

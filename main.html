@@ -10,11 +10,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --navy: #0a1f44;
-    --navy-soft: #4a5d84;
-    --blue: #3d63ff;
-    --line: #e3e7ef;
-    --paper: #f7f8fb;
+    --navy: #3a2317;
+    --navy-soft: #7a5a3e;
+    --blue: #c9711f;
+    --line: #e8dcc8;
+    --paper: #fbf4e8;
   }
 
   body {
@@ -29,7 +29,7 @@
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(58,35,23,0.08) 1px, transparent 1px);
     background-size: 26px 26px;
     mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
     pointer-events: none; z-index: 0;
@@ -178,7 +178,7 @@
   .lock-screen {
     position: fixed; inset: 0; z-index: 100;
     display: flex; align-items: center; justify-content: center;
-    background: linear-gradient(180deg, #0a1f44 0%, #142c54 60%, #24406f 100%);
+    background: linear-gradient(180deg, #3a2317 0%, #5c3a22 60%, #7a5230 100%);
     overflow: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
   }
@@ -301,8 +301,8 @@
     <svg class="campus-bg" viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
       <defs>
         <linearGradient id="groundGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#0b1f3d"/>
-          <stop offset="1" stop-color="#081a3a"/>
+          <stop offset="0" stop-color="#2e1a0f"/>
+          <stop offset="1" stop-color="#241209"/>
         </linearGradient>
         <radialGradient id="moonGlow">
           <stop offset="0" stop-color="rgba(216,228,255,0.30)"/>
@@ -333,7 +333,7 @@
         <circle cx="620" cy="110" r="1.1"/>
       </g>
 
-      <g fill="#12294f">
+      <g fill="#3a2317">
         <rect x="60" y="200" width="110" height="140"/>
         <rect x="190" y="170" width="90" height="170"/>
         <rect x="700" y="180" width="100" height="160"/>
@@ -341,26 +341,26 @@
         <rect x="1300" y="185" width="110" height="155"/>
       </g>
 
-      <g fill="#0c2247">
+      <g fill="#32200f">
         <rect x="300" y="130" width="130" height="210"/>
         <rect x="830" y="140" width="140" height="200"/>
         <rect x="1140" y="160" width="130" height="180"/>
       </g>
 
-      <g fill="#16305e">
+      <g fill="#5c3a22">
         <rect x="470" y="100" width="180" height="240"/>
         <rect x="445" y="150" width="30" height="190"/>
         <rect x="645" y="150" width="30" height="190"/>
       </g>
 
-      <rect x="500" y="255" width="120" height="85" fill="#0b1f3d"/>
-      <rect x="535" y="285" width="50" height="55" fill="#081a3a"/>
+      <rect x="500" y="255" width="120" height="85" fill="#2e1a0f"/>
+      <rect x="535" y="285" width="50" height="55" fill="#241209"/>
 
-      <g stroke="#b0c4ff" stroke-width="3" opacity="0.8">
+      <g stroke="#e3c398" stroke-width="3" opacity="0.8">
         <line x1="560" y1="100" x2="560" y2="52"/>
         <line x1="540" y1="60" x2="580" y2="60"/>
       </g>
-      <rect x="544" y="56" width="32" height="20" rx="2" fill="#b0c4ff" opacity="0.85"/>
+      <rect x="544" y="56" width="32" height="20" rx="2" fill="#e3c398" opacity="0.85"/>
 
       <g fill="rgba(176,196,255,0.55)">
         <rect x="70" y="230" width="14" height="18" rx="2"/>
@@ -404,7 +404,7 @@
         <rect x="628" y="118" width="10" height="14" rx="2" fill="rgba(219,228,255,0.6)"/>
       </g>
 
-      <g fill="#0c2247">
+      <g fill="#32200f">
         <circle cx="170" cy="330" r="30"/>
         <circle cx="150" cy="345" r="20"/>
         <circle cx="445" cy="328" r="26"/>
@@ -417,7 +417,7 @@
         <circle cx="1230" cy="346" r="18"/>
       </g>
 
-      <path d="M0 320 L60 312 L120 320 L190 312 L300 322 L470 318 L645 322 L700 314 L830 318 L1010 314 L1140 322 L1300 318 L1440 312 L1440 380 L0 380 Z" fill="#081a3a" opacity="0.6"/>
+      <path d="M0 320 L60 312 L120 320 L190 312 L300 322 L470 318 L645 322 L700 314 L830 318 L1010 314 L1140 322 L1300 318 L1440 312 L1440 380 L0 380 Z" fill="#241209" opacity="0.6"/>
     </svg>
 
     <div class="lock-box" id="lockBox">
@@ -547,7 +547,7 @@
       var ctx = canvas.getContext('2d');
       var W = 0, H = 0, dpr = 1;
 
-      var NAVY = ['#3d63ff', '#0a1f44', '#ffffff', '#8fa3d6', '#3d63ff', '#ffffff'];
+      var NAVY = ['#c9711f', '#3a2317', '#ffffff', '#d9b58a', '#c9711f', '#ffffff'];
       var particles = [];
       var rockets = [];
       var confetti = [];
@@ -686,7 +686,7 @@
             continue;
           }
           ctx.globalAlpha = 0.95;
-          ctx.fillStyle = '#3d63ff';
+          ctx.fillStyle = '#c9711f';
           ctx.save();
           ctx.translate(r.x, r.y);
           ctx.rotate(Math.PI / 4);
@@ -695,7 +695,7 @@
           for (var t = 0; t < r.trail.length; t++) {
             var tp = r.trail[t];
             ctx.globalAlpha = (t + 1) / r.trail.length * 0.5;
-            ctx.fillStyle = '#0a1f44';
+            ctx.fillStyle = '#3a2317';
             var ts = (t + 1) * 0.9;
             ctx.fillRect(tp.x - ts / 2, tp.y - ts / 2, ts, ts);
           }

@@ -10,11 +10,11 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --navy: #0a1f44;
-    --navy-soft: #4a5d84;
-    --blue: #3d63ff;
-    --line: #e3e7ef;
-    --paper: #f7f8fb;
+    --navy: #3a2317;
+    --navy-soft: #7a5a3e;
+    --blue: #c9711f;
+    --line: #e8dcc8;
+    --paper: #fbf4e8;
   }
 
   body {
@@ -29,7 +29,7 @@
   body::before {
     content: '';
     position: fixed; inset: 0;
-    background-image: radial-gradient(rgba(10,31,68,0.08) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(58,35,23,0.08) 1px, transparent 1px);
     background-size: 26px 26px;
     mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
     pointer-events: none; z-index: 0;
@@ -171,7 +171,7 @@
 
   .purpose .hl {
     color: var(--navy); font-weight: 800;
-    background: rgba(10,31,68,0.08);
+    background: rgba(58,35,23,0.08);
     padding: 1px 7px; border-radius: 6px;
   }
 
@@ -187,15 +187,15 @@
     font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700;
     color: #fff; padding: 5px 13px; border-radius: 100px; white-space: nowrap;
   }
-  .example-tag.full { background: #2f9e44; }
+  .example-tag.full { background: #6b8e3f; }
   .example-tag.half { background: #ff9f45; }
 
   .warning-box {
     margin-top: 20px;
     padding: 14px 18px;
     border-radius: 12px;
-    background: rgba(224,71,92,0.1);
-    border: 1px solid rgba(224,71,92,0.35);
+    background: rgba(179,55,75,0.1);
+    border: 1px solid rgba(179,55,75,0.35);
     color: #b23a3a;
     font-size: 14.5px; font-weight: 700;
     display: flex; align-items: center; gap: 8px;

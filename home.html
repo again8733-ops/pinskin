@@ -10,9 +10,9 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --navy: #0a1f44;
-    --navy-soft: #1e3a6e;
-    --gold: #ffc94a;
+    --navy: #3a2317;
+    --navy-soft: #7a5a3e;
+    --gold: #e8a33d;
   }
 
   body {
@@ -21,7 +21,7 @@
     background:
       radial-gradient(1100px 620px at 82% -5%, rgba(88,72,190,0.30), transparent 60%),
       radial-gradient(900px 560px at 8% 108%, rgba(30,58,110,0.55), transparent 60%),
-      linear-gradient(180deg, #060c22 0%, #0a1f44 50%, #16305e 100%);
+      linear-gradient(180deg, #1a0f08 0%, #3a2317 50%, #5c3a22 100%);
     overflow: hidden;
     position: relative;
     display: flex;
@@ -138,7 +138,7 @@
     animation: slideUp 0.9s ease-out both;
   }
   .intro-badge .dot {
-    width: 7px; height: 7px; border-radius: 50%; background: #3d63ff;
+    width: 7px; height: 7px; border-radius: 50%; background: #c9711f;
     animation: dotPulse 1.6s ease-in-out infinite;
   }
   @keyframes dotPulse {
@@ -184,13 +184,13 @@
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: #0a1f44;
+    color: #3a2317;
     text-decoration: none;
     text-transform: uppercase;
     border-radius: 100px;
     background: #ffffff;
     border: 2px solid #ffffff;
-    box-shadow: 6px 6px 0 #3d63ff;
+    box-shadow: 6px 6px 0 #c9711f;
     position: relative;
     transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
     animation: slideUp 1.2s ease-out both;
@@ -199,7 +199,7 @@
   }
   .start-btn:hover {
     transform: translate(-3px, -3px);
-    box-shadow: 9px 9px 0 #3d63ff;
+    box-shadow: 9px 9px 0 #c9711f;
   }
   .start-btn:active { transform: scale(0.97); }
 
@@ -236,8 +236,8 @@
         <stop offset="1" stop-color="rgba(52,90,170,0)"/>
       </radialGradient>
       <radialGradient id="planetGrad">
-        <stop offset="0" stop-color="#4a6fb5"/>
-        <stop offset="1" stop-color="#0a1f44"/>
+        <stop offset="0" stop-color="#8a5a34"/>
+        <stop offset="1" stop-color="#3a2317"/>
       </radialGradient>
       <linearGradient id="starTrail" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="rgba(255,255,255,0)"/>
@@ -329,7 +329,7 @@
 
     <!-- 작은 달 (좌측 하단) -->
     <g>
-      <circle cx="230" cy="720" r="36" fill="#1e3a6e"/>
+      <circle cx="230" cy="720" r="36" fill="#7a5a3e"/>
       <circle cx="219" cy="709" r="11" fill="rgba(219,228,255,0.4)"/>
       <circle cx="242" cy="726" r="6" fill="rgba(219,228,255,0.3)"/>
       <circle cx="252" cy="705" r="4" fill="rgba(219,228,255,0.25)"/>

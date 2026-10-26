@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="핀스킨 로고.png">
 <title>PINSKIN Members Only</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -23,7 +24,7 @@
     background: var(--paper);
     overflow-x: hidden;
     position: relative;
-    padding: 64px 20px 100px;
+    padding: 88px 20px 120px;
   }
 
   body::before {
@@ -102,7 +103,7 @@
 
   .lock-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 30px; font-weight: 900; letter-spacing: -1px; color: var(--navy);
+    font-size: 30px; font-weight: 700; letter-spacing: -1px; color: var(--navy);
   }
   .lock-sub {
     margin-top: 14px;
@@ -155,7 +156,7 @@
   }
   .title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 58px; font-weight: 900; letter-spacing: -2px;
+    font-size: 58px; font-weight: 700; letter-spacing: -2px;
     color: var(--navy); text-transform: uppercase; line-height: 1;
   }
   .title span { color: var(--blue); }
@@ -244,7 +245,7 @@
   .resource-box .resource-title {
     display: flex; align-items: center; gap: 10px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(20px, 3.4vw, 26px); font-weight: 900; letter-spacing: -0.5px;
+    font-size: clamp(20px, 3.4vw, 26px); font-weight: 700; letter-spacing: -0.5px;
     color: var(--navy);
     margin-bottom: 20px;
   }
@@ -302,7 +303,7 @@
   .featured-box .featured-label {
     position: relative; z-index: 1;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(24px, 4vw, 32px); font-weight: 900; letter-spacing: -0.5px;
+    font-size: clamp(24px, 4vw, 32px); font-weight: 700; letter-spacing: -0.5px;
     color: #fff;
     margin-bottom: 20px;
   }
@@ -366,7 +367,7 @@
 
   .mm-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 28px; font-weight: 900; letter-spacing: -0.5px;
+    font-size: 28px; font-weight: 700; letter-spacing: -0.5px;
     color: var(--navy);
   }
   .mm-sub {
@@ -463,6 +464,20 @@
     .menu-card { min-height: 170px; }
     .lock-card { padding: 34px 24px 30px; }
     .mm-step { font-size: 17px; letter-spacing: 2px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--blue, #c9711f);
+    outline-offset: 3px;
+    border-radius: 8px;
   }
 </style>
 </head>

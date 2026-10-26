@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="핀스킨 로고.png">
 <title>PINSKIN 메뉴</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -23,7 +24,7 @@
     background: var(--paper);
     overflow-x: hidden;
     position: relative;
-    padding: 64px 20px 100px;
+    padding: 88px 20px 120px;
   }
 
   body::before {
@@ -79,7 +80,7 @@
 
   .title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 64px; font-weight: 900; letter-spacing: -2px;
+    font-size: 64px; font-weight: 700; letter-spacing: -2px;
     color: var(--navy); text-transform: uppercase; line-height: 1;
   }
   .title span { color: var(--blue); }
@@ -228,13 +229,13 @@
 
   .lock-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 44px; font-weight: 900; letter-spacing: -1px; color: var(--navy);
+    font-size: 44px; font-weight: 700; letter-spacing: -1px; color: var(--navy);
     text-transform: uppercase;
   }
   .lock-tagline {
     margin-top: 10px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 24px; font-weight: 900; color: var(--blue);
+    font-size: 24px; font-weight: 700; color: var(--blue);
     letter-spacing: -0.3px;
   }
   .lock-sub {
@@ -290,6 +291,20 @@
     .title { font-size: 40px; }
     .menu-card { min-height: 170px; }
     .lock-box { padding: 34px 24px 30px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--blue, #c9711f);
+    outline-offset: 3px;
+    border-radius: 8px;
   }
 </style>
 </head>

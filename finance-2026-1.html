@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="핀스킨 로고.png">
 <title>PINSKIN 2026-1 기말회계</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -24,7 +25,7 @@
     min-height: 100vh;
     background: var(--paper);
     overflow-x: hidden;
-    padding: 64px 20px 100px;
+    padding: 88px 20px 120px;
     position: relative;
   }
 
@@ -72,7 +73,7 @@
 
   .title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 48px; font-weight: 900; letter-spacing: -1px;
+    font-size: 48px; font-weight: 700; letter-spacing: -1px;
     color: var(--navy); line-height: 1.15;
   }
   .title span { color: var(--blue); }
@@ -91,7 +92,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 16px;
-    margin-top: 44px;
+    margin-top: 56px;
   }
   .stat-tile {
     border-radius: 16px;
@@ -180,6 +181,20 @@
     .ledger { padding: 4px 18px; }
     .tx-desc { font-size: 14px; }
     .tx-right { text-align: left; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid var(--blue, #c9711f);
+    outline-offset: 3px;
+    border-radius: 8px;
   }
 </style>
 </head>

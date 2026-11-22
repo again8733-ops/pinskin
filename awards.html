@@ -141,6 +141,8 @@
     border-bottom: 1px dashed var(--line);
   }
   .aw-row:last-child { border-bottom: none; }
+  .aw-row.aw-row-stack { flex-direction: column; align-items: stretch; }
+  .aw-head { display: flex; align-items: center; gap: 8px 12px; }
   .aw-bullet {
     width: 6px; height: 6px; border-radius: 2px;
     background: var(--navy); flex-shrink: 0;
@@ -166,10 +168,9 @@
   }
 
   .aw-sub-list {
-    flex-basis: 100%;
     display: flex; flex-direction: column;
     gap: 7px;
-    margin: 4px 0 0 18px;
+    margin: 10px 0 0 18px;
     max-width: 400px;
   }
   .aw-sub-row {
@@ -369,7 +370,8 @@
           <div class="aw-group">Competitions</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제4회 경남 AI·SW 경진대회 - 우주항공 제조 AI Agent 부문 2팀 참여</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 해운·항만·물류 AX 아이디어 공모전 1팀 참여</span></div>
-          <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제24회 경상국립대학교 로켓피치 경연대회 5팀 참여(전원 본선 진출)</span>
+          <div class="aw-row aw-row-stack">
+            <div class="aw-head"><span class="aw-bullet"></span><span class="aw-name">제24회 경상국립대학교 로켓피치 경연대회 5팀 참여(전원 본선 진출)</span></div>
             <div class="aw-sub-list">
               <div class="aw-sub-row"><span class="aw-sub-name">팀 수면위로 (김*윤, 배*빈, 이*주)</span><span class="aw-tag">우수상 수상</span></div>
               <div class="aw-sub-row"><span class="aw-sub-name">팀 TROTTRIP (옥*윤, 최*원, 김*지)</span><span class="aw-tag">우수상 수상</span></div>

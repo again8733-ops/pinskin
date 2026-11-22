@@ -165,6 +165,21 @@
     color: #8a5f10;
   }
 
+  .aw-sub-list {
+    flex-basis: 100%;
+    display: flex; flex-direction: column;
+    gap: 7px;
+    margin: 4px 0 0 18px;
+  }
+  .aw-sub-row {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .aw-sub-name {
+    font-size: 13.5px; font-weight: 500; color: var(--navy-soft);
+    flex: 1;
+  }
+  .aw-sub-row .aw-tag { margin-left: auto; flex-shrink: 0; }
+
   @media (max-width: 700px) {
     .title { font-size: 38px; }
     .sem-head { padding: 16px 20px; }
@@ -353,7 +368,14 @@
           <div class="aw-group">Competitions</div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제4회 경남 AI·SW 경진대회 - 우주항공 제조 AI Agent 부문 2팀 참여</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 해운·항만·물류 AX 아이디어 공모전 1팀 참여</span></div>
-          <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제24회 경상국립대학교 로켓피치 경연대회 5팀 참여(전원 본선 진출)</span><span style="flex-basis:100%;height:0;"></span><span class="aw-tag">우수상 수상</span><span class="aw-tag">우수상 수상</span><span class="aw-tag">장려상 수상</span><span class="aw-tag">장려상 수상</span></div>
+          <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">제24회 경상국립대학교 로켓피치 경연대회 5팀 참여(전원 본선 진출)</span>
+            <div class="aw-sub-list">
+              <div class="aw-sub-row"><span class="aw-sub-name">팀 수면위로 (김*윤, 배*빈, 이*주)</span><span class="aw-tag">우수상 수상</span></div>
+              <div class="aw-sub-row"><span class="aw-sub-name">팀 TROTTRIP (옥*윤, 최*원, 김*지)</span><span class="aw-tag">우수상 수상</span></div>
+              <div class="aw-sub-row"><span class="aw-sub-name">팀 WOD (김*호, 강*은, 노*지)</span><span class="aw-tag">장려상 수상</span></div>
+              <div class="aw-sub-row"><span class="aw-sub-name">팀 슬기로운취준생활 (김*유, 하*진, 강*민)</span><span class="aw-tag">장려상 수상</span></div>
+            </div>
+          </div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 전국 로켓피치 경진대회 1팀 참여</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 스페이스 해커톤 1팀 참여</span></div>
           <div class="aw-row"><span class="aw-bullet"></span><span class="aw-name">2026 GNU 개척리더스 창업아이디어 해커톤 경진대회 4팀 참여 (2팀 본선 진출)</span></div>

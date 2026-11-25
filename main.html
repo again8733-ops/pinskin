@@ -203,15 +203,20 @@
 
   .xmas-headline {
     position: absolute; top: 7%; left: 50%; transform: translateX(-50%);
-    z-index: 5; text-align: center; max-width: 94vw;
+    z-index: 5; text-align: center; width: 94vw; max-width: 640px;
     font-family: 'Space Grotesk', sans-serif; font-weight: 900;
-    font-size: clamp(30px, 6.6vw, 80px); line-height: 0.95; letter-spacing: -2.5px;
+    font-size: clamp(26px, 5.4vw, 72px); line-height: 1.05; letter-spacing: -2px;
     color: #f4f9f6; text-shadow: 0 2px 30px rgba(200, 29, 59, 0.4);
     animation: fadeDown 0.75s cubic-bezier(0.2, 0.8, 0.3, 1) both;
     pointer-events: none;
   }
   .xmas-headline .accent { color: var(--blue); }
   @media (prefers-reduced-motion: reduce) { .xmas-headline { animation: none; } }
+  @media (max-width: 700px) {
+    .xmas-headline {
+      top: 4%; font-size: 32px; letter-spacing: -0.8px; line-height: 1.1;
+    }
+  }
 
   .ls-light { animation: lsTwinkle 1.7s ease-in-out infinite; transform-origin: center; }
   @keyframes lsTwinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }

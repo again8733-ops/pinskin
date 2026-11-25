@@ -20,7 +20,7 @@
   ].join('\n');
   document.head.appendChild(style);
 
-  var lightColors = ['#ff5a5a', '#ffd35a', '#6fe0a0', '#6fc3ff', '#ff5a5a', '#ffd35a'];
+  var lightColors = ['#c81d3b', '#ffd35a'];
   var lightsMarkup = '';
   var positions = [
     [150, 90], [122, 108], [178, 108], [150, 132], [108, 150], [192, 150],
